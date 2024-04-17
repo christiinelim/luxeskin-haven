@@ -22,8 +22,11 @@ The frontend of LuxeSkin Haven is organized using Handlebars (hbs) for sellers t
 4. Checkout: Requires user login, shipping information, and payment details for order confirmation.
 5. Order Tracking: Users can track their orders and view current statuses (pending, shipped, delivered).
 
+## SQL Schema
+![SQL Schema](./frontend/src/assets/images/readme/sql-schema.png)
+
 ## Mock-up
-![LuxeSkin Haven Mock-up](link-to-your-mockup-image)
+To be updated
 
 ## Choice of Colors, Fonts, Style of Image, and Layout
 LuxeSkin Haven adopts a clean and elegant design with a color palette of soft pastels to convey a sense of luxury and tranquility. The fonts are chosen for readability and modern appeal, while images reflect the premium quality and effectiveness of skincare products. The layout is intuitive, focusing on showcasing products effectively and facilitating smooth navigation.
