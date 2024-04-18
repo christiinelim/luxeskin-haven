@@ -1,8 +1,9 @@
-// import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from './views/home/Home';
+import SellerSignupPage from './views/seller/SellerSignupPage';
+import HomePage from './views/HomePage';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           </ul>
         </nav> */}
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route path="/" element={<HomePage />}/>
+          <Route path="/seller/signup" element={<SellerSignupPage />}/>
         </Routes>
       </Router>
     </>

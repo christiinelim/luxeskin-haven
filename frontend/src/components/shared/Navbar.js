@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Cart4, Search, List, ArrowRight } from 'react-bootstrap-icons';
-
-import './Navbar.css'
 
 const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -30,17 +29,17 @@ const Navbar = () => {
             {showDropdown && <div className="overlay" onClick={() => toggleState(setShowDropdown)}></div>}
             <div className='nav-login'>
                 <div className='login-items'>
-                    <div>Start Selling</div>
-                    <div>Seller Platform</div>
+                    <div><Link to="/seller/signup" className="link-items">Start Selling</Link></div>
+                    <div><Link to="/seller/login" className="link-items">Seller Login</Link></div>
                 </div>
                 <div className='login-items'>
-                    <div>Sign Up</div>
-                    <div>Login</div>
+                    <div><Link to="/signup" className="link-items">Sign Up</Link></div>
+                    <div><Link to="/login" className="link-items">Login</Link></div>
                 </div>
             </div>
             <div className='nav-container'>
                 <div className='nav-content'>
-                    <div id='logo' className='content-items'>LuxeSkin Haven</div>
+                    <div id='logo' className='content-items'><Link to="/" className="link-items">LuxeSkin Haven</Link></div>
                     <div id='tabs-large' className='content-items'>
                         <div>SHOP</div>
                         <div>COLLECTIONS</div>

@@ -1,10 +1,9 @@
 import React from 'react';
-import './Cta.css'
 
 const Cta = () => {
 
     return (
-        <div className='wrapper'>
+        <div className='wrapper cta-background'>
             <div>CTA</div>
         </div>
     )
