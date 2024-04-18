@@ -6,24 +6,67 @@ body {
     font-size: 10px
 }
 
+/* SHARED */
 /* logo */
 #logo {
     font-size: 14px;
     font-weight: bold;
 }
 
-.link-items {
-    color: black;
-    text-decoration: none;
+/* overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* nav */
-.nav-login {
+/* form */
+form {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+    height: 25px;
+}
+
+.input-half-width {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 1px solid black;
-    padding: 20px 25px 5px 25px;
+    gap: 10px
+}
+
+.input-half-width-items {
+    width: 50%;
+}
+
+.submit-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.submit-button {
+    width: 100% !important;
+    font-weight: bold;
+}
+
+.form-header {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.login-prompt {
+    margin-top: 8px;
+}
+
+.login-action {
+    color: rgba(241,101,101,1);
+    font-weight: bold;
 }
 
 /* buttons */
@@ -35,11 +78,12 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     width: 55px;
-    height: 22px;
+    height: 25px;
 }
 
 .button-full {
     background-color: black;
+    color: white
 }
 
 .button-full .link-items {
@@ -53,6 +97,21 @@ body {
     background-color: rgba(128, 128, 128, 1);
     border: 1px solid rgba(128, 128, 128, 1);
     color: white
+}
+
+/* NAVBAR COMPONENT */
+/* nav */
+.link-items {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid black;
+    padding: 20px 25px 5px 25px;
 }
 
 /* CTA COMPONENT */
@@ -246,12 +305,26 @@ body {
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 500px;
+    height: 590px;
+}
+
+.signup-form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 540px;
+    z-index: 100;
 }
 
 .signup-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     background-color: white;
-    height: 200px;
+    padding: 40px 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.3);
+    width: 270px;
 }
 
 @media (min-width: 576px) {
@@ -259,11 +332,32 @@ body {
         font-size: 11px
     }
 
+    /* SHARED */
     /* logo */
     #logo {
         font-size: 15px;
     }
 
+    /* form */
+    input {
+        margin-bottom: 12px;
+        height: 28px;
+    }
+
+    .input-half-width {
+        gap: 12px
+    }
+
+    .submit-button-container {
+        margin-top: 12px;
+    }
+
+    .form-header {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    /* NAVBAR COMPONENT */
     /* nav */
     .nav-login {
         padding: 25px 30px 10px 30px;
@@ -273,7 +367,7 @@ body {
     .button-border,
     .button-full {
         width: 65px;
-        height: 25px;
+        height: 28px;
     }
 
     /* NAVBAR COMPONENT */
@@ -296,6 +390,20 @@ body {
     #seller-platform-logo {
         font-size: 13px
     }
+
+    /* SELLER SIGNUP COMPONENT */
+    .seller-signup-background {
+        height: 570px;
+    }
+
+    .signup-form-container {
+        height: 500px;
+    }
+
+    .signup-form {
+        width: 350px;
+        padding: 40px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -303,21 +411,41 @@ body {
         font-size: 12px
     }
 
+    /* SHARED */
     /* logo */
     #logo {
         font-size: 16px;
     }
 
-    /* nav */
-    .nav-login {
-        padding: 25px 30px 10px 30px;
+    /* form */
+    input {
+        margin-bottom: 14px;
+        height: 32px;
+    }
+
+    .submit-button {
+        height: 32px !important;
+    }
+
+    .form-header {
+        font-size: 16px;
+    }
+
+    .login-prompt {
+        margin-top: 10px;
     }
 
     /* buttons */
     .button-border,
     .button-full {
         width: 67px;
-        height: 27px;
+        height: 30px;
+    }
+
+    /* NAVBAR COMPONENT */
+    /* nav */
+    .nav-login {
+        padding: 25px 30px 10px 30px;
     }
 
     /* NAVBAR COMPONENT */
@@ -355,6 +483,20 @@ body {
     #seller-platform-logo {
         font-size: 14px
     }
+
+    /* SELLER SIGNUP COMPONENT */
+    .seller-signup-background {
+        height: 560px;
+    }
+
+    .signup-form-container {
+        height: 550px;
+    }
+
+    .signup-form {
+        width: 370px;
+        padding: 40px 35px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -362,25 +504,43 @@ body {
         font-size: 13px
     }
 
+    /* SHARED */
     /* logo */
     #logo {
         font-size: 17px;
     }
 
-    /* nav */
-    .nav-login {
-        padding: 30px 40px 10px 40px;
+    /* form */
+    input {
+        margin-bottom: 16px;
+        height: 34px;
+    }
+
+    .submit-button {
+        height: 34px !important;
+    }
+
+    .form-header {
+        font-size: 17px;
+    }
+
+    .login-prompt {
+        margin-top: 12px;
     }
 
     /* buttons */
     .button-border,
     .button-full {
         width: 70px;
-        height: 28px;
+        height: 32px;
     }
 
     /* NAVBAR COMPONENT */
-    /* navbar row for login */
+    /* nav */
+    .nav-login {
+        padding: 30px 40px 10px 40px;
+    }
+
     .login-items {
         gap: 20px
     }
@@ -413,5 +573,10 @@ body {
     /* SELLER NAVBAR COMPONENT */
     #seller-platform-logo {
         font-size: 15px
+    }
+
+    /* SELLER SIGNUP COMPONENT */
+    .signup-form {
+        width: 380px;
     }
 }
