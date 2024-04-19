@@ -22,18 +22,18 @@ const SellerSignup = () => {
     return (
         <div className="wrapper seller-signup-background">
             <div className="row">
-                <div className="col-12 col-md-6"></div>
-                <div className="col-12 col-md-6 signup-form-container">
+                <div className="col-12 col-md-5"></div>
+                <div className="col-12 col-md-7 signup-form-container">
                     <div className="signup-form">
                         <div className="form-header">Create Account</div>
 
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)} className="form-container">
                             <div>
                                 <label>Username</label>
                                 <input {...register("username", {
                                     required: "Username is required"
                                 })} type="text" id="username" name="username" />
-                                { errors.username && <div>{ errors.username.message }</div> }
+                                { errors.username && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.username.message }</div> }
                             </div>
 
                             <div>
@@ -43,7 +43,7 @@ const SellerSignup = () => {
                                     maxLength: 320,
                                     validate: (value) => value.includes("@") || "Invalid format, email must include @"
                                 })} type="text" id="email" name="email" />
-                                { errors.email && <div>{ errors.email.message }</div> }
+                                { errors.email && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.email.message }</div> }
                             </div>
 
                             <div className="input-half-width">
@@ -53,19 +53,19 @@ const SellerSignup = () => {
                                         required: "Password is required",
                                         pattern: {
                                             value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,32}$/,
-                                            message: "Password must be 8 to 32 characters, contain at least 1 uppercase, lowercase, number and special character"
+                                            message: "Password must be 8-32 characters, contain 1 uppercase, lowercase, number and special character"
                                         }
                                     })} type="password" id="password" name="password" />
-                                    { errors.password && <div>{ errors.password.message }</div> }
+                                    { errors.password && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.password.message }</div> }
                                 </div>
 
                                 <div className="input-half-width-items">
                                     <label>Confirm Password</label>
                                     <input {...register("confirm_password", {
-                                        required: "Confirm password is required",
+                                        required: "Input is required",
                                         validate: (value) => value === getValues('password') || "Passwords do not match"
                                     })} type="password" id="confirm_password" name="confirm_password" />
-                                    { errors.confirm_password && <div>{ errors.confirm_password.message }</div> }
+                                    { errors.confirm_password && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.confirm_password.message }</div> }
                                 </div>
                             </div>
 
@@ -78,7 +78,7 @@ const SellerSignup = () => {
                                         message: "Contact must be 8 numbers, starting with 6, 8 or 9"
                                     }
                                 })} type="number" id="contact" name="contact" />
-                                { errors.contact && <div>{ errors.contact.message }</div> }
+                                { errors.contact && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.contact.message }</div> }
                             </div>
 
                             <div className="submit-button-container">
@@ -86,9 +86,9 @@ const SellerSignup = () => {
                                     { isSubmitting ? "Submitting" : "Submit" }
                                 </button>
                             </div>
-                            { errors.root && <div>{ errors.root.message }</div> }
+                            { errors.root && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.root.message }</div> }
                         </form>
-                        <div className="login-prompt">Already have an account? | <span className="login-action">Login</span></div>
+                        <div className="form-prompt">Already have an account? | <span className="form-action">Login</span></div>
                     </div>
                 </div>
             </div>

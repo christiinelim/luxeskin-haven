@@ -3,7 +3,7 @@ body {
     font-family: 'Roboto';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 10px
+    font-size: 9px
 }
 
 /* SHARED */
@@ -28,10 +28,21 @@ form {
     width: 100%;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+label {
+    color: rgba(0, 0, 0, 0.6);
+}
+
 input {
     width: 100%;
-    margin-bottom: 10px;
     height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
 }
 
 .input-half-width {
@@ -57,16 +68,28 @@ input {
 .form-header {
     font-weight: bold;
     font-size: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.login-prompt {
+.form-prompt {
     margin-top: 8px;
 }
 
-.login-action {
+.form-action {
     color: rgba(241,101,101,1);
     font-weight: bold;
+}
+
+/* form error message */
+.form-error-message {
+    color: rgba(241,101,101,1);
+    font-size: 7px;
+    line-height: 8px;
+    margin-top: 2px
+}
+
+.form-error-icon {
+    margin-right: 2px
 }
 
 /* buttons */
@@ -79,6 +102,7 @@ input {
     border-radius: 5px;
     width: 55px;
     height: 25px;
+    font-weight: bold;
 }
 
 .button-full {
@@ -312,7 +336,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 540px;
+    height: 590px;
     z-index: 100;
 }
 
@@ -324,12 +348,12 @@ input {
     padding: 40px 30px;
     border-radius: 5px;
     box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.3);
-    width: 270px;
+    width: 300px;
 }
 
 @media (min-width: 576px) {
     body {
-        font-size: 11px
+        font-size: 10px
     }
 
     /* SHARED */
@@ -339,8 +363,11 @@ input {
     }
 
     /* form */
+    .form-container {
+        gap: 12px
+    }
+
     input {
-        margin-bottom: 12px;
         height: 28px;
     }
 
@@ -354,7 +381,17 @@ input {
 
     .form-header {
         font-size: 15px;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* form error message */
+    .form-error-message {
+        font-size: 8px;
+        line-height: 9px
+    }
+
+    .form-error-icon {
+        margin-right: 3px
     }
 
     /* NAVBAR COMPONENT */
@@ -397,18 +434,18 @@ input {
     }
 
     .signup-form-container {
-        height: 500px;
+        height: 570px;
     }
 
     .signup-form {
-        width: 350px;
+        width: 400px;
         padding: 40px;
     }
 }
 
 @media (min-width: 768px) {
     body {
-        font-size: 12px
+        font-size: 11px
     }
 
     /* SHARED */
@@ -418,8 +455,11 @@ input {
     }
 
     /* form */
+    .form-container {
+        gap: 12px
+    }
+
     input {
-        margin-bottom: 14px;
         height: 32px;
     }
 
@@ -429,10 +469,21 @@ input {
 
     .form-header {
         font-size: 16px;
+        margin-bottom: 12px;
     }
 
-    .login-prompt {
+    .form-prompt {
         margin-top: 10px;
+    }
+
+    /* form error message */
+    .form-error-message {
+        font-size: 9px;
+        line-height: 10px
+    }
+
+    .form-error-icon {
+        margin-right: 4px
     }
 
     /* buttons */
@@ -490,18 +541,18 @@ input {
     }
 
     .signup-form-container {
-        height: 550px;
+        height: 560px;
     }
 
     .signup-form {
-        width: 370px;
-        padding: 40px 35px;
+        width: 400px;
+        padding: 30px 35px;
     }
 }
 
 @media (min-width: 992px) {
     body {
-        font-size: 13px
+        font-size: 12px
     }
 
     /* SHARED */
@@ -512,7 +563,6 @@ input {
 
     /* form */
     input {
-        margin-bottom: 16px;
         height: 34px;
     }
 
@@ -524,7 +574,7 @@ input {
         font-size: 17px;
     }
 
-    .login-prompt {
+    .form-prompt {
         margin-top: 12px;
     }
 
@@ -533,6 +583,16 @@ input {
     .button-full {
         width: 70px;
         height: 32px;
+    }
+
+    /* form error message */
+    .form-error-message {
+        font-size: 10px;
+        line-height: 11px
+    }
+
+    .form-error-icon {
+        margin-right: 5px
     }
 
     /* NAVBAR COMPONENT */
@@ -577,6 +637,6 @@ input {
 
     /* SELLER SIGNUP COMPONENT */
     .signup-form {
-        width: 380px;
+        width: 420px;
     }
 }
