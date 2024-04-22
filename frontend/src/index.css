@@ -92,6 +92,18 @@ input {
     margin-right: 2px
 }
 
+.form-error-box {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    color: rgba(114,28,36,1);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    height: 25px
+}
+
 /* buttons */
 .button-border,
 .button-full {
@@ -390,6 +402,10 @@ input {
         line-height: 9px
     }
 
+    .form-error-box {
+        height: 28px
+    }
+
     .form-error-icon {
         margin-right: 3px
     }
@@ -480,6 +496,11 @@ input {
     .form-error-message {
         font-size: 9px;
         line-height: 10px
+    }
+
+    .form-error-box {
+        gap: 4px;
+        height: 30px
     }
 
     .form-error-icon {
@@ -589,6 +610,10 @@ input {
     .form-error-message {
         font-size: 10px;
         line-height: 11px
+    }
+
+    .form-error-box {
+        height: 28px
     }
 
     .form-error-icon {

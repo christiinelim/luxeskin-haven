@@ -1,17 +1,31 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import SellerServices from '../../../services/SellerServices'
 
 const SellerSignup = () => {
     const { register, handleSubmit, setError, getValues, formState: { errors, isSubmitting } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            console.log(data)
             delete data.confirm_password;
-            console.log(data)
-            // throw new Error();
-            // need include verified no and created at
+
+            const response = await SellerServices.createSeller(data); 
+
+            if (response.error) {
+                setError("root", {
+                    message: "Email is already registered with an account"
+                })
+            } else {
+                navigate('/seller/login', { 
+                    state: { 
+                        email: data.email, 
+                        id: response.data.id 
+                    } 
+                });
+            }
         } catch (error) {
             setError("root", {
                 message: "Error signing up"
@@ -86,7 +100,7 @@ const SellerSignup = () => {
                                     { isSubmitting ? "Submitting" : "Submit" }
                                 </button>
                             </div>
-                            { errors.root && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.root.message }</div> }
+                            { errors.root && <div className="form-error-message form-error-box"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.root.message }</div> }
                         </form>
                         <div className="form-prompt">Already have an account? | <span className="form-action">Login</span></div>
                     </div>
