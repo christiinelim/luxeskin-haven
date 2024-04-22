@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import SellerServices from '../../../services/SellerServices'
 
 const SellerLogin = () => {
-    const { register, handleSubmit, setError, getValues, formState: { errors, isSubmitting } } = useForm();
+    const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const onSubmit = async (data) => {
         try {
@@ -17,7 +18,15 @@ const SellerLogin = () => {
                 if (response.error === "Account not verified") {
                     setError("root", {
                         message: "Please verify account to login"
-                    })
+                    });
+                    setTimeout(() => {
+                        navigate('/seller/verify-account', { 
+                            state: { 
+                                email: data.email, 
+                                id: response.data.id 
+                            }
+                        });
+                    }, 3000);
                 } else {
                     setError("root", {
                         message: response.error
@@ -50,7 +59,7 @@ const SellerLogin = () => {
                                 <input {...register("email", {
                                     required: "Email is required"
                                 })} type="text" id="email" name="email" />
-                                { errors.email && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.email.message }</div> }
+                                { errors.email && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
                             </div>
 
                             <div>
@@ -58,7 +67,7 @@ const SellerLogin = () => {
                                 <input {...register("password", {
                                     required: "Password is required",
                                 })} type="password" id="password" name="password" />
-                                { errors.password && <div className="form-error-message"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.password.message }</div> }
+                                { errors.password && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
                             </div>
 
                             <div className="submit-button-container">
@@ -66,7 +75,8 @@ const SellerLogin = () => {
                                     { isSubmitting ? "Logging In" : "Login" }
                                 </button>
                             </div>
-                            { errors.root && <div className="form-error-message form-error-box"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.root.message }</div> }
+                            { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
+                            { location.state && <div className="form-message form-success-box"><i class="bi bi-check-circle form-icon"></i>{ location.state.success_message }</div> }
                         </form>
                         <div className="form-prompt"><Link to="/seller/forgot-password" className="forgot-password">Forgot Password</Link></div>
                         <div>Do not have an account? | <Link to="/seller/signup" className="form-action">Sign Up</Link></div>

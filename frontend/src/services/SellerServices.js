@@ -16,6 +16,14 @@ const SellerServices = {
         } catch (error) {
             throw new Error('Failed to login');
         }
+    },
+    verify: async (data) => {
+        try {
+            const response = await ApiServices.post('/seller/verify-account', data);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to verify');
+        }
     }
     // updateSeller: async (sellerId, updatedData) => {
     //     try {

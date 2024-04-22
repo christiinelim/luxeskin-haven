@@ -82,14 +82,14 @@ input {
 }
 
 /* form error message */
-.form-error-message {
+.form-message {
     color: rgba(241,101,101,1);
     font-size: 7px;
     line-height: 8px;
     margin-top: 2px
 }
 
-.form-error-icon {
+.form-icon {
     margin-right: 2px
 }
 
@@ -103,6 +103,19 @@ input {
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     height: 25px
+}
+
+.form-success-box {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    color: rgba(21,87,36,1);
+    background-color: #d4edda;
+    position: relative;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    height: 25px;
 }
 
 /* buttons */
@@ -392,6 +405,57 @@ input {
     color: rgba(241,101,101,1);
 }
 
+/* VERIFY COMPONENT */
+.verify-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 100px;
+}
+
+.verify-header {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.verify-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.verify-email {
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.verify-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.verify-digit-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.verify-digit-input input {
+    height: 30px;
+    width: 25px;
+    text-align: center;
+}
+
+.verify-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
 @media (min-width: 576px) {
     body {
         font-size: 10px
@@ -426,16 +490,17 @@ input {
     }
 
     /* form error message */
-    .form-error-message {
+    .form-message {
         font-size: 8px;
         line-height: 9px
     }
 
-    .form-error-box {
+    .form-error-box,
+    .form-success-box {
         height: 28px
     }
 
-    .form-error-icon {
+    .form-icon {
         margin-right: 3px
     }
 
@@ -496,6 +561,34 @@ input {
         width: 300px;
         padding: 40px;
     }
+
+    /* VERIFY COMPONENT */
+    .verify-wrapper {
+        padding: 60px 150px;
+    }
+
+    .verify-header {
+        font-size: 15px;
+        margin: 12px;
+    }
+
+    .verify-email {
+        margin-bottom: 40px;
+    }
+
+    .verify-digit-input {
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .verify-digit-input input {
+        height: 35px;
+        width: 30px;
+    }
+
+    .verify-button {
+        margin-top: 15px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -532,17 +625,18 @@ input {
     }
 
     /* form error message */
-    .form-error-message {
+    .form-message {
         font-size: 9px;
         line-height: 10px
     }
 
-    .form-error-box {
+    .form-error-box,
+    .form-success-box {
         gap: 4px;
         height: 30px
     }
 
-    .form-error-icon {
+    .form-icon {
         margin-right: 4px
     }
 
@@ -617,6 +711,34 @@ input {
     .login-form {
         padding: 30px 35px;
     }
+
+    /* VERIFY COMPONENT */
+    .verify-wrapper {
+        padding: 60px 220px;
+    }
+
+    .verify-header {
+        font-size: 16px;
+        margin: 14px;
+    }
+
+    .verify-email {
+        margin-bottom: 45px;
+    }
+
+    .verify-digit-input {
+        gap: 14px;
+        margin-top: 14px;
+    }
+
+    .verify-digit-input input {
+        height: 40px;
+        width: 35px;
+    }
+
+    .verify-button {
+        margin-top: 20px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -655,16 +777,17 @@ input {
     }
 
     /* form error message */
-    .form-error-message {
+    .form-message {
         font-size: 10px;
         line-height: 11px
     }
 
-    .form-error-box {
+    .form-error-box,
+    .form-success-box {
         height: 28px
     }
 
-    .form-error-icon {
+    .form-icon {
         margin-right: 5px
     }
 
@@ -716,5 +839,33 @@ input {
     /* LOGIN COMPONENT */
     .login-form {
         width: 320px;
+    }
+
+    /* VERIFY COMPONENT */
+    .verify-wrapper {
+        padding: 50px 300px;
+    }
+
+    .verify-header {
+        font-size: 17px;
+        margin: 16px;
+    }
+
+    .verify-email {
+        margin-bottom: 50px;
+    }
+
+    .verify-digit-input {
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .verify-digit-input input {
+        height: 45px;
+        width: 40px;
+    }
+
+    .verify-button {
+        margin-top: 25px;
     }
 }
