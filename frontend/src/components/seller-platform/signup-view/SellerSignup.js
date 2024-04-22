@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import SellerServices from '../../../services/SellerServices'
 
 const SellerSignup = () => {
@@ -102,7 +102,7 @@ const SellerSignup = () => {
                             </div>
                             { errors.root && <div className="form-error-message form-error-box"><i class="bi bi-exclamation-circle form-error-icon"></i>{ errors.root.message }</div> }
                         </form>
-                        <div className="form-prompt">Already have an account? | <span className="form-action">Login</span></div>
+                        <div className="form-prompt">Already have an account? | <Link to="/seller/login" className="form-action">Login</Link></div>
                     </div>
                 </div>
             </div>

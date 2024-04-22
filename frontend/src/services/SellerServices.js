@@ -1,15 +1,22 @@
 import ApiServices from "./ApiServices";
 
 const SellerServices = {
-    createSeller: async (sellerData) => {
+    createSeller: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/create', sellerData);
+            const response = await ApiServices.post('/seller/create', data);
             return response.data;
         } catch (error) {
-            console.log(error)
             throw new Error('Failed to create seller');
         }
     },
+    login: async (data) => {
+        try {
+            const response = await ApiServices.post('/seller/login', data);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to login');
+        }
+    }
     // updateSeller: async (sellerId, updatedData) => {
     //     try {
     //         const response = await ApiServices.put(`/seller/${sellerId}`, updatedData);
