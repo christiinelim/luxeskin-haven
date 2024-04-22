@@ -34,9 +34,10 @@ const SellerLogin = () => {
                     })
                 }
             } else {
-                // SET IN LOCAL STORAGE JWT 
-                console.log(response)
-                navigate('/seller/signup');
+                localStorage.setItem("sellerId", response.data.id);
+                localStorage.setItem("email", response.data.email);
+                localStorage.setItem("token", response.data.token);
+                navigate('/seller/profile/' + response.data.id);
             }
         } catch (error) {
             console.log(error)
@@ -78,6 +79,7 @@ const SellerLogin = () => {
                             </div>
                             { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
                             { location.state && <div className="form-message form-success-box"><i class="bi bi-check-circle form-icon"></i>{ location.state.success_message }</div> }
+                            { location.state && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ location.state.error_message }</div> }
                         </form>
                         <div className="form-prompt"><Link to="/seller/forgot-password" className="forgot-password">Forgot Password</Link></div>
                         <div>Do not have an account? | <Link to="/seller/signup" className="form-action">Sign Up</Link></div>

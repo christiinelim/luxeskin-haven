@@ -7,6 +7,7 @@ import HomePage from './views/HomePage';
 import SellerLoginPage from './views/seller/SellerLoginPage';
 import SellerVerifyAccountPage from './views/seller/SellerVerifyAccountPage';
 import { SellerServicesData } from './context/SellerServicesContext'
+import SellerProfilePage from './views/seller/SellerProfilePage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/seller/signup" element={<SellerSignupPage />}/>
             <Route path="/seller/login" element={<SellerLoginPage />}/>
             <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
+            <Route path="/seller/profile/:sellerId" element={<SellerProfilePage />}/>
           </Routes>
         </SellerServicesData>
       </Router>
