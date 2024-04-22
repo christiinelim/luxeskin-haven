@@ -19,11 +19,11 @@ const SellerSignup = () => {
                     message: "Email is already registered with an account"
                 })
             } else {
-                navigate('/seller/login', { 
+                navigate('/seller/verify-account', { 
                     state: { 
                         email: data.email, 
                         id: response.data.id 
-                    } 
+                    }
                 });
             }
         } catch (error) {
