@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import SellerServices from '../../../services/SellerServices'
+import { SellerServicesContext } from '../../../context/SellerServicesContext';
 
 const SellerLogin = () => {
     const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
+    const sellerServices = useContext(SellerServicesContext);
 
     const onSubmit = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
 
-            const response = await SellerServices.login(data); 
+            const response = await sellerServices.login(data); 
 
             if (response.error) {
                 if (response.error === "Account not verified") {

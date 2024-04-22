@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
-import SellerServices from '../../../services/SellerServices'
+import { SellerServicesContext } from '../../../context/SellerServicesContext'
 
 const SellerSignup = () => {
+    const sellerServices = useContext(SellerServicesContext);
     const { register, handleSubmit, setError, getValues, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate();
 
@@ -12,7 +13,7 @@ const SellerSignup = () => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             delete data.confirm_password;
 
-            const response = await SellerServices.createSeller(data); 
+            const response = await sellerServices.createSeller(data); 
 
             if (response.error) {
                 setError("root", {

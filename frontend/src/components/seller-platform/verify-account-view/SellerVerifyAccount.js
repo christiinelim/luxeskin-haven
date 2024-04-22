@@ -1,12 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import verificationImage from "../../../assets/images/verification/verification.gif";
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom'
-import SellerServices from "../../../services/SellerServices";
+import { SellerServicesContext } from '../../../context/SellerServicesContext'
 
 const SellerVerifyAccount = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const sellerServices = useContext(SellerServicesContext);
     const { email, id } = location.state;
     const { handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const inputRefs = useRef([null, null, null, null, null, null]);
@@ -32,7 +33,7 @@ const SellerVerifyAccount = () => {
                 "profile": "Seller"
             };
 
-            const response = await SellerServices.verify(verificationData); 
+            const response = await sellerServices.verify(verificationData); 
 
             if (response.error) {
                 if (response.error === "Invalid token") {
