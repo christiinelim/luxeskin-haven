@@ -37,7 +37,8 @@ const SellerLogin = () => {
             } else {
                 localStorage.setItem("sellerId", response.data.id);
                 localStorage.setItem("email", response.data.email);
-                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("accessToken", response.data.accessToken);
+                localStorage.setItem("refreshToken", response.data.refreshToken);
                 navigate('/seller/profile/' + response.data.id);
             }
         } catch (error) {

@@ -16,6 +16,8 @@ const ForgotPassword = () => {
 
             if (!tokenSent) {
                 // send reset token
+                const response = await sellerContext.sendResetPasswordToken(data);
+                console.log(response)
 
                 setTokenSent(true);
             } else {
@@ -23,8 +25,9 @@ const ForgotPassword = () => {
             }
 
         } catch (error) {
+            console.log(error)
             setError("root", {
-                message: "Error logging in"
+                message: "Error sending reset token"
             })
         }
     }
@@ -84,7 +87,7 @@ const ForgotPassword = () => {
 
                             <div className="submit-button-container">
                                 <button disabled={ isSubmitting } type="submit" className="button-full submit-button">
-                                    { isSubmitting ? "Logging In" : !tokenSent ? "Send Reset Token" : "Update Password" }
+                                    { isSubmitting ? "Loading" : !tokenSent ? "Send Reset Token" : "Update Password" }
                                 </button>
                             </div>
                             { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
