@@ -7,7 +7,7 @@ import { SellerServicesContext } from '../../../context/SellerServicesContext'
 const SellerVerifyAccount = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const sellerServices = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerServicesContext);
     const { email, id } = location.state;
     const { handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const inputRefs = useRef([null, null, null, null, null, null]);
@@ -33,7 +33,7 @@ const SellerVerifyAccount = () => {
                 "profile": "Seller"
             };
 
-            const response = await sellerServices.verify(verificationData); 
+            const response = await sellerContext.verify(verificationData); 
 
             if (response.error) {
                 if (response.error === "Invalid token") {

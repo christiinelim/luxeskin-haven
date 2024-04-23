@@ -4,14 +4,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const SellerProfile = () => {
     const [ seller, setSeller ] = useState({});
-    const sellerServices = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerServicesContext);
     const { sellerId } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
         
         const fetchData = async() => {
-            const response = await sellerServices.getSeller(sellerId);
+            const response = await sellerContext.getSeller(sellerId);
 
             if (response.error === "Unauthorized, please login") {
                 navigate('/seller/login', { 

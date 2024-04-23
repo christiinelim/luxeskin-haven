@@ -351,7 +351,7 @@ input {
 
 /* SELLER SIGNUP COMPONENT */
 .seller-signup-background {
-    background-image: url('../src/assets/images/seller-signup/signup.jpg');
+    background-image: url('../src/assets/images/seller/signup.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -379,7 +379,7 @@ input {
 
 /* LOGIN COMPONENT */
 .seller-login-background {
-    background-image: url('../src/assets/images/seller-login/login.jpg');
+    background-image: url('../src/assets/images/seller/login.jpg');
     background-size: cover;
     background-position: 50% 10%;
     width: 100%;

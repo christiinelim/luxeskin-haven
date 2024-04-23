@@ -7,19 +7,20 @@ const SellerLogin = () => {
     const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
-    const sellerServices = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerServicesContext);
 
     const onSubmit = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
 
-            const response = await sellerServices.login(data); 
+            const response = await sellerContext.login(data); 
 
             if (response.error) {
                 if (response.error === "Account not verified") {
                     setError("root", {
                         message: "Please verify account to login"
                     });
+                    
                     setTimeout(() => {
                         navigate('/seller/verify-account', { 
                             state: { 
@@ -40,7 +41,6 @@ const SellerLogin = () => {
                 navigate('/seller/profile/' + response.data.id);
             }
         } catch (error) {
-            console.log(error)
             setError("root", {
                 message: "Error logging in"
             })
@@ -78,8 +78,16 @@ const SellerLogin = () => {
                                 </button>
                             </div>
                             { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
-                            { location.state && <div className="form-message form-success-box"><i class="bi bi-check-circle form-icon"></i>{ location.state.success_message }</div> }
-                            { location.state && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ location.state.error_message }</div> }
+                            {location.state && location.state.success_message && (
+                                <div className="form-message form-success-box">
+                                    <i className="bi bi-check-circle form-icon"></i>{location.state.success_message}
+                                </div>
+                            )}
+                            {location.state && location.state.error_message && (
+                                <div className="form-message form-error-box">
+                                    <i className="bi bi-exclamation-circle form-icon"></i>{location.state.error_message}
+                                </div>
+                            )}
                         </form>
                         <div className="form-prompt"><Link to="/seller/forgot-password" className="forgot-password">Forgot Password</Link></div>
                         <div>Do not have an account? | <Link to="/seller/signup" className="form-action">Sign Up</Link></div>
