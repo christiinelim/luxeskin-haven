@@ -62,7 +62,7 @@ const SellerLogin = () => {
                                 <input {...register("email", {
                                     required: "Email is required"
                                 })} type="text" id="email" name="email" />
-                                { errors.email && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
+                                { errors.email && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
                             </div>
 
                             <div>
@@ -70,7 +70,7 @@ const SellerLogin = () => {
                                 <input {...register("password", {
                                     required: "Password is required",
                                 })} type="password" id="password" name="password" />
-                                { errors.password && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
+                                { errors.password && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
                             </div>
 
                             <div className="submit-button-container">
@@ -78,7 +78,7 @@ const SellerLogin = () => {
                                     { isSubmitting ? "Logging In" : "Login" }
                                 </button>
                             </div>
-                            { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
+                            { errors.root && <div className="form-message form-error-box"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
                             {location.state && location.state.success_message && (
                                 <div className="form-message form-success-box">
                                     <i className="bi bi-check-circle form-icon"></i>{location.state.success_message}

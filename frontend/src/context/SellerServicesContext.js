@@ -1,9 +1,10 @@
-import React, { createContext } from 'react';
+import React, { createContext, useMemo } from 'react';
 import SellerServices from '../services/SellerServices';
 
 export const SellerServicesContext = createContext();
 
 export const SellerServicesData = ({ children }) => {
+
     const createSeller = async (data) => {
         try {
             return await SellerServices.createSeller(data);
@@ -54,7 +55,7 @@ export const SellerServicesData = ({ children }) => {
             throw new Error('Failed to reset password');
         }
     };
-    
+
     const sellerContextValue = {
         createSeller,
         login,

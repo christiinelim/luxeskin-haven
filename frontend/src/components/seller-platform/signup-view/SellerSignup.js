@@ -48,7 +48,7 @@ const SellerSignup = () => {
                                 <input {...register("username", {
                                     required: "Username is required"
                                 })} type="text" id="username" name="username" />
-                                { errors.username && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.username.message }</div> }
+                                { errors.username && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.username.message }</div> }
                             </div>
 
                             <div>
@@ -58,7 +58,7 @@ const SellerSignup = () => {
                                     maxLength: 320,
                                     validate: (value) => value.includes("@") || "Invalid format, email must include @"
                                 })} type="text" id="email" name="email" />
-                                { errors.email && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
+                                { errors.email && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
                             </div>
 
                             <div className="input-half-width">
@@ -71,7 +71,7 @@ const SellerSignup = () => {
                                             message: "Password must be 8-32 characters, contain 1 uppercase, lowercase, number and special character"
                                         }
                                     })} type="password" id="password" name="password" />
-                                    { errors.password && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
+                                    { errors.password && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
                                 </div>
 
                                 <div className="input-half-width-items">
@@ -80,7 +80,7 @@ const SellerSignup = () => {
                                         required: "Input is required",
                                         validate: (value) => value === getValues('password') || "Passwords do not match"
                                     })} type="password" id="confirm_password" name="confirm_password" />
-                                    { errors.confirm_password && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.confirm_password.message }</div> }
+                                    { errors.confirm_password && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.confirm_password.message }</div> }
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@ const SellerSignup = () => {
                                         message: "Contact must be 8 numbers, starting with 6, 8 or 9"
                                     }
                                 })} type="number" id="contact" name="contact" />
-                                { errors.contact && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.contact.message }</div> }
+                                { errors.contact && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.contact.message }</div> }
                             </div>
 
                             <div className="submit-button-container">
@@ -101,7 +101,7 @@ const SellerSignup = () => {
                                     { isSubmitting ? "Submitting" : "Submit" }
                                 </button>
                             </div>
-                            { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
+                            { errors.root && <div className="form-message form-error-box"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
                         </form>
                         <div className="form-prompt">Already have an account? | <Link to="/seller/login" className="form-action">Login</Link></div>
                     </div>

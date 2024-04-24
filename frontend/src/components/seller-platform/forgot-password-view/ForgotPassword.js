@@ -83,7 +83,7 @@ const ForgotPassword = () => {
                                 <input {...register("email", {
                                     required: "Email is required"
                                 })} type="text" id="email" name="email" disabled={ tokenSent } />
-                                { errors.email && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
+                                { errors.email && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.email.message }</div> }
                             </div>
 
                             { tokenSent &&
@@ -92,7 +92,7 @@ const ForgotPassword = () => {
                                     <input {...register("token", {
                                         required: !tokenSent ? false : "Reset Token is required"
                                     })} type="text" id="token" name="token" />
-                                    { errors.token && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.token.message }</div> }
+                                    { errors.token && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.token.message }</div> }
                                 </div>
                             }
 
@@ -106,7 +106,7 @@ const ForgotPassword = () => {
                                             message: "Password must be 8-32 characters, contain 1 uppercase, lowercase, number and special character"
                                         }
                                     })} type="password" id="password" name="password" />
-                                    { errors.password && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
+                                    { errors.password && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.password.message }</div> }
                                 </div>
                             }
 
@@ -118,7 +118,7 @@ const ForgotPassword = () => {
                                         required: !tokenSent ? false : "Input is required",
                                         validate: (value) => value === getValues('password') || "Passwords do not match"
                                     })} type="password" id="confirm_password" name="confirm_password" />
-                                    { errors.confirm_password && <div className="form-message"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.confirm_password.message }</div> }
+                                    { errors.confirm_password && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.confirm_password.message }</div> }
                                 </div>
                             }
 
@@ -127,7 +127,7 @@ const ForgotPassword = () => {
                                     { isSubmitting ? "Loading" : !tokenSent ? "Send Reset Token" : "Update Password" }
                                 </button>
                             </div>
-                            { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
+                            { errors.root && <div className="form-message form-error-box"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
                             { successMessage && <div className="form-message form-success-box"><i className="bi bi-check-circle form-icon"></i>Reset token has been sent to your email</div> }
                         </form>
                     </div>

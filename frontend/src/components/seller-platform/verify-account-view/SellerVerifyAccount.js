@@ -91,7 +91,7 @@ const SellerVerifyAccount = () => {
                         </button>
                     </div>
                     <div>
-                        { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
+                        { errors.root && <div className="form-message form-error-box"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
                     </div>
                 </form>
             </div>
