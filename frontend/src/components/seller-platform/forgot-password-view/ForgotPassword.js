@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
-import { SellerServicesContext } from '../../../context/SellerServicesContext'
+import { SellerServicesContext } from '../../../context/SellerServicesContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const ForgotPassword = () => {
+    const navigate = useNavigate();
     const [ tokenSent, setTokenSent ] = useState(false);
+    const [ successMessage, setSuccessMessage ] = useState(false);
+    const [ sellerData, setSellerData ] = useState({});
     const { register, handleSubmit, setError, getValues, formState: { errors, isSubmitting } } = useForm();
     const sellerContext = useContext(SellerServicesContext);
-
-    // email then token and password/confirm password
    
     const onSubmit = async (data) => {
         try {
@@ -17,17 +19,52 @@ const ForgotPassword = () => {
             if (!tokenSent) {
                 // send reset token
                 const response = await sellerContext.sendResetPasswordToken(data);
-                console.log(response)
-
-                setTokenSent(true);
+                
+                if (response.error) {
+                    setError("root", {
+                        message: "Account does not exist"
+                    });
+                } else {
+                    setSellerData(response.data);
+                    setTokenSent(true);
+                    setSuccessMessage(true);
+                }
             } else {
                 // update password
+                setSuccessMessage(false);
+                delete data.confirm_password;
+
+                const updatedData = {
+                    ...data,
+                    seller_id: sellerData.id,
+                    profile: "Seller",
+                    type: "Reset"
+                };
+
+                const response = await sellerContext.updatePassword(updatedData);
+                
+                if (response.error) {
+                    if (response.error === "Token has expired") {
+                        setError("root", {
+                            message: "Token has expired, a new one has been sent to your email"
+                        });
+                    } else {
+                        setError("root", {
+                            message: response.error
+                        });
+                    }
+                } else {
+                    navigate('/seller/login', { 
+                        state: { 
+                            success_message: "Password has been reset successfully"
+                        }
+                    });
+                } 
             }
 
         } catch (error) {
-            console.log(error)
             setError("root", {
-                message: "Error sending reset token"
+                message: error.message
             })
         }
     }
@@ -91,6 +128,7 @@ const ForgotPassword = () => {
                                 </button>
                             </div>
                             { errors.root && <div className="form-message form-error-box"><i class="bi bi-exclamation-circle form-icon"></i>{ errors.root.message }</div> }
+                            { successMessage && <div className="form-message form-success-box"><i className="bi bi-check-circle form-icon"></i>Reset token has been sent to your email</div> }
                         </form>
                     </div>
                 </div>

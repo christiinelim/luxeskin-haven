@@ -20,14 +20,12 @@ const SellerProfile = () => {
                     }
                 });
             }
-            console.log(response)
             // setSeller(response.data)
         }
 
         fetchData();
         
     }, []);
-    console.log(seller)
 
     return (
         <>

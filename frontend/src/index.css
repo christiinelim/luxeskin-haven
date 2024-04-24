@@ -98,10 +98,12 @@ input {
     gap: 3px;
     align-items: center;
     justify-content: center;
+    text-align: center;
     color: rgba(114,28,36,1);
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-radius: 5px;
+    padding: 7px;
     height: 25px
 }
 
@@ -110,11 +112,13 @@ input {
     gap: 3px;
     align-items: center;
     justify-content: center;
+    text-align: center;
     color: rgba(21,87,36,1);
     background-color: #d4edda;
     position: relative;
     border: 1px solid #c3e6cb;
     border-radius: 5px;
+    padding: 7px;
     height: 25px;
 }
 
@@ -497,7 +501,8 @@ input {
 
     .form-error-box,
     .form-success-box {
-        height: 28px
+        height: 28px;
+        padding: 10px;
     }
 
     .form-icon {
@@ -633,7 +638,8 @@ input {
     .form-error-box,
     .form-success-box {
         gap: 4px;
-        height: 30px
+        height: 30px;
+        padding: 13px;
     }
 
     .form-icon {
@@ -784,7 +790,8 @@ input {
 
     .form-error-box,
     .form-success-box {
-        height: 28px
+        height: 28px;
+        padding: 15px;
     }
 
     .form-icon {

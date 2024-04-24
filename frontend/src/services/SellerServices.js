@@ -41,8 +41,23 @@ const SellerServices = {
             const response = await ApiServices.post('/seller/forgot-password', email);
             return response.data;
         } catch (error) {
-            console.log(error)
             throw new Error('Failed to send');
+        }
+    },
+    updatePassword: async (data) => {
+        try {
+            const response = await ApiServices.post('/seller/update-password', data);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to reset password');
+        }
+    },
+    refreshToken: async (data) => {
+        try {
+            const response = await ApiServices.post('/seller/refresh-token', data);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to retrieve new token');
         }
     }
 };

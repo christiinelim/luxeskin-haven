@@ -45,14 +45,23 @@ export const SellerServicesData = ({ children }) => {
         } catch (error) {
             throw new Error('Failed to send');
         }
-    }
+    };
 
+    const updatePassword = async (data) => {
+        try {
+            return await SellerServices.updatePassword(data);
+        } catch (error) {
+            throw new Error('Failed to reset password');
+        }
+    };
+    
     const sellerContextValue = {
         createSeller,
         login,
         verify,
         getSeller,
-        sendResetPasswordToken
+        sendResetPasswordToken,
+        updatePassword
     };
 
     return (
