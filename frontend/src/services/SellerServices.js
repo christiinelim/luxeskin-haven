@@ -59,6 +59,22 @@ const SellerServices = {
         } catch (error) {
             throw new Error('Failed to retrieve new token');
         }
+    },
+    updateProfile: async (sellerId, data) => {
+        try {
+            const response = await ApiServices.put('/seller/update-profile/' + sellerId, data);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to update profile');
+        }
+    },
+    deleteSeller: async (sellerId) => {
+        try {
+            const response = await ApiServices.delete('/seller/delete/' + sellerId);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to delete account');
+        }
     }
 };
 

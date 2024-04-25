@@ -476,14 +476,13 @@ input {
 }
 
 .profile-details-section {
-    width: 60vw;
+    width: 65vw;
 }
 
 .section-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(193,185,176,1); */
     background-color: black;
     border-radius: 5px;
     height: 25px;
@@ -529,17 +528,34 @@ input {
 .update-button-div {
     display: flex;
     justify-content: center;
+    gap: 5px
+}
+
+.cancel-button {
+    width: 80px;
+    margin-top: 40px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    color: rgba(128, 128, 128, 0.5);
 }
 
 .update-button {
-    width: 100px;
-    margin-top: 40px;
-    background-color: rgba(112,189,185,255);
-    border: 1px solid rgba(112,189,185,255);
+    width: 80px;
+    margin-top: 20px;
+    color: rgba(21,87,36,1);
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.delete-button {
+    width: 80px;
+    margin-top: 20px;
+    color: rgba(114,28,36,1);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
 }
 
 .profile-input {
-    width: 150px;
+    width: 100px;
     height: 15px;
     border: none;
     padding: 0px;
@@ -550,8 +566,84 @@ input {
 
 .profile-input:focus {
     outline: none;
-    border-bottom: 1px solid rgba(152,188,164,1); /* CHANGE COLOR */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0,0,204,0.2);
+}
+
+.profile-update-error {
+    margin-top: 30px
+}
+
+/* delete account confirmation */
+.delete-account-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-account-content {
+    background-color: white;
+    width: 270px;
+    height: 180px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 15px;
+}
+
+.delete-header {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.delete-item {
+    font-weight: bold;
+}
+
+.warning-content-container {
+    display: flex;
+    margin-top: 8px;
+}
+
+.warning-side {
+    background-color: rgba(250,111,64,0.7);
+    width: 3px;
+}
+
+.warning-content {
+    background-color: rgba(255,234,217,1);
+    width: 243px;
+    padding: 6px 10px
+}
+
+.warning-header-content {
+    display: flex;
+    gap: 5px
+}
+
+.warning-icon {
+    color: rgba(114,28,36,1);
+}
+
+.warning-header {
+    color: rgba(114,28,36,1);
+    font-weight: bold;
+}
+
+.warning-description {
+    color: rgba(204,114,87,1);
+    margin-top: 5px;
+}
+
+.warning-action {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.warning-action-cancel {
+    background-color: transparent;
 }
 
 @media (min-width: 576px) {
@@ -730,9 +822,61 @@ input {
         font-size: 8px;
     }
 
-    .update-button {
-        width: 120px;
+    .update-button-div {
+        gap: 7px
+    }
+
+    .cancel-button {
+        width: 90px;
         margin-top: 50px;
+    }
+
+    .update-button,
+    .delete-button {
+        width: 90px;
+        margin-top: 30px;
+    }
+
+    .profile-input {
+        width: 170px;
+    }
+
+    /* delete account confirmation */
+    .delete-account-content {
+        width: 340px;
+        height: 210px;
+        padding: 22px 14px;
+    }
+
+    .delete-header {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .warning-content-container {
+        margin-top: 8px;
+    }
+
+    .warning-side {
+        width: 4px;
+    }
+
+    .warning-content {
+        width: 305px;
+        padding: 7px 12px
+    }
+
+    .warning-header-content {
+        gap: 6px
+    }
+
+    .warning-description {
+        margin-top: 6px;
+    }
+
+    .warning-action {
+        gap: 6px;
+        margin-top: 15px;
     }
 }
 
@@ -896,7 +1040,7 @@ input {
     }
 
     .profile-details-section {
-        width: 50vw;
+        width: 70vw;
     }
 
     .section-header {
@@ -910,8 +1054,8 @@ input {
     }
 
     .profile-details-items {
-        gap: 45px;
-        padding: 0px 50px;
+        gap: 30px;
+        padding: 0px 20px;
     }
 
     .section-icon {
@@ -927,8 +1071,59 @@ input {
         font-size: 9px;
     }
 
-    .update-button {
-        width: 125px;
+    .update-button-div {
+        gap: 9px
+    }
+
+    .cancel-button {
+        width: 100px;
+    }
+
+    .update-button,
+    .delete-button {
+        width: 100px;
+    }
+
+    .profile-input {
+        width: 140px;
+    }
+
+    /* delete account confirmation */
+    .delete-account-content {
+        width: 380px;
+        height: 230px;
+        padding: 25px 17px;
+    }
+
+    .delete-header {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .warning-content-container {
+        margin-top: 10px;
+    }
+
+    .warning-side {
+        width: 4px;
+    }
+
+    .warning-content {
+        width: 342px;
+        padding: 8px 14px
+    }
+
+    .warning-header-content {
+        gap: 7px
+    }
+
+    .warning-description {
+        margin-top: 7px;
+    }
+
+    .warning-action {
+        gap: 7px;
+        margin-top: 20px;
     }
 }
 
@@ -1089,7 +1284,54 @@ input {
         font-size: 10px;
     }
 
-    .update-button {
-        width: 130px;
+    .section-items {
+        padding: 0px 20px;
+    }
+
+    .cancel-button {
+        width: 110px;
+    }
+
+    .update-button,
+    .delete-button {
+        width: 110px;
+    }
+
+    .profile-input {
+        width: 160px;
+    }
+
+    /* delete account confirmation */
+    .delete-account-content {
+        width: 420px;
+        height: 260px;
+        padding: 30px 20px;
+    }
+
+    .delete-header {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .warning-side {
+        width: 5px;
+    }
+
+    .warning-content {
+        width: 381px;
+        padding: 10px 16px
+    }
+
+    .warning-header-content {
+        gap: 8px
+    }
+
+    .warning-description {
+        margin-top: 8px;
+    }
+
+    .warning-action {
+        gap: 10px;
+        margin-top: 25px;
     }
 }

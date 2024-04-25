@@ -56,13 +56,31 @@ export const SellerServicesData = ({ children }) => {
         }
     };
 
+    const updateProfile = async (sellerId, data) => {
+        try {
+            return await SellerServices.updateProfile(sellerId, data);
+        } catch (error) {
+            throw new Error('Failed to update profile');
+        }
+    }; 
+
+    const deleteSeller = async (sellerId) => {
+        try {
+            return await SellerServices.deleteSeller(sellerId);
+        } catch (error) {
+            throw new Error('Failed to delete account');
+        }
+    }
+
     const sellerContextValue = {
         createSeller,
         login,
         verify,
         getSeller,
         sendResetPasswordToken,
-        updatePassword
+        updatePassword,
+        updateProfile,
+        deleteSeller
     };
 
     return (
