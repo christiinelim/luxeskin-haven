@@ -18,23 +18,31 @@ const SellerProfile = () => {
     useEffect(() => {
         
         const fetchData = async() => {
-            const response = await sellerContext.getSeller(sellerId);
+            try {
+                const response = await sellerContext.getSeller(sellerId);
 
-            if (response.error === "Unauthorized, please login") {
+                if (response.error === "Unauthorized, please login") {
+                    navigate('/seller/login', { 
+                        state: { 
+                            error_message: "Unauthorized, please login to access"
+                        }
+                    });
+                } else {
+                    const seller = response.data;
+                    setSeller(seller);
+                    setValue("username", seller.username);
+                    setValue("email", seller.email);
+                    setValue("contact", seller.contact);
+                    setValue("instagram", seller.instagram);
+                    setValue("tiktok", seller.tiktok);
+                    setValue("website", seller.website);
+                }
+            } catch (error) {
                 navigate('/seller/login', { 
                     state: { 
                         error_message: "Unauthorized, please login to access"
                     }
                 });
-            } else {
-                const seller = response.data;
-                setSeller(seller);
-                setValue("username", seller.username);
-                setValue("email", seller.email);
-                setValue("contact", seller.contact);
-                setValue("instagram", seller.instagram);
-                setValue("tiktok", seller.tiktok);
-                setValue("website", seller.website);
             }
         }
 

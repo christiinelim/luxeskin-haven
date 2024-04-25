@@ -41,6 +41,7 @@ const SellerLogin = () => {
                 navigate('/seller/profile/' + response.data.id);
             }
         } catch (error) {
+            console.log(error)
             setError("root", {
                 message: "Error logging in"
             })

@@ -2,15 +2,25 @@ import axios from 'axios';
 import SellerServices from "./SellerServices";
 
 const ApiServices = axios.create ({
-    baseURL: "http://localhost:3000/api",
+    baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 ApiServices.interceptors.request.use(async (config) => {
     const jwtToken = localStorage.getItem('accessToken');
+    if (config.url === '/seller/create' || 
+        config.url === '/seller/verify-account' ||
+        config.url === '/seller/login' ||
+        config.url === '/seller/forgot-password' ||
+        config.url === '/seller/update-password'
+    ) {
+        return config;
+    }
+
     if (jwtToken) {
         config.headers.Authorization = `Bearer ${jwtToken}`;
-    }
-    return config;
+        return config;
+    } 
+    return Promise.reject("Unauthorized, please login");
 }, (error) => {
     return Promise.reject(error);
 });
