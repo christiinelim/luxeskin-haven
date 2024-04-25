@@ -10,7 +10,6 @@ import { SellerServicesData } from './context/SellerContext'
 import SellerProfilePage from './views/seller/SellerProfilePage';
 import SellerForgotPasswordPage from './views/seller/SellerForgotPasswordPage';
 import { AuthData } from './context/AuthContext';
-import Cloudinary from './components/seller-platform/cloudinary';
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
               <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
               <Route path="/seller/profile/:sellerId" element={<SellerProfilePage />}/>
               <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
-              <Route path="/cloudinary" element={<Cloudinary />}/>
             </Routes>
           </SellerServicesData>
         </AuthData>

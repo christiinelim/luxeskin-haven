@@ -3,6 +3,7 @@ import { SellerContext } from '../../../context/SellerContext';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../context/AuthContext';
+import UploadWidget from '../../shared/UploadWidget';
 
 const SellerProfile = () => {
     const { sellerId } = useParams();
@@ -14,6 +15,7 @@ const SellerProfile = () => {
     const [ isEditing, setIsEditing ] = useState(false);
     const [ isDeleting, setIsDeleting ] = useState(false);
     const [ isSuccess, setIsSuccess ] = useState(false);
+    const [ imageUrl, setImageUrl ] = useState("");
 
     useEffect(() => {
         
@@ -60,10 +62,20 @@ const SellerProfile = () => {
         return `${day}-${month}-${year}`;
     };
 
+    const handleImageUpload = (url) => {
+        setImageUrl(url);
+    };
+
+    const handleCancelUpdate = () => {
+        setIsEditing(false);
+        setImageUrl("");
+    }
+
     const onSubmit = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             delete data.confirm_password;
+            data.image = imageUrl;
 
             const response = await sellerContext.updateProfile(seller.id, data); 
             const updatedSellerData = response.data;
@@ -75,7 +87,8 @@ const SellerProfile = () => {
                 contact: updatedSellerData.contact,
                 instagram: updatedSellerData.instagram,
                 tiktok: updatedSellerData.tiktok,
-                website: updatedSellerData.website
+                website: updatedSellerData.website,
+                image: imageUrl
             }));
             
             setIsEditing(false);
@@ -84,13 +97,14 @@ const SellerProfile = () => {
                 setIsSuccess(false);
             }, 3000);
         } catch (error) {
+            console.log(error)
             setError("root", {
                 message: "Error updating profile"
             })
         }
     };
 
-    const onDeleteAccountClick = async (sellerId) => {
+    const handleDeleteAccountClick = async (sellerId) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await sellerContext.deleteSeller(seller.id); 
@@ -113,7 +127,18 @@ const SellerProfile = () => {
                 <div className="profile-wrapper">
                     <div>
                         <div className='picture-section'>
-                            <i className="bi bi-person-circle profile-picture"></i>
+                            { !seller.image && !imageUrl &&
+                                <i className="bi bi-person-circle profile-picture"></i>
+                            }
+                            { seller.image && !imageUrl &&
+                                <img src={ seller.image } className='profile-image'/>
+                            }
+                            { isEditing && imageUrl &&
+                                <img src={ imageUrl } className='profile-image'/>
+                            }
+                            { isEditing && 
+                                <UploadWidget onImageUpload={ handleImageUpload }></UploadWidget>
+                            }
                         </div>
                         <div className='profile-details-section row'>
                             <div className='col-12 col-md-6 section-items'>
@@ -245,7 +270,7 @@ const SellerProfile = () => {
                             }
                             { isEditing && 
                                 <>
-                                    <div className="button-border cancel-button" onClick={ () => setIsEditing(false) }>Cancel</div> 
+                                    <div className="button-border cancel-button" onClick={ handleCancelUpdate }>Cancel</div> 
                                     <button disabled={ isSubmitting } type="submit" className="button-full update-button">
                                         { isSubmitting ? "Updating" : "Update" }
                                     </button>
@@ -270,7 +295,7 @@ const SellerProfile = () => {
                                 </div>
                                 <div className='warning-action'>
                                     <button className="button-border warning-action-cancel" onClick={ () => setIsDeleting(false) }>Cancel</button> 
-                                    <button className="button-full" onClick={ () => onDeleteAccountClick(seller.id) }>Confirm</button> 
+                                    <button className="button-full" onClick={ () => handleDeleteAccountClick(seller.id) }>Confirm</button> 
                                 </div>
                             </div>
                         </div>

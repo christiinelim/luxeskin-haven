@@ -154,6 +154,15 @@ input {
     color: white
 }
 
+.upload-button {
+    border: 1px solid rgba(128, 128, 128, 1);
+    color: rgba(128, 128, 128, 1);
+    background-color: rgba(128, 128, 128, 0.05);
+    border-radius: 5px;
+    padding: 2px 5px;
+    font-size: 8px;
+}
+
 /* NAVBAR COMPONENT */
 /* nav */
 .link-items {
@@ -498,9 +507,18 @@ input {
     font-size: 60px;
 }
 
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}
+
 .picture-section {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 10px
 }
 
 .profile-details-section {
@@ -561,7 +579,7 @@ input {
 
 .cancel-button {
     width: 80px;
-    margin-top: 40px;
+    margin-top: 20px;
     border: 1px solid rgba(128, 128, 128, 0.5);
     color: rgba(128, 128, 128, 0.5);
 }
@@ -822,6 +840,11 @@ input {
         font-size: 70px;
     }
 
+    .profile-image {
+        width: 70px;
+        height: 70px;
+    }
+
     .profile-details-section {
         width: 60vw;
     }
@@ -860,7 +883,7 @@ input {
 
     .cancel-button {
         width: 90px;
-        margin-top: 50px;
+        margin-top: 30px;
     }
 
     .update-button,
@@ -969,6 +992,11 @@ input {
         height: 30px;
     }
 
+    .upload-button {
+        padding: 4px 7px;
+        font-size: 10px;
+    }
+
     /* NAVBAR COMPONENT */
     /* nav */
     .nav-login {
@@ -1075,8 +1103,17 @@ input {
         font-size: 80px;
     }
 
+    .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
     .profile-details-section {
         width: 70vw;
+    }
+
+    .picture-section {
+        gap: 20px
     }
 
     .section-header {
@@ -1299,6 +1336,11 @@ input {
 
     .profile-picture {
         font-size: 90px;
+    }
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
     }
 
     .section-header {
