@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
-import { SellerServicesContext } from '../../../context/SellerServicesContext';
+import { SellerContext } from '../../../context/SellerContext';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,7 +10,7 @@ const ForgotPassword = () => {
     const [ successMessage, setSuccessMessage ] = useState(false);
     const [ sellerData, setSellerData ] = useState({});
     const { register, handleSubmit, setError, getValues, formState: { errors, isSubmitting } } = useForm();
-    const sellerContext = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerContext);
    
     const onSubmit = async (data) => {
         try {

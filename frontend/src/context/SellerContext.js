@@ -1,7 +1,7 @@
-import React, { createContext, useMemo } from 'react';
+import React, { createContext } from 'react';
 import SellerServices from '../services/SellerServices';
 
-export const SellerServicesContext = createContext();
+export const SellerContext = createContext();
 
 export const SellerServicesData = ({ children }) => {
 
@@ -84,8 +84,8 @@ export const SellerServicesData = ({ children }) => {
     };
 
     return (
-        <SellerServicesContext.Provider value={sellerContextValue}>
+        <SellerContext.Provider value={sellerContextValue}>
             {children}
-        </SellerServicesContext.Provider>
+        </SellerContext.Provider>
     );
 };

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
-import { SellerServicesContext } from '../../../context/SellerServicesContext';
+import { SellerContext } from '../../../context/SellerContext';
 
 const SellerSignup = () => {
-    const sellerContext = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerContext);
     const { register, handleSubmit, setError, getValues, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate();
 

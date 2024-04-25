@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { SellerServicesContext } from '../../../context/SellerServicesContext';
+import { SellerContext } from '../../../context/SellerContext';
+import { AuthContext } from "../../../context/AuthContext";
 
 const SellerLogin = () => {
     const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
-    const sellerContext = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerContext);
+    const authContext = useContext(AuthContext);
 
     const onSubmit = async (data) => {
         try {
@@ -35,10 +37,7 @@ const SellerLogin = () => {
                     })
                 }
             } else {
-                localStorage.setItem("sellerId", response.data.id);
-                localStorage.setItem("email", response.data.email);
-                localStorage.setItem("accessToken", response.data.accessToken);
-                localStorage.setItem("refreshToken", response.data.refreshToken);
+                authContext.login(response.data);
                 navigate('/seller/profile/' + response.data.id);
             }
         } catch (error) {

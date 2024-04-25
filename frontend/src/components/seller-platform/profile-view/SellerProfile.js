@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { SellerServicesContext } from '../../../context/SellerServicesContext';
+import { SellerContext } from '../../../context/SellerContext';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../../context/AuthContext';
 
 const SellerProfile = () => {
     const { sellerId } = useParams();
     const navigate = useNavigate();
-    const sellerContext = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerContext);
+    const authContext = useContext(AuthContext);
     const { register, handleSubmit, setError, getValues, setValue, formState: { errors, isSubmitting } } = useForm();
     const [ seller, setSeller ] = useState(null);
     const [ isEditing, setIsEditing ] = useState(false);
@@ -84,10 +86,7 @@ const SellerProfile = () => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await sellerContext.deleteSeller(seller.id); 
-            localStorage.removeItem("sellerId");
-            localStorage.removeItem("email");
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("refreshToken");
+            authContext.logout();
             navigate('/seller/login', { 
                 state: { 
                     success_message: "Your account has been deleted"

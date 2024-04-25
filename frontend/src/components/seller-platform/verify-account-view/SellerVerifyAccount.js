@@ -2,12 +2,12 @@ import React, { useRef, useContext } from "react";
 import verificationImage from "../../../assets/images/verification/verification.gif";
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom'
-import { SellerServicesContext } from '../../../context/SellerServicesContext'
+import { SellerContext } from '../../../context/SellerContext'
 
 const SellerVerifyAccount = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const sellerContext = useContext(SellerServicesContext);
+    const sellerContext = useContext(SellerContext);
     const { email, id } = location.state;
     const { handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const inputRefs = useRef([null, null, null, null, null, null]);
