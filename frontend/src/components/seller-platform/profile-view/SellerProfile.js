@@ -127,15 +127,17 @@ const SellerProfile = () => {
                 <div className="profile-wrapper">
                     <div>
                         <div className='picture-section'>
-                            { !seller.image && !imageUrl &&
-                                <i className="bi bi-person-circle profile-picture"></i>
-                            }
-                            { seller.image && !imageUrl &&
-                                <img src={ seller.image } className='profile-image'/>
-                            }
-                            { isEditing && imageUrl &&
+                            { !seller.image && (
+                                ( !imageUrl && <i className="bi bi-person-circle profile-picture"></i> ) ||
+                                ( isEditing && imageUrl && <img src={ imageUrl } className='profile-image'/> )
+                            )}
+                            { seller.image && (
+                                ( !imageUrl && <img src={ seller.image } className='profile-image'/> ) ||
+                                ( isEditing && imageUrl && <img src={ imageUrl } className='profile-image'/> )
+                            )}
+                            {/* { isEditing && imageUrl &&
                                 <img src={ imageUrl } className='profile-image'/>
-                            }
+                            } */}
                             { isEditing && 
                                 <UploadWidget onImageUpload={ handleImageUpload }></UploadWidget>
                             }

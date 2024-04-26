@@ -288,8 +288,8 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: 55px;
-    right: 20px;
+    top: 45px;
+    right: 15px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
     width: 80px;
@@ -764,6 +764,11 @@ input {
         font-size: 20px;
     }
 
+    .nav-dropdown-content {
+        top: 55px;
+        right: 20px;
+    }
+
     /* tabs */
     #tabs-large {
         display: flex;
@@ -1022,6 +1027,11 @@ input {
         font-size: 22px;
     }
 
+    .nav-dropdown-content {
+        top: 60px;
+        right: 22px;
+    }
+
     /* cart and search */
     .cart-icon {
         width: 20px;
@@ -1268,6 +1278,11 @@ input {
 
     .content-items {
         gap: 25px
+    }
+
+    .nav-dropdown-content {
+        top: 65px;
+        right: 25px;
     }
 
     /* cart and search */

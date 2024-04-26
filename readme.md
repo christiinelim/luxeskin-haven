@@ -23,10 +23,31 @@ The frontend of LuxeSkin Haven is organized using Handlebars (hbs) for sellers t
 5. Order Tracking: Users can track their orders and view current statuses (pending, shipped, delivered).
 
 ## SQL Schema
+- To be updated
 ![SQL Schema](./frontend/src/assets/images/readme/sql-schema.png)
 
 ## Mock-up
-To be updated
+**Seller Sign Up Page**
+![Seller Sign Up Page](./frontend/src/assets/images/readme/seller-signup-page.png)
+
+**Seller Verification Page**
+![Seller Verification Page](./frontend/src/assets/images/readme/seller-verification-page.png)
+
+**Seller Login Page**
+![Seller Login Page](./frontend/src/assets/images/readme/seller-login-page.png)
+
+**Seller Forgot Password Page**
+![Seller Forgot Password Page](./frontend/src/assets/images/readme/seller-forgot-password-page.png)
+
+**Seller Reset Password Page**
+![Seller reset Password Page](./frontend/src/assets/images/readme/seller-reset-password-page.png)
+
+**Seller Profile Page**
+![Seller Profile Page](./frontend/src/assets/images/readme/seller-profile-page.png)
+
+**Seller Delete Account Page**
+![Seller Delete Account Page](./frontend/src/assets/images/readme/seller-delete-account-page.png)
+
 
 ## Choice of Colors, Fonts, Style of Image, and Layout
 LuxeSkin Haven adopts a clean and elegant design with a color palette of soft pastels to convey a sense of luxury and tranquility. The fonts are chosen for readability and modern appeal, while images reflect the premium quality and effectiveness of skincare products. The layout is intuitive, focusing on showcasing products effectively and facilitating smooth navigation.
