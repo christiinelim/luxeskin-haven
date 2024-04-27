@@ -268,7 +268,7 @@ input {
 }
 
 .tab-items:hover {
-    background-color: rgba(193,185,176,1);
+    background-color: rgba(193,185,176,0.7);
     color: white;
     cursor: pointer;
     font-weight: bold; 
@@ -314,11 +314,11 @@ input {
 .dropdown-item {
     padding: 5px 10px;
     text-align: center;
+    transition: background-color 0.3s ease
 }
 
 .dropdown-item:hover {
-    background-color: rgba(193,185,176,1);
-    border: 1px solid rgba(193,185,176,1);
+    background-color: rgba(193,185,176,0.7);
     color: white;
     cursor: pointer;
     font-weight: bold; 
@@ -428,6 +428,10 @@ input {
 
 .side-nav-icon {
     font-size: 15px;
+}
+
+.activePage {
+    color: rgba(241, 101, 101, 1);
 }
 
 /* SELLER NAVBAR COMPONENT */
@@ -737,6 +741,120 @@ input {
     background-color: transparent;
 }
 
+/* LISTINGS COMPONENT */
+.listings-wrapper {
+    margin: 40px;
+}
+
+.page-header {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.listings-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.listings-tabs {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 2px;
+    background-color: rgba(0,0,0,0.1);
+    padding: 3px;
+    border-radius: 999px;
+}
+
+.listing-tab {
+    width: 60px;
+    padding: 3px 15px;
+    border-radius: 999px;
+    transition: background-color 0.3s ease
+}
+
+.listing-tab:hover {
+    background-color: rgba(238,238,238,1);
+    cursor: pointer;
+}
+
+.active-listing-tab {
+    background-color: white;
+}
+
+.add-listing-icon {
+    font-size: 15px;
+    transition: color 0.3s ease;
+    color: rgba(241, 101, 101, 1);
+}
+
+.add-listing-icon:hover {
+    cursor: pointer;
+    color: rgba(241, 101, 101, 0.8);
+}
+
+/* CARDS */
+.product-cards {
+    padding: 5px;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px;
+    height: 220px;
+}
+
+.listing-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.listing-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5px 0px 2px 5px;
+}
+
+.listing-name {
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.listing-detail {
+    font-size: 8px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.listing-action {
+    display: flex;
+    gap: 7px;
+    background-color: white;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+    padding: 2px 10px;
+    border-radius: 999px;
+    margin: 8px 0px 3px 0px;
+}
+
+.listing-action-icon {
+    font-size: 8px;
+}
+
 @media (min-width: 576px) {
     body {
         font-size: 10px
@@ -864,6 +982,10 @@ input {
         cursor: pointer;
         background-color: rgba(193,185,176,0.7);
         color: white;
+    }
+
+    .activePage {
+        background-color: rgba(193,185,176,0.4);
     }
 
     .side-nav-icon {
@@ -1028,6 +1150,60 @@ input {
     .warning-action {
         gap: 6px;
         margin-top: 15px;
+    }
+
+    /* LISTINGS COMPONENT */
+    .page-header {
+        font-size: 13px;
+    }
+
+    .listings-actions {
+        gap: 17px;
+        margin-bottom: 22px;
+    }
+
+    .listings-tabs {
+        gap: 3px;
+    }
+
+    .listing-tab {
+        width: 70px;
+    }
+
+    .add-listing-icon {
+        font-size: 17px;
+    }
+
+    /* CARDS */
+    .product-cards {
+        padding: 5px 10px;
+    }
+
+    .product-card {
+        padding: 7px;
+        height: 230px;
+    }
+
+    .card-content {
+        margin: 5px 0px 2px 7px;
+    }
+
+    .listing-name {
+        font-size: 11px;
+    }
+
+    .listing-detail {
+        font-size: 9px;
+    }
+
+    .listing-action {
+        gap: 8px;
+        padding: 2px 13px;
+        margin: 10px 0px 3px 0px;
+    }
+
+    .listing-action-icon {
+        font-size: 9px;
     }
 }
 
@@ -1326,6 +1502,58 @@ input {
         gap: 7px;
         margin-top: 20px;
     }
+
+    /* LISTINGS COMPONENT */
+    .page-header {
+        font-size: 14px;
+    }
+
+    .listings-actions {
+        gap: 18px;
+        margin-bottom: 25px;
+    }
+
+    .listings-tabs {
+        gap: 4px;
+    }
+
+    .listing-tab {
+        width: 70px;
+        padding: 3px 17px;
+    }
+
+    .add-listing-icon {
+        font-size: 18px;
+    }
+
+    /* CARDS */
+    .product-cards {
+        padding: 5px 7px;
+    }
+
+    .product-card {
+        padding: 7px;
+        height: 250px;
+    }
+
+
+    .listing-name {
+        font-size: 12px;
+    }
+
+    .listing-detail {
+        font-size: 10px;
+    }
+
+    .listing-action {
+        gap: 10px;
+        padding: 2px 15px;
+        margin: 12px 0px 3px 0px;
+    }
+
+    .listing-action-icon {
+        font-size: 10px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -1571,5 +1799,27 @@ input {
     .warning-action {
         gap: 10px;
         margin-top: 25px;
+    }
+
+    /* LISTINGS COMPONENT */
+    .page-header {
+        font-size: 15px;
+    }
+
+    .listings-actions {
+        gap: 20px
+    }
+
+    .listings-tabs {
+        gap: 5px;
+    }
+
+    .listing-tab {
+        width: 75px;
+        padding: 3px 20px;
+    }
+
+    .add-listing-icon {
+        font-size: 20px;
     }
 }

@@ -17,7 +17,7 @@ const SellerNavbar = () => {
     };
 
     const handleProfileClick = () => {
-        navigate('/seller/profile/' + localStorage.getItem("sellerId"));
+        navigate('/seller/' + localStorage.getItem("sellerId") + '/profile');
         setShowDropdown(!showDropdown);
     }
 

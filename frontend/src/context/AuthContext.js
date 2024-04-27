@@ -10,6 +10,7 @@ export const AuthData = ({ children }) => {
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("isLoggedIn", 'true');
+        localStorage.setItem("activePage", '/seller/' + localStorage.getItem("sellerId") + '/listings');
     };
 
     const logout = () => {
@@ -18,6 +19,7 @@ export const AuthData = ({ children }) => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("activePage");
     };
 
     const isLoggedIn = () => {

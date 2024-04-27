@@ -1,8 +1,8 @@
-import SellerProfile from "../../components/seller-platform/SellerProfile";
+import SellerListings from "../../components/seller-platform/SellerListings";
 import SellerNavbar from "../../components/shared/SellerNavbar";
 import SellerSideNav from "../../components/shared/SellerSideNav";
 
-const SellerProfilePage = () => {
+const SellerListingsPage = () => {
 
     return (
         <>
@@ -12,11 +12,11 @@ const SellerProfilePage = () => {
                     <SellerSideNav></SellerSideNav>
                 </div>
                 <div className="content-body">
-                    <SellerProfile></SellerProfile>
+                    <SellerListings></SellerListings>
                 </div>
             </div>
         </>
     )
 }
 
-export default SellerProfilePage;
+export default SellerListingsPage;
