@@ -1,4 +1,4 @@
-import SellerVerifyAccount from "../../components/seller-platform/verify-account-view/SellerVerifyAccount";
+import SellerVerifyAccount from "../../components/seller-platform/SellerVerifyAccount";
 import SellerNavbar from "../../components/shared/SellerNavbar";
 
 const SellerVerifyAccountPage = () => {

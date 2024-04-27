@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from 'react-hook-form';
-import { SellerContext } from '../../../context/SellerContext';
+import { SellerContext } from '../../context/SellerContext';
 import { useNavigate } from 'react-router-dom';
 
 

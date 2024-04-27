@@ -134,23 +134,31 @@ input {
     width: 55px;
     height: 25px;
     font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 .button-full {
     background-color: black;
-    color: white
+    color: white;
 }
 
 .button-full .link-items {
-    color: white
+    color: white;
+}
+
+.button-border .link-items {
+    transition: color 0.3s ease;
 }
 
 .button-border:hover,
-.button-border .link-items:hover,
 .button-full:hover {
     cursor: pointer;
     background-color: rgba(128, 128, 128, 1);
     border: 1px solid rgba(128, 128, 128, 1);
+    color: white
+}
+
+.button-border .link-items:hover {
     color: white
 }
 
@@ -174,8 +182,12 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    position: sticky;
+    top: 0;
+    background-color: white;
     border-bottom: 1px solid black;
     padding: 20px 25px 5px 25px;
+    z-index: 101;
 }
 
 /* CTA COMPONENT */
@@ -252,6 +264,7 @@ input {
     justify-content: center;
     padding: 15px 0px;
     width: 100%;
+    transition: background-color 0.5s ease;
 }
 
 .tab-items:hover {
@@ -383,6 +396,38 @@ input {
     z-index: 1000;
     width: 100%;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1); 
+}
+
+/* SIDE NAV COMPONENT */
+.side-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    padding: 13px;
+    z-index: 100;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    gap: 50px;
+    color: rgba(0,0,0,0.5)
+}
+
+.side-nav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.side-nav-items:hover {
+    cursor: pointer;
+    color: rgba(241, 101, 101, 1);
+}
+
+.side-nav-icon {
+    font-size: 15px;
 }
 
 /* SELLER NAVBAR COMPONENT */
@@ -779,6 +824,52 @@ input {
         top: 71px;
     }
 
+    /* NAV CONTENT */
+    .content-wrap {
+        display: flex;
+        width: 100%;
+    }
+
+    .content-nav {
+        width: 170px;
+    }
+
+    .content-body {
+        width: calc(100% - 170px);
+    }
+
+    /* SIDE NAV COMPONENT */
+    .side-nav-wrapper {
+        flex-direction: column;
+        justify-content: flex-start;
+        left: 0; 
+        width: 170px;
+        height: 100vh;
+        padding: 90px 0px 0px 0px;
+        border-top: transparent;
+        gap: 0px;
+    }
+
+    .side-nav-items {
+        flex-direction: row;
+        gap: 10px;
+        font-size: 13px;
+        width: 170px;
+        padding: 11px 0px 11px 30px;
+        border-radius: 0px 10px 10px 0px;
+        transition: background-color 0.3s ease;
+    }
+
+    .side-nav-items:hover {
+        cursor: pointer;
+        background-color: rgba(193,185,176,0.7);
+        color: white;
+    }
+
+    .side-nav-icon {
+        font-size: 15px;
+    }
+
     /* SELLER NAVBAR COMPONENT */
     #seller-platform-logo {
         font-size: 13px
@@ -1048,6 +1139,33 @@ input {
         top: 95px;
     }
 
+    /* NAV CONTENT */
+    .content-nav {
+        width: 180px;
+    }
+
+    .content-body {
+        width: calc(100% - 180px);
+    }
+
+    /* SIDE NAV COMPONENT */
+    .side-nav-wrapper {
+        width: 180px;
+        padding: 100px 0px 0px 0px;
+    }
+
+    .side-nav-items {
+        gap: 12px;
+        font-size: 14px;
+        width: 180px;
+        padding: 12px 0px 12px 32px
+    }
+
+
+    .side-nav-icon {
+        font-size: 16px;
+    }
+
     /* SELLER NAVBAR COMPONENT */
     #seller-platform-logo {
         font-size: 14px
@@ -1299,6 +1417,33 @@ input {
     /* search bar */
     .searchbar-container {
         top: 104px;
+    }
+
+    /* NAV CONTENT */
+    .content-nav {
+        width: 190px;
+    }
+
+    .content-body {
+        width: calc(100% - 190px);
+    }
+
+    /* SIDE NAV COMPONENT */
+    .side-nav-wrapper {
+        width: 190px;
+        padding: 110px 0px 0px 0px;
+    }
+
+    .side-nav-items {
+        gap: 13px;
+        font-size: 15px;
+        width: 190px;
+        padding: 13px 0px 13px 33px
+    }
+
+
+    .side-nav-icon {
+        font-size: 17px;
     }
 
     /* SELLER NAVBAR COMPONENT */

@@ -1,8 +1,8 @@
 import React, { useRef, useContext } from "react";
-import verificationImage from "../../../assets/images/verification/verification.gif";
+import verificationImage from "../../assets/images/verification/verification.gif";
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom'
-import { SellerContext } from '../../../context/SellerContext'
+import { SellerContext } from '../../context/SellerContext'
 
 const SellerVerifyAccount = () => {
     const navigate = useNavigate();

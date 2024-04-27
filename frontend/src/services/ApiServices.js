@@ -7,7 +7,7 @@ const ApiServices = axios.create ({
 
 ApiServices.interceptors.request.use(async (config) => {
     const jwtToken = localStorage.getItem('accessToken');
-    if (config.url === '/seller/create' || 
+    if (config.url === '/seller/' || 
         config.url === '/seller/verify-account' ||
         config.url === '/seller/login' ||
         config.url === '/seller/forgot-password' ||

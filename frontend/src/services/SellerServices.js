@@ -3,7 +3,7 @@ import ApiServices from "./ApiServices";
 const SellerServices = {
     createSeller: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/create', data);
+            const response = await ApiServices.post('/seller/', data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to create seller');
@@ -27,7 +27,7 @@ const SellerServices = {
     },
     getSeller: async (sellerId) => {
         try {
-            const response = await ApiServices.get('/seller/profile/' + sellerId);
+            const response = await ApiServices.get('/seller/' + sellerId);
             return response.data;
         } catch (error) {
             if (error.response.data.error === "Unauthorized, please login") {
@@ -62,7 +62,7 @@ const SellerServices = {
     },
     updateProfile: async (sellerId, data) => {
         try {
-            const response = await ApiServices.put('/seller/update-profile/' + sellerId, data);
+            const response = await ApiServices.put('/seller/' + sellerId, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to update profile');
@@ -70,7 +70,7 @@ const SellerServices = {
     },
     deleteSeller: async (sellerId) => {
         try {
-            const response = await ApiServices.delete('/seller/delete/' + sellerId);
+            const response = await ApiServices.delete('/seller/' + sellerId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to delete account');

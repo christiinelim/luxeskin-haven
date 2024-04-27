@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { SellerContext } from '../../../context/SellerContext';
+import { SellerContext } from '../../context/SellerContext';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { AuthContext } from '../../../context/AuthContext';
-import UploadWidget from '../../shared/UploadWidget';
+import { AuthContext } from '../../context/AuthContext';
+import UploadWidget from '../shared/UploadWidget';
 
 const SellerProfile = () => {
     const { sellerId } = useParams();
@@ -69,6 +69,23 @@ const SellerProfile = () => {
     const handleCancelUpdate = () => {
         setIsEditing(false);
         setImageUrl("");
+    };
+
+    const handleDeleteAccountClick = async (sellerId) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await sellerContext.deleteSeller(sellerId); 
+            authContext.logout();
+            navigate('/seller/login', { 
+                state: { 
+                    success_message: "Your account has been deleted"
+                }
+            });
+        } catch (error) {
+            setError("root", {
+                message: "Error deleting account"
+            })
+        }
     }
 
     const onSubmit = async (data) => {
@@ -104,23 +121,6 @@ const SellerProfile = () => {
         }
     };
 
-    const handleDeleteAccountClick = async (sellerId) => {
-        try {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            await sellerContext.deleteSeller(seller.id); 
-            authContext.logout();
-            navigate('/seller/login', { 
-                state: { 
-                    success_message: "Your account has been deleted"
-                }
-            });
-        } catch (error) {
-            setError("root", {
-                message: "Error deleting account"
-            })
-        }
-    }
-
     return (
             seller && 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -135,9 +135,6 @@ const SellerProfile = () => {
                                 ( !imageUrl && <img src={ seller.image } className='profile-image'/> ) ||
                                 ( isEditing && imageUrl && <img src={ imageUrl } className='profile-image'/> )
                             )}
-                            {/* { isEditing && imageUrl &&
-                                <img src={ imageUrl } className='profile-image'/>
-                            } */}
                             { isEditing && 
                                 <UploadWidget onImageUpload={ handleImageUpload }></UploadWidget>
                             }
@@ -296,8 +293,8 @@ const SellerProfile = () => {
                                     </div>
                                 </div>
                                 <div className='warning-action'>
-                                    <button className="button-border warning-action-cancel" onClick={ () => setIsDeleting(false) }>Cancel</button> 
-                                    <button className="button-full" onClick={ () => handleDeleteAccountClick(seller.id) }>Confirm</button> 
+                                    <button type="button" className="button-border warning-action-cancel" onClick={ () => setIsDeleting(false) }>Cancel</button> 
+                                    <button type="button" className="button-full" onClick={ () => handleDeleteAccountClick(seller.id) }>Confirm</button> 
                                 </div>
                             </div>
                         </div>

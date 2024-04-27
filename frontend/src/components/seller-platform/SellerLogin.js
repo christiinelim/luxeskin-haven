@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { SellerContext } from '../../../context/SellerContext';
-import { AuthContext } from "../../../context/AuthContext";
+import { SellerContext } from '../../context/SellerContext';
+import { AuthContext } from "../../context/AuthContext";
 
 const SellerLogin = () => {
     const { register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
