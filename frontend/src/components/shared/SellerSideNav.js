@@ -22,11 +22,11 @@ const SellerSideNav = () => {
                 <div>Listings</div>
             </div>
             <div className={`side-nav-items ${activePage === '/orders' ? 'activePage' : ''}`} onClick={() => handleNavigation('/orders')}>
-                <div><i class="bi bi-receipt-cutoff side-nav-icon"></i></div>
+                <div><i className="bi bi-receipt-cutoff side-nav-icon"></i></div>
                 <div>Orders</div>
             </div>
             <div className={`side-nav-items ${activePage === '/discount' ? 'activePage' : ''}`} onClick={() => handleNavigation('/discount')}>
-                <div><i class="bi bi-cash-coin side-nav-icon"></i></div>
+                <div><i className="bi bi-cash-coin side-nav-icon"></i></div>
                 <div>Discount</div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import { AuthData } from './context/AuthContext';
 import SellerListingsPage from './views/seller/SellerListingsPage';
 import { ProductServicesData } from './context/ProductContext';
 import SellerProductPage from './views/seller/SellerProductPage';
+import SellerListProductPage from './views/seller/SellerListProductPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
                 <Route path="/listings" element={<SellerListingsPage />}/>
                 <Route path="/listings/:productId" element={<SellerProductPage />}/>
+                <Route path="/list" element={<SellerListProductPage />}/>
               </Routes>
             </ProductServicesData>
           </SellerServicesData>

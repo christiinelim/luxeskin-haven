@@ -9,7 +9,7 @@ export const ProductServicesData = ({ children }) => {
         try {
             return await ProductServices.createProduct(data);
         } catch (error) {
-            throw new Error('Failed to create product');
+            throw new Error(error);
         }
     };
 
@@ -17,7 +17,7 @@ export const ProductServicesData = ({ children }) => {
         try {
             return await ProductServices.getProductBySeller(sellerId);
         } catch (error) {
-            throw new Error('Failed to retrieve product details');
+            throw new Error(error);
         }
     };
 
@@ -25,14 +25,50 @@ export const ProductServicesData = ({ children }) => {
         try {
             return await ProductServices.getProductById(productId);
         } catch (error) {
-            throw new Error('Failed to retrieve product');
+            throw new Error(error);
+        }
+    };
+
+    const deleteProduct = async (productId) => {
+        try {
+            return await ProductServices.deleteProduct(productId);
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
+    const getAllCategories = async () => {
+        try {
+            return await ProductServices.getAllCategories();
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
+    const getAllSkinTypes = async () => {
+        try {
+            return await ProductServices.getAllSkinTypes();
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
+    const updateProduct = async (productId, data) => {
+        try {
+            return await ProductServices.updateProduct(productId, data);
+        } catch (error) {
+            throw new Error(error);
         }
     };
 
     const ProductContextValue = {
         createProduct,
         getProductBySeller,
-        getProductById
+        getProductById,
+        deleteProduct,
+        getAllCategories,
+        getAllSkinTypes,
+        updateProduct
     };
 
     return (

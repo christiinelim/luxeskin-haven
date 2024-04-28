@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
+import DeleteWarning from '../shared/DeleteWarning';
 
 const SellerProduct = () => {
     const [ product, setProduct ] = useState(null);
+    const [ isDeleting, setIsDeleting ] = useState(false);
     const { productId } = useParams();
     const productContext = useContext(ProductContext);
     const navigate = useNavigate();
@@ -47,19 +49,35 @@ const SellerProduct = () => {
             case 'Acne-Prone':
                 return '#E8A593';
         }
-    }
-    
+    };
 
-    console.log(product)
+    const handleDeleteClick = async (productId) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await productContext.deleteProduct(productId); 
+            const updatedListings = listings.filter(item => item.id !== productId);
+            setListings(updatedListings);
+            setIsDeleting(false);
+            // ERROR HERES
+            navigate('/listings')
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     return (
         product && 
         <div className='product-wrapper'>
             <div className='product-actions'>
                 <div><i className="bi bi-ban listing-action-icon"></i></div>
-                <div><i className="bi bi-pencil listing-action-icon"></i></div>
-                <div><i className="bi bi-trash listing-action-icon"></i></div>
-                <div onClick={() => navigate('/listings')}><i class="bi bi-box-arrow-up-right listing-action-icon"></i></div>
+                <div onClick={() => navigate('/list', { 
+                    state: { 
+                        mode: "Update",
+                        productId: product.id 
+                    }
+                })}><i className="bi bi-pencil listing-action-icon"></i></div>
+                <div onClick={ () => setIsDeleting(true) }><i className="bi bi-trash listing-action-icon"></i></div>
+                <div onClick={() => navigate('/listings')}><i className="bi bi-box-arrow-up-right listing-action-icon"></i></div>
             </div>
             <div className='row'>
                 <div className='col-12 col-md-4 product-image-wrapper'>
@@ -118,6 +136,14 @@ const SellerProduct = () => {
                     </div>
                 </div>
             </div>
+            { isDeleting && 
+                <DeleteWarning  item = {product.name}
+                                itemId = {product.id}
+                                setIsDeleting = { setIsDeleting } 
+                                handleDeleteClick = { handleDeleteClick } 
+                                message = "By deleting this product, you will lose all the information about this listing"
+                />
+            }
         </div>
     );
 }

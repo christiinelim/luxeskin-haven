@@ -24,6 +24,39 @@ const ProductServices = {
         } catch (error) {
             throw new Error('Failed to retrieve product');
         }
+    },
+    deleteProduct: async (productId) => {
+        try {
+            const response = await ApiServices.delete('/product/' + productId);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to delete product');
+        }
+    },
+    getAllCategories: async () => {
+        try {
+            const response = await ApiServices.get('/product/categories');
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to retrieve product categories');
+        }
+    },
+    getAllSkinTypes: async () => {
+        try {
+            const response = await ApiServices.get('/product/skin-types');
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to retrieve skin types');
+        }
+    },
+    updateProduct: async (productId, data) => {
+        try {
+            const response = await ApiServices.put('/product/' + productId, data);
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            throw new Error('Failed to update product');
+        }
     }
 };
 

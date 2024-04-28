@@ -9,7 +9,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.createSeller(data);
         } catch (error) {
-            throw new Error('Failed to create seller');
+            throw new Error(error);
         }
     };
 
@@ -17,7 +17,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.login(data);
         } catch (error) {
-            throw new Error('Failed to login');
+            throw new Error(error);
         }
     };
 
@@ -25,7 +25,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.verify(data);
         } catch (error) {
-            throw new Error('Failed to verify');
+            throw new Error(error);
         }
     };
 
@@ -36,7 +36,7 @@ export const SellerServicesData = ({ children }) => {
             if (error.response && error.response.data.error === "Unauthorized, please login") {
                 return ({ error: "Unauthorized, please login" });
             }
-            throw new Error('Failed to retrieve seller details');
+            throw new Error(error);
         }
     };
     
@@ -44,7 +44,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.sendResetPasswordToken(email);
         } catch (error) {
-            throw new Error('Failed to send');
+            throw new Error(error);
         }
     };
 
@@ -52,7 +52,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.updatePassword(data);
         } catch (error) {
-            throw new Error('Failed to reset password');
+            throw new Error(error);
         }
     };
 
@@ -60,7 +60,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.updateProfile(sellerId, data);
         } catch (error) {
-            throw new Error('Failed to update profile');
+            throw new Error(error);
         }
     }; 
 
@@ -68,7 +68,7 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.deleteSeller(sellerId);
         } catch (error) {
-            throw new Error('Failed to delete account');
+            throw new Error(error);
         }
     }
 
