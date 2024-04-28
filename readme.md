@@ -10,23 +10,28 @@ Our target audience includes skincare enthusiasts who value premium-quality skin
 - Tedious checkout processes and limited payment options.
 - Challenges in tracking orders and staying updated on order statuses.
 
-## Structure of Database (Logical Schema)
-Here is an overview of the logical schema:
+## Structure of Database (SQL Schema)
+Here is an overview of the SQL schema:
 - To be updated
+![SQL Schema](./frontend/src/assets/images/readme/sql-schema.png)
 
-## How the Frontend App is Organized
-The frontend of LuxeSkin Haven is organized using Handlebars (hbs) for sellers to register, join, and list their products. The user frontend is developed using React, enabling users to browse products, add items to the shopping cart, proceed to checkout using their account, and track order statuses. Here's an example of navigating through the frontend:
+## Frontend Overview
+The user frontend is developed using React, enabling users to browse products, add items to the shopping cart, proceed to checkout using their account, and track order statuses. Here's an example of navigating through the frontend:
 1. Home Page: Displays featured products and navigation links.
 2. Product Listings: Lists skincare products with details and "Add to Cart" option.
 3. Shopping Cart: Shows added items, allows quantity adjustments, and provides checkout option.
 4. Checkout: Requires user login, shipping information, and payment details for order confirmation.
 5. Order Tracking: Users can track their orders and view current statuses (pending, shipped, delivered).
 
-## SQL Schema
-- To be updated
-![SQL Schema](./frontend/src/assets/images/readme/sql-schema.png)
+## Mock-up of Ecommerce Site
+**Landing Page**
+![Landing Page](./frontend/src/assets/images/readme/home-top-page.png)
+![Landing Page](./frontend/src/assets/images/readme/home-bottom-page.png)
 
-## Mock-up
+**View Product Page**
+![View Product Page](./frontend/src/assets/images/readme/view-product-page.png)
+
+## Mock-up of Seller Site
 **Seller Sign Up Page**
 ![Seller Sign Up Page](./frontend/src/assets/images/readme/seller-signup-page.png)
 
@@ -42,12 +47,20 @@ The frontend of LuxeSkin Haven is organized using Handlebars (hbs) for sellers t
 **Seller Reset Password Page**
 ![Seller reset Password Page](./frontend/src/assets/images/readme/seller-reset-password-page.png)
 
+**Seller Listings Page**
+![Seller Profile Page](./frontend/src/assets/images/readme/seller-listings-page.png)
+
+**Seller View Product Page**
+![Seller Profile Page](./frontend/src/assets/images/readme/seller-view-product-page.png)
+
+**Seller Add Product Page**
+![Seller Profile Page](./frontend/src/assets/images/readme/seller-add-product-page.png)
+
 **Seller Profile Page**
 ![Seller Profile Page](./frontend/src/assets/images/readme/seller-profile-page.png)
 
 **Seller Delete Account Page**
 ![Seller Delete Account Page](./frontend/src/assets/images/readme/seller-delete-account-page.png)
-
 
 ## Choice of Colors, Fonts, Style of Image, and Layout
 LuxeSkin Haven adopts a clean and elegant design with a color palette of soft pastels to convey a sense of luxury and tranquility. The fonts are chosen for readability and modern appeal, while images reflect the premium quality and effectiveness of skincare products. The layout is intuitive, focusing on showcasing products effectively and facilitating smooth navigation.
