@@ -38,7 +38,7 @@ const SellerLogin = () => {
                 }
             } else {
                 authContext.login(response.data);
-                navigate('/seller/' + response.data.id + '/listings');
+                navigate('/listings');
             }
         } catch (error) {
             console.log(error)

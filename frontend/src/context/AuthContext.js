@@ -10,7 +10,7 @@ export const AuthData = ({ children }) => {
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("isLoggedIn", 'true');
-        localStorage.setItem("activePage", '/seller/' + localStorage.getItem("sellerId") + '/listings');
+        localStorage.setItem("activePage", '/listings');
     };
 
     const logout = () => {

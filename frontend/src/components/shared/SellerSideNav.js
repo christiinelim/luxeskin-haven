@@ -17,15 +17,15 @@ const SellerSideNav = () => {
 
     return (
         <div className="side-nav-wrapper">
-            <div className={`side-nav-items ${activePage === '/seller/' + localStorage.getItem("sellerId") + '/listings' ? 'activePage' : ''}`} onClick={() => handleNavigation('/seller/' + localStorage.getItem("sellerId") + '/listings')}>
+            <div className={`side-nav-items ${activePage === '/listings' ? 'activePage' : ''}`} onClick={() => handleNavigation('/listings')}>
                 <div><i className="bi bi-view-list side-nav-icon"></i></div>
                 <div>Listings</div>
             </div>
-            <div className={`side-nav-items ${activePage === '/seller/' + localStorage.getItem("sellerId") + '/orders' ? 'activePage' : ''}`} onClick={() => handleNavigation('/seller/' + localStorage.getItem("sellerId") + '/orders')}>
+            <div className={`side-nav-items ${activePage === '/orders' ? 'activePage' : ''}`} onClick={() => handleNavigation('/orders')}>
                 <div><i class="bi bi-receipt-cutoff side-nav-icon"></i></div>
                 <div>Orders</div>
             </div>
-            <div className={`side-nav-items ${activePage === '/seller/' + localStorage.getItem("sellerId") + '/discount' ? 'activePage' : ''}`} onClick={() => handleNavigation('/seller/' + localStorage.getItem("sellerId") + '/discount')}>
+            <div className={`side-nav-items ${activePage === '/discount' ? 'activePage' : ''}`} onClick={() => handleNavigation('/discount')}>
                 <div><i class="bi bi-cash-coin side-nav-icon"></i></div>
                 <div>Discount</div>
             </div>

@@ -1,16 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ListingContext } from '../../context/ListingContext';
+import { useNavigate } from 'react-router-dom';
+import { ProductContext } from '../../context/ProductContext';
 
 const SellerListings = () => {
     const [ activeTab, setActiveTab ] = useState('active');
     const [ listings, setListings ] = useState(null);
-    const listingContext = useContext(ListingContext);
+    const productContext = useContext(ProductContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         
         const fetchData = async() => {
             try {
-                const response = await listingContext.getListings(localStorage.getItem('sellerId'));
+                const response = await productContext.getProductBySeller(localStorage.getItem('sellerId'));
                 const data = response.data;
                 setListings(data);
             } catch (error) {
@@ -63,7 +65,7 @@ const SellerListings = () => {
                                 <div><i className="bi bi-ban listing-action-icon"></i></div>
                                 <div><i className="bi bi-pencil listing-action-icon"></i></div>
                                 <div><i className="bi bi-trash listing-action-icon"></i></div>
-                                <div><i className="bi bi-arrows-angle-expand listing-action-icon"></i></div>
+                                <div onClick={() => navigate('/listings/' + listing.id)}><i className="bi bi-arrows-angle-expand listing-action-icon"></i></div>
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,8 @@ import SellerProfilePage from './views/seller/SellerProfilePage';
 import SellerForgotPasswordPage from './views/seller/SellerForgotPasswordPage';
 import { AuthData } from './context/AuthContext';
 import SellerListingsPage from './views/seller/SellerListingsPage';
-import { ListingServicesData } from './context/ListingContext';
+import { ProductServicesData } from './context/ProductContext';
+import SellerProductPage from './views/seller/SellerProductPage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Router>
         <AuthData>
           <SellerServicesData>
-            <ListingServicesData>
+            <ProductServicesData>
               <Routes>
                 <Route path="/" element={<HomePage />}/>
                 <Route path="/seller/signup" element={<SellerSignupPage />}/>
@@ -27,9 +28,10 @@ function App() {
                 <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
                 <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
                 <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
-                <Route path="/seller/:sellerId/listings" element={<SellerListingsPage />}/>
+                <Route path="/listings" element={<SellerListingsPage />}/>
+                <Route path="/listings/:productId" element={<SellerProductPage />}/>
               </Routes>
-            </ListingServicesData>
+            </ProductServicesData>
           </SellerServicesData>
         </AuthData>
       </Router>
