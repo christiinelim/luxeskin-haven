@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../context/AuthContext';
 import UploadWidget from '../shared/UploadWidget';
+import DeleteWarning from '../shared/DeleteWarning';
 
 const SellerProfile = () => {
     const { sellerId } = useParams();
@@ -71,7 +72,7 @@ const SellerProfile = () => {
         setImageUrl("");
     };
 
-    const handleDeleteAccountClick = async (sellerId) => {
+    const handleDeleteClick = async (sellerId) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await sellerContext.deleteSeller(sellerId); 
@@ -277,27 +278,14 @@ const SellerProfile = () => {
                             }
                         </div>
                     </div>
+
                     { isDeleting && 
-                        <div className='overlay delete-account-up'>
-                            <div className='delete-account-content'>
-                                <div className='delete-header'>Delete Account</div>
-                                <div>Are you sure you want to delete <span className='delete-item'>{ seller.username }</span>?</div>
-                                <div className='warning-content-container'>
-                                    <div className="warning-side"></div>
-                                    <div className='warning-content'>
-                                        <div className='warning-header-content'>
-                                            <div><i className="bi bi-exclamation-triangle-fill warning-icon"></i></div>
-                                            <div className='warning-header'>Warning</div>
-                                        </div>
-                                        <div className='warning-description'>By deleting this account, you will lose all your current listings and no longer have access to your account</div>
-                                    </div>
-                                </div>
-                                <div className='warning-action'>
-                                    <button type="button" className="button-border warning-action-cancel" onClick={ () => setIsDeleting(false) }>Cancel</button> 
-                                    <button type="button" className="button-full" onClick={ () => handleDeleteAccountClick(seller.id) }>Confirm</button> 
-                                </div>
-                            </div>
-                        </div>
+                        <DeleteWarning item = { seller.username } 
+                                        itemId = { seller.id } 
+                                        setIsDeleting = { setIsDeleting } 
+                                        handleDeleteClick = { handleDeleteClick } 
+                                        message = "By deleting this account, you will lose all your current listings and no longer have access to your account"
+                        />
                     }
                 </div>
             </form>
