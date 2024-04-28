@@ -3,6 +3,9 @@
 ## Rationale of Project
 LuxeSkin Haven is an e-commerce platform dedicated to providing luxurious skincare products to customers seeking high-quality and effective skincare solutions. The platform aims to create a seamless and enjoyable shopping experience for skincare enthusiasts, connecting them with premium skincare brands and products.
 
+- GitHub Repository for Frontend (ReactJS): <a href="https://github.com/christiinelim/luxeskin-haven">Link</a>
+- GitHub Repository for Backend (Express, NodeJs, Handlebars, Caolan form, bookshelf ORM): <a href="https://github.com/christiinelim/luxeskin-haven-backend">Link</a>
+
 ## Target Audience and Their Pain Points
 Our target audience includes skincare enthusiasts who value premium-quality skincare products and desire a convenient and trustworthy platform for purchasing them. Their pain points may include:
 - Difficulty finding reliable sources for high-end skincare products.
