@@ -1,12 +1,14 @@
 import SellerSignup from "../../components/seller-platform/SellerSignup";
+import Footer from "../../components/shared/Footer";
 import SellerNavbar from "../../components/shared/SellerNavbar";
 
 const SellerSignupPage = () => {
 
     return (
         <>
-            <SellerNavbar></SellerNavbar>
-            <SellerSignup></SellerSignup>
+            <SellerNavbar />
+            <SellerSignup />
+            <Footer />
         </>
     )
 }

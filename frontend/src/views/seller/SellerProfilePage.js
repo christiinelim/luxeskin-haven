@@ -6,13 +6,13 @@ const SellerProfilePage = () => {
 
     return (
         <>
-            <SellerNavbar></SellerNavbar>
+            <SellerNavbar />
             <div className="content-wrap">
                 <div className="content-nav">
-                    <SellerSideNav></SellerSideNav>
+                    <SellerSideNav />
                 </div>
                 <div className="content-body">
-                    <SellerProfile></SellerProfile>
+                    <SellerProfile />
                 </div>
             </div>
         </>

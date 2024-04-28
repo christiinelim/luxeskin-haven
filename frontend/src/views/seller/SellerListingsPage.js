@@ -6,13 +6,13 @@ const SellerListingsPage = () => {
 
     return (
         <>
-            <SellerNavbar></SellerNavbar>
+            <SellerNavbar />
             <div className="content-wrap">
                 <div className="content-nav">
-                    <SellerSideNav></SellerSideNav>
+                    <SellerSideNav />
                 </div>
                 <div className="content-body">
-                    <SellerListings></SellerListings>
+                    <SellerListings />
                 </div>
             </div>
         </>

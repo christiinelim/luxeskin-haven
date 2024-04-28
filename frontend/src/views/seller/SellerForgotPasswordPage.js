@@ -5,8 +5,8 @@ const SellerForgotPasswordPage = () => {
 
     return (
         <>
-            <SellerNavbar></SellerNavbar>
-            <ForgotPassword></ForgotPassword>
+            <SellerNavbar />
+            <ForgotPassword />
         </>
     )
 }

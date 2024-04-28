@@ -25,7 +25,7 @@ const Navbar = () => {
     }, []);
 
     return(
-        <>
+        <div className='site-nav'>
             {showDropdown && <div className="overlay" onClick={() => toggleState(setShowDropdown)}></div>}
             <div className='nav-login'>
                 <div className='login-items'>
@@ -81,7 +81,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -25,6 +25,14 @@ const ProductServices = {
             throw new Error('Failed to retrieve product');
         }
     },
+    getProductByIdPublic: async (productId) => {
+        try {
+            const response = await ApiServices.get('/product/public/' + productId);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to retrieve product');
+        }
+    },
     deleteProduct: async (productId) => {
         try {
             const response = await ApiServices.delete('/product/' + productId);
@@ -47,6 +55,15 @@ const ProductServices = {
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve skin types');
+        }
+    },
+    getAllProducts: async () => {
+        try {
+            const response = await ApiServices.get('/product/');
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            throw new Error('Failed to retrieve products');
         }
     },
     updateProduct: async (productId, data) => {

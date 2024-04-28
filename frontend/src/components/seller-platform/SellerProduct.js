@@ -55,10 +55,7 @@ const SellerProduct = () => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await productContext.deleteProduct(productId); 
-            const updatedListings = listings.filter(item => item.id !== productId);
-            setListings(updatedListings);
             setIsDeleting(false);
-            // ERROR HERES
             navigate('/listings')
         } catch (error) {
             console.log(error)

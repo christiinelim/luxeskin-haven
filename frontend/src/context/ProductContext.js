@@ -29,6 +29,14 @@ export const ProductServicesData = ({ children }) => {
         }
     };
 
+    const getProductByIdPublic = async (productId) => {
+        try {
+            return await ProductServices.getProductById(productId);
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
     const deleteProduct = async (productId) => {
         try {
             return await ProductServices.deleteProduct(productId);
@@ -53,6 +61,14 @@ export const ProductServicesData = ({ children }) => {
         }
     };
 
+    const getAllProducts = async () => {
+        try {
+            return await ProductServices.getAllProducts();
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
     const updateProduct = async (productId, data) => {
         try {
             return await ProductServices.updateProduct(productId, data);
@@ -65,9 +81,11 @@ export const ProductServicesData = ({ children }) => {
         createProduct,
         getProductBySeller,
         getProductById,
+        getProductByIdPublic,
         deleteProduct,
         getAllCategories,
         getAllSkinTypes,
+        getAllProducts,
         updateProduct
     };
 

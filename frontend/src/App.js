@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SellerSignupPage from './views/seller/SellerSignupPage';
 import HomePage from './views/HomePage';
+import ProductPage from './views/ProductPage';
 import SellerLoginPage from './views/seller/SellerLoginPage';
 import SellerVerifyAccountPage from './views/seller/SellerVerifyAccountPage';
 import { SellerServicesData } from './context/SellerContext'
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/listings" element={<SellerListingsPage />}/>
                 <Route path="/listings/:productId" element={<SellerProductPage />}/>
                 <Route path="/list" element={<SellerListProductPage />}/>
+                <Route path="/listing/:productId" element={<ProductPage />}/>
               </Routes>
             </ProductServicesData>
           </SellerServicesData>
