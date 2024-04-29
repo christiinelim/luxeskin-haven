@@ -4,22 +4,31 @@ export const AuthContext = createContext();
 
 export const AuthData = ({ children }) => {
 
-    const login = (data) => {
-        localStorage.setItem("sellerId", data.id);
+    const login = (data, status) => {
+        if (status === "seller") {
+            localStorage.setItem("sellerId", data.id);
+            localStorage.setItem("activePage", '/listings');
+        } else {
+            localStorage.setItem("userId", data.id);
+        }
         localStorage.setItem("email", data.email);
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("isLoggedIn", 'true');
-        localStorage.setItem("activePage", '/listings');
+        
     };
 
-    const logout = () => {
-        localStorage.removeItem("sellerId");
+    const logout = (status) => {
+        if (status === "seller") {
+            localStorage.removeItem("sellerId");
+            localStorage.removeItem("activePage");
+        } else {
+            localStorage.removeItem("userId");
+        }
         localStorage.removeItem("email");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("activePage");
     };
 
     const isLoggedIn = () => {

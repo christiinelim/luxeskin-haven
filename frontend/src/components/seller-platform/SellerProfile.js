@@ -76,7 +76,7 @@ const SellerProfile = () => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await sellerContext.deleteSeller(sellerId); 
-            authContext.logout();
+            authContext.logout("seller");
             navigate('/seller/login', { 
                 state: { 
                     success_message: "Your account has been deleted"

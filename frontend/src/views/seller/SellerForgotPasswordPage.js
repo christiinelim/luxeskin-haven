@@ -1,12 +1,14 @@
-import ForgotPassword from "../../components/seller-platform/ForgotPassword";
+import SellerForgotPassword from "../../components/seller-platform/SellerForgotPassword";
 import SellerNavbar from "../../components/shared/SellerNavbar";
+import Footer from "../../components/shared/Footer";
 
 const SellerForgotPasswordPage = () => {
 
     return (
         <>
             <SellerNavbar />
-            <ForgotPassword />
+            <SellerForgotPassword />
+            <Footer />
         </>
     )
 }

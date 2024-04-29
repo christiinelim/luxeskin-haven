@@ -15,28 +15,39 @@ import SellerListingsPage from './views/seller/SellerListingsPage';
 import { ProductServicesData } from './context/ProductContext';
 import SellerProductPage from './views/seller/SellerProductPage';
 import SellerListProductPage from './views/seller/SellerListProductPage';
+import { UserServicesData } from './context/UserContext';
+import UserSignupPage from './views/UserSignupPage';
+import UserVerifyAccountPage from './views/UserVerifyAccountPage';
+import UserLoginPage from './views/UserLoginPage';
+import UserForgotPasswordPage from './views/UserForgotPasswordPage';
 
 function App() {
   return (
     <>
       <Router>
         <AuthData>
-          <SellerServicesData>
-            <ProductServicesData>
-              <Routes>
-                <Route path="/" element={<HomePage />}/>
-                <Route path="/seller/signup" element={<SellerSignupPage />}/>
-                <Route path="/seller/login" element={<SellerLoginPage />}/>
-                <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
-                <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
-                <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
-                <Route path="/listings" element={<SellerListingsPage />}/>
-                <Route path="/listings/:productId" element={<SellerProductPage />}/>
-                <Route path="/list" element={<SellerListProductPage />}/>
-                <Route path="/listing/:productId" element={<ProductPage />}/>
-              </Routes>
-            </ProductServicesData>
-          </SellerServicesData>
+          <UserServicesData>
+            <SellerServicesData>
+              <ProductServicesData>
+                <Routes>
+                  <Route path="/" element={<HomePage />}/>
+                  <Route path="/seller/signup" element={<SellerSignupPage />}/>
+                  <Route path="/seller/login" element={<SellerLoginPage />}/>
+                  <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
+                  <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
+                  <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
+                  <Route path="/listings" element={<SellerListingsPage />}/>
+                  <Route path="/listings/:productId" element={<SellerProductPage />}/>
+                  <Route path="/list" element={<SellerListProductPage />}/>
+                  <Route path="/listing/:productId" element={<ProductPage />}/>
+                  <Route path="/signup" element={<UserSignupPage />}/>
+                  <Route path="/verify-account" element={<UserVerifyAccountPage />}/>
+                  <Route path="/login" element={<UserLoginPage />}/>
+                  <Route path="/forgot-password" element={<UserForgotPasswordPage />}/>
+                </Routes>
+              </ProductServicesData>
+            </SellerServicesData>
+          </UserServicesData>
         </AuthData>
       </Router>
     </>

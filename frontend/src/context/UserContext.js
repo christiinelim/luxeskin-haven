@@ -1,13 +1,13 @@
 import React, { createContext } from 'react';
-import SellerServices from '../services/SellerServices';
+import UserServices from '../services/UserServices';
 
-export const SellerContext = createContext();
+export const UserContext = createContext();
 
-export const SellerServicesData = ({ children }) => {
+export const UserServicesData = ({ children }) => {
 
-    const createSeller = async (data) => {
+    const createUser = async (data) => {
         try {
-            return await SellerServices.createSeller(data);
+            return await UserServices.createUser(data);
         } catch (error) {
             throw new Error(error);
         }
@@ -15,7 +15,7 @@ export const SellerServicesData = ({ children }) => {
 
     const login = async (data) => {
         try {
-            return await SellerServices.login(data);
+            return await UserServices.login(data);
         } catch (error) {
             throw new Error(error);
         }
@@ -23,15 +23,15 @@ export const SellerServicesData = ({ children }) => {
 
     const verify = async (data) => {
         try {
-            return await SellerServices.verify(data);
+            return await UserServices.verify(data);
         } catch (error) {
             throw new Error(error);
         }
     };
 
-    const getSeller = async (sellerId) => {
+    const getUser = async (userId) => {
         try {
-            return await SellerServices.getSeller(sellerId);
+            return await UserServices.getUser(userId);
         } catch (error) {
             if (error.response && error.response.data.error === "Unauthorized, please login") {
                 return ({ error: "Unauthorized, please login" });
@@ -42,7 +42,7 @@ export const SellerServicesData = ({ children }) => {
     
     const sendResetPasswordToken = async (email) => {
         try {
-            return await SellerServices.sendResetPasswordToken(email);
+            return await UserServices.sendResetPasswordToken(email);
         } catch (error) {
             throw new Error(error);
         }
@@ -50,23 +50,23 @@ export const SellerServicesData = ({ children }) => {
 
     const updatePassword = async (data) => {
         try {
-            return await SellerServices.updatePassword(data);
+            return await UserServices.updatePassword(data);
         } catch (error) {
             throw new Error(error);
         }
     };
 
-    const updateProfile = async (sellerId, data) => {
+    const updateProfile = async (userId, data) => {
         try {
-            return await SellerServices.updateProfile(sellerId, data);
+            return await UserServices.updateProfile(userId, data);
         } catch (error) {
             throw new Error(error);
         }
     }; 
 
-    const deleteSeller = async (sellerId) => {
+    const deleteUser = async (userId) => {
         try {
-            return await SellerServices.deleteSeller(sellerId);
+            return await UserServices.deleteUser(userId);
         } catch (error) {
             throw new Error(error);
         }
@@ -74,27 +74,27 @@ export const SellerServicesData = ({ children }) => {
 
     const logout = async (refreshToken) => {
         try {
-            return await SellerServices.logout(refreshToken);
+            return await UserServices.logout(refreshToken);
         } catch (error) {
             throw new Error(error);
         }
     }
 
-    const sellerContextValue = {
-        createSeller,
+    const userContextValue = {
+        createUser,
         login,
         verify,
-        getSeller,
+        getUser,
         sendResetPasswordToken,
         updatePassword,
         updateProfile,
-        deleteSeller,
+        deleteUser,
         logout
     };
 
     return (
-        <SellerContext.Provider value={sellerContextValue}>
+        <UserContext.Provider value={userContextValue}>
             {children}
-        </SellerContext.Provider>
+        </UserContext.Provider>
     );
 };

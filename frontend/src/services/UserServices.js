@@ -1,17 +1,17 @@
 import ApiServices from "./ApiServices";
 
-const SellerServices = {
-    createSeller: async (data) => {
+const UserServices = {
+    createUser: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/', data);
+            const response = await ApiServices.post('/user/', data);
             return response.data;
         } catch (error) {
-            throw new Error('Failed to create seller');
+            throw new Error('Failed to create user');
         }
     },
     login: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/login', data);
+            const response = await ApiServices.post('/user/login', data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to login');
@@ -19,15 +19,15 @@ const SellerServices = {
     },
     verify: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/verify-account', data);
+            const response = await ApiServices.post('/user/verify-account', data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to verify');
         }
     },
-    getSeller: async (sellerId) => {
+    getUser: async (userId) => {
         try {
-            const response = await ApiServices.get('/seller/' + sellerId);
+            const response = await ApiServices.get('/user/' + userId);
             return response.data;
         } catch (error) {
             if (error.response.data.error === "Unauthorized, please login") {
@@ -38,7 +38,7 @@ const SellerServices = {
     },
     sendResetPasswordToken: async (email) => {
         try {
-            const response = await ApiServices.post('/seller/forgot-password', email);
+            const response = await ApiServices.post('/user/forgot-password', email);
             return response.data;
         } catch (error) {
             throw new Error('Failed to send');
@@ -46,7 +46,7 @@ const SellerServices = {
     },
     updatePassword: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/update-password', data);
+            const response = await ApiServices.post('/user/update-password', data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to reset password');
@@ -54,23 +54,23 @@ const SellerServices = {
     },
     refreshToken: async (data) => {
         try {
-            const response = await ApiServices.post('/seller/refresh-token', data);
+            const response = await ApiServices.post('/user/refresh-token', data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve new token');
         }
     },
-    updateProfile: async (sellerId, data) => {
+    updateProfile: async (userId, data) => {
         try {
-            const response = await ApiServices.put('/seller/' + sellerId, data);
+            const response = await ApiServices.put('/user/' + userId, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to update profile');
         }
     },
-    deleteSeller: async (sellerId) => {
+    deleteUser: async (userId) => {
         try {
-            const response = await ApiServices.delete('/seller/' + sellerId);
+            const response = await ApiServices.delete('/user/' + userId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to delete account');
@@ -78,7 +78,7 @@ const SellerServices = {
     },
     logout: async (refreshToken) => {
         try {
-            const response = await ApiServices.post('/seller/logout', refreshToken);
+            const response = await ApiServices.post('/user/logout', refreshToken);
             return response.data;
         } catch (error) {
             throw new Error('Failed to logout');
@@ -86,4 +86,4 @@ const SellerServices = {
     }
 };
 
-export default SellerServices;
+export default UserServices;

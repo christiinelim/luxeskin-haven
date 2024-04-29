@@ -1,13 +1,15 @@
 import React, { useRef, useContext } from "react";
 import verificationImage from "../../assets/images/verification/verification.gif";
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom'
-import { SellerContext } from '../../context/SellerContext'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { SellerContext } from '../../context/SellerContext';
+import { UserContext } from '../../context/UserContext';
 
-const SellerVerifyAccount = () => {
+const VerifyAccount = ({ formType }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const sellerContext = useContext(SellerContext);
+    const userContext = useContext(UserContext);
     const { email, id } = location.state;
     const { handleSubmit, setError, formState: { errors, isSubmitting } } = useForm();
     const inputRefs = useRef([null, null, null, null, null, null]);
@@ -24,17 +26,30 @@ const SellerVerifyAccount = () => {
 
     const onSubmit = async () => {
         try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             const token = inputRefs.current.map((ref) => ref.value).join("");
-            const verificationData = {
-                "type": "Verification",
-                "seller_id": id,
-                "token": parseInt(token),
-                "email": email,
-                "profile": "Seller"
-            };
+            let response;
 
-            const response = await sellerContext.verify(verificationData); 
-
+            if (formType === "seller") {
+                const verificationData = {
+                    "type": "Verification",
+                    "seller_id": id,
+                    "token": parseInt(token),
+                    "email": email,
+                    "profile": "Seller"
+                };
+                response = await sellerContext.verify(verificationData); 
+            } else {
+                const verificationData = {
+                    "type": "Verification",
+                    "user_id": id,
+                    "token": parseInt(token),
+                    "email": email,
+                    "profile": "User"
+                };
+                response = await userContext.verify(verificationData); 
+            }
+            
             if (response.error) {
                 if (response.error === "Invalid token") {
                     setError("root", {
@@ -46,11 +61,19 @@ const SellerVerifyAccount = () => {
                     })
                 }
             } else {
-                navigate('/seller/login', { 
-                    state: { 
-                        success_message: "Account has been successfully verified"
-                    }
-                });
+                if (formType === "seller") {
+                    navigate('/seller/login', { 
+                        state: { 
+                            success_message: "Account has been successfully verified"
+                        }
+                    });
+                } else {
+                    navigate('/login', { 
+                        state: { 
+                            success_message: "Account has been successfully verified"
+                        }
+                    });
+                }
             }
         } catch (error) {
             setError("root", {
@@ -60,7 +83,7 @@ const SellerVerifyAccount = () => {
     };
 
     return (
-        <div class="verify-wrapper">
+        <div className="verify-wrapper">
             <div>
                 <img src={verificationImage} alt="verification image"/>
             </div>
@@ -99,4 +122,4 @@ const SellerVerifyAccount = () => {
     );
 };
 
-export default SellerVerifyAccount;
+export default VerifyAccount;

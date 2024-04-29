@@ -1,13 +1,13 @@
-import SellerVerifyAccount from "../../components/seller-platform/SellerVerifyAccount";
 import Footer from "../../components/shared/Footer";
 import SellerNavbar from "../../components/shared/SellerNavbar";
+import VerifyAccount from "../../components/shared/VerifyAccount";
 
 const SellerVerifyAccountPage = () => {
 
     return (
         <>
             <SellerNavbar />
-            <SellerVerifyAccount />
+            <VerifyAccount formType="seller" />
             <Footer />
         </>
     )
