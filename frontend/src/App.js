@@ -20,6 +20,7 @@ import UserSignupPage from './views/UserSignupPage';
 import UserVerifyAccountPage from './views/UserVerifyAccountPage';
 import UserLoginPage from './views/UserLoginPage';
 import UserForgotPasswordPage from './views/UserForgotPasswordPage';
+import UserProfilePage from './views/UserProfilePage';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                   <Route path="/verify-account" element={<UserVerifyAccountPage />}/>
                   <Route path="/login" element={<UserLoginPage />}/>
                   <Route path="/forgot-password" element={<UserForgotPasswordPage />}/>
+                  <Route path="/:userId/profile/details" element={<UserProfilePage />}/>
                 </Routes>
               </ProductServicesData>
             </SellerServicesData>

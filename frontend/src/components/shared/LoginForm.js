@@ -59,7 +59,7 @@ const LoginForm = ({ formType }) => {
                 if (formType === "seller") {
                     navigate('/listings');
                 } else {
-                    navigate('/');
+                    navigate('/' + response.data.id  + '/profile/details');
                 }   
             }
         } catch (error) {
