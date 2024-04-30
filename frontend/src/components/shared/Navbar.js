@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Search, ArrowRight } from 'react-bootstrap-icons';
 
 const Navbar = () => {
-    const [showSearchBar, setShowSearchBar] = useState(false);
+    const [ showSearchBar, setShowSearchBar ] = useState(false);
     const navigate = useNavigate();
 
     const toggleState = (setState) => {

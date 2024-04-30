@@ -1,14 +1,16 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const UserCart = () => {
     const { userId } = useParams();
+    const navigate = useNavigate();
     const cartContext = useContext(CartContext);
     const [ userCart, setUserCart ] = useState(null);
-    const [quantities, setQuantities] = useState({});
+    const [ quantities, setQuantities ] = useState({});
     const [ subtotal, setSubtotal ] = useState(0);
     const [ productErrors, setProductErrors ] = useState({});
+    const [ checkedItems, setCheckedItems ] = useState([]);
 
     useEffect(() => {
         
@@ -24,7 +26,7 @@ const UserCart = () => {
                 setQuantities(initialQuantities);
 
             } catch (error) {
-               // error navigate to login
+               console.log(error)
             }
         }
 
@@ -101,7 +103,7 @@ const UserCart = () => {
                         ...prevErrors,
                         [cartId]: false,
                     }));
-                }, 3000);
+                }, 2500);
             } else {
                 setProductErrors((prevErrors) => ({
                     ...prevErrors,
@@ -113,51 +115,94 @@ const UserCart = () => {
         }
     };
 
+    const handleItemClick = (productId) => {
+        navigate('/listing/' + productId);
+    };
+
+    const handleCheckboxChange = (cartItem) => {
+        setCheckedItems((prevCheckedItems) => {
+            if (prevCheckedItems.some((item) => item.id === cartItem.id)) {
+                return prevCheckedItems.filter((item) => item.id !== cartItem.id);
+            } else {
+                return [...prevCheckedItems, cartItem];
+            }
+        });
+    };
+
+    const handleDeleteCartItem = async (cartId) => {
+        try {
+            await cartContext.deleteCartItem(cartId);
+            setUserCart(userCart.filter((item) => item.id !== cartId))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         userCart &&
         <div className='cart-wrapper'>
             <div className='row'>
-                <div className='col-12 col-sm-8 summary-wrapper'>
+                <div className='col-12 col-md-8 summary-wrapper'>
                     <div className='page-header'>My Cart</div>
-                    <div className='cart-list'>
-                        {
-                            userCart.map ((cartItem) => (
-                                <div key={cartItem.id} className='cart-items'>
-                                    <div>
-                                        <div><img src={ cartItem.product.image } className='cart-item-image' alt='product'/></div>
-                                    </div>
-                                    <div className='cart-description'>
-                                        <div>
-                                            <div className='cart-brand'>{ cartItem.product.seller.username }</div>
-                                            <div className='cart-text cart-text-large'>{ cartItem.product.name }</div>
-                                            <div className='cart-quantity'>
-                                                <div className='cart-text'>Quantity:</div>
-                                                <div className='quantity-adjust'>
-                                                    <div onClick={() => handleDecrement(cartItem.id, cartItem.product_id)} className='quantity-action'><i className="bi bi-dash-circle"></i></div>
-                                                    <div>
-                                                        <input
-                                                            type='text'
-                                                            className='quantity-box-cart'
-                                                            value={quantities[cartItem.id]}
-                                                            onChange={(e) => handleQuantityChange(cartItem.id, cartItem.product_id, e)}
-                                                        />
+                    {
+                        userCart.length !== 0 ? (
+                            <div className='cart-list'>
+                                {
+                                    userCart.map ((cartItem) => (
+                                        <div key={cartItem.id} className='cart-items'>
+                                            <div className='checkbox-wrapper'>
+                                                <input 
+                                                    type='checkbox' 
+                                                    className='cart-checkbox' 
+                                                    checked={ checkedItems.some((item) => item.id === cartItem.id) }
+                                                    onChange={ () => handleCheckboxChange(cartItem) }
+                                                />
+                                            </div>
+                                            <div>
+                                                <div><img src={ cartItem.product.image } className='cart-item-image' alt='product'/></div>
+                                            </div>
+                                            <div className='cart-description'>
+                                                <div>
+                                                    <div className='cart-brand'>{ cartItem.product.seller.username }</div>
+                                                    <div className='cart-text cart-text-large view-cart-item' onClick={ () => handleItemClick(cartItem.product_id) }>{ cartItem.product.name }</div>
+                                                    <div className='cart-quantity'>
+                                                        <div className='cart-text'>Quantity:</div>
+                                                        <div className='quantity-adjust'>
+                                                            <div onClick={() => handleDecrement(cartItem.id, cartItem.product_id)} className='quantity-action'><i className="bi bi-dash-circle"></i></div>
+                                                            <div>
+                                                                <input
+                                                                    type='text'
+                                                                    className='quantity-box-cart'
+                                                                    value={ quantities[cartItem.id] }
+                                                                    onChange={ (e) => handleQuantityChange(cartItem.id, cartItem.product_id, e) }
+                                                                />
+                                                            </div>
+                                                            <div onClick={() => handleIncrement(cartItem.id, cartItem.product_id)} className='quantity-action'><i className="bi bi-plus-circle"></i></div>
+                                                        </div>     
                                                     </div>
-                                                    <div onClick={() => handleIncrement(cartItem.id, cartItem.product_id)} className='quantity-action'><i className="bi bi-plus-circle"></i></div>
+                                                    { productErrors[cartItem.id] && <div className='insufficient'>Insufficient stock!</div> }
                                                 </div>
-                                                { productErrors[cartItem.id] && <div>Insufficient stock!</div> }
+                                                <div className='cart-cost'>
+                                                    <div className='cart-text-large'>
+                                                        ${ (cartItem.product.cost * quantities[cartItem.id]).toFixed(2) }
+                                                    </div>
+                                                    <div>
+                                                        <i className="bi bi-x delete-cart-icon" onClick={ () => handleDeleteCartItem(cartItem.id) }></i> 
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className='cart-text-large'>
-                                            ${ (cartItem.product.cost * quantities[cartItem.id]).toFixed(2) }
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
+                                    ))
+                                }
+                            </div>
+                        ) :
+                        <div className='cart-list empty-cart'>
+                            <div>Your cart is empty, start shopping!</div>
+                        </div>
+                    }
                 </div>
 
-                <div className='col-12 col-sm-4 summary-wrapper'>
+                <div className='col-12 col-md-4 summary-wrapper'>
                     <div className='page-header summary-header'>Order Summary</div>
 
                     <div className='cost-wrapper'>
@@ -179,7 +224,6 @@ const UserCart = () => {
             </div>
         </div>
     )
-
 }
 
 export default UserCart

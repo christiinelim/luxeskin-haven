@@ -1,12 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
+import { CartContext } from '../context/CartContext';
 
 const Product = () => {
     const { productId } = useParams();
     const [ product, setProduct ] = useState(null);
     const [ quantity, setQuantity ] = useState(1);
+    const [ addedProductId, setAddedProductId ] = useState(null);
+    const [ insufficient, setInsufficient ] = useState(false);
     const productContext = useContext(ProductContext);
+    const cartContext = useContext(CartContext);
 
     useEffect(() => {
         
@@ -23,6 +27,28 @@ const Product = () => {
         fetchData();
         
     }, []);
+
+    const handleAddToBag = async (productId) => {
+        try {
+            const data = {
+                product_id: productId,
+                user_id: localStorage.getItem('userId'),
+                quantity: quantity
+            }
+            const response = await cartContext.addToCart(data);
+            if (response.error) {
+                setInsufficient(true)
+            }
+
+            setAddedProductId(productId);
+            setTimeout(() => {
+                setAddedProductId(null);
+                setInsufficient(false)
+            }, 2500);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const getBackgroundColorForSkinType = (skinType) => {
         switch (skinType) {
@@ -60,7 +86,7 @@ const Product = () => {
                     <div className='product-name col-12'>{ product.name }</div>
 
                     <div className='skin-type-badges'>
-                    {product.skin_types.map((skinType) => (
+                    { product.skin_types.map((skinType) => (
                         <div
                             key={skinType.id}
                             className='skin-type-badge'
@@ -106,7 +132,9 @@ const Product = () => {
                                 </div>
                                 <div onClick={ handleIncrement } className='quantity-action'><i class="bi bi-plus-circle"></i></div>
                             </div>
-                            <div className='button-full'>Add to Bag</div>
+                            <div className='button-full product-add-button' onClick={ () => handleAddToBag(product.id) }>
+                                { addedProductId === product.id ? insufficient ? "Insufficient stock" : "Added!" : "Add to Bag" }
+                            </div>
                         </div>
                     </div>
                 </div>
