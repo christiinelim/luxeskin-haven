@@ -74,7 +74,7 @@ const SellerListings = () => {
                                 <div className='listing-image'><img src={ listing.image }/></div>
                                 <div className='card-content'>
                                     <div className='listing-name'>{ listing.name }</div>
-                                    <div className='listing-detail'>Cost: ${ listing.cost }</div>
+                                    <div className='listing-detail'>Cost: ${ (listing.cost).toFixed(2) }</div>
                                     <div className='listing-detail'>Available Stocks: { listing.stocks_on_hand }</div>
                                 </div>
                                 <div className='listing-action'>

@@ -35,7 +35,7 @@ const FeaturedProducts = () => {
                                 <div className='home-card-content'>
                                     <div className='home-product-header-wrapper'>
                                         <div>{ product.seller.username }</div>
-                                        <div>${ product.cost }</div>
+                                        <div>${ (product.cost).toFixed(2) }</div>
                                     </div>
                                     <div className='home-product-name'>{ product.name }</div>
                                 </div>
