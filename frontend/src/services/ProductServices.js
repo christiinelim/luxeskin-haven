@@ -6,7 +6,7 @@ const ProductServices = {
             const response = await ApiServices.post('/product/', data);
             return response.data;
         } catch (error) {
-            throw new Error('Failed to create product product');
+            throw new Error('Failed to create product');
         }
     },
     getProductBySeller: async (sellerId) => {

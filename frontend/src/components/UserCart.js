@@ -1,11 +1,15 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { CartContext } from '../context/CartContext';
 import { useParams, useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
+import { CartoutContext } from '../context/CartoutContext';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51P7B0TAkWCwAJGiUzYYy9xzWJBlXbkqNAnqHgCzOloNxbA0B4XoeTpeoodBUD7wmDCvpKDIAG3AEne9kcT9vEyTA00nvW6l0WJ');
 
 const UserCart = () => {
     const { userId } = useParams();
     const navigate = useNavigate();
     const cartContext = useContext(CartContext);
+    const cartoutContext = useContext(CartoutContext);
     const [ userCart, setUserCart ] = useState(null);
     const [ quantities, setQuantities ] = useState({});
     const [ subtotal, setSubtotal ] = useState(0);
@@ -128,11 +132,31 @@ const UserCart = () => {
             }
         });
     };
+    console.log(checkedItems)
 
     const handleDeleteCartItem = async (cartId) => {
         try {
             await cartContext.deleteCartItem(cartId);
             setUserCart(userCart.filter((item) => item.id !== cartId))
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const handleCheckOut = async () => {
+        try {
+            const data = {
+                items: checkedItems,
+                user_id: userId
+            }
+            const response = await cartoutContext.createPayment(data);
+            const { sessionId } = response;
+            console.log(sessionId)
+
+            const stripe = await stripePromise;
+            const result = await stripe.redirectToCheckout({
+                sessionId: sessionId,
+            });
         } catch (error) {
             console.log(error)
         }
@@ -218,7 +242,7 @@ const UserCart = () => {
                             <div>Total</div>
                             <div>${ (parseFloat(subtotal) + 3.50).toFixed(2) }</div>
                         </div>
-                        <div className='button-full checkout-button'>Proceed to Checkout</div>
+                        <div className='button-full checkout-button' onClick={ handleCheckOut }>Proceed to Checkout</div>
                     </div>
                 </div>
             </div>
