@@ -1,20 +1,19 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import { CartoutContext } from '../context/CartoutContext';
-import { loadStripe } from '@stripe/stripe-js';
-const stripePromise = loadStripe('pk_test_51P7B0TAkWCwAJGiUzYYy9xzWJBlXbkqNAnqHgCzOloNxbA0B4XoeTpeoodBUD7wmDCvpKDIAG3AEne9kcT9vEyTA00nvW6l0WJ');
+import UserCartoutForm from './UserCartoutForm';
 
 const UserCart = () => {
     const { userId } = useParams();
     const navigate = useNavigate();
     const cartContext = useContext(CartContext);
-    const cartoutContext = useContext(CartoutContext);
     const [ userCart, setUserCart ] = useState(null);
     const [ quantities, setQuantities ] = useState({});
     const [ subtotal, setSubtotal ] = useState(0);
     const [ productErrors, setProductErrors ] = useState({});
     const [ checkedItems, setCheckedItems ] = useState([]);
+    const [ cartout, setCartout ] = useState(false);
+    const [ emptyCartError, SetEmptyCartError ] = useState(false);
 
     useEffect(() => {
         
@@ -39,13 +38,13 @@ const UserCart = () => {
     }, [userId]);
 
     useEffect(() => {
-        if (userCart && Object.keys(quantities).length > 0) {
-            const total = userCart.reduce((accumulator, cartItem) => {
-                return accumulator + cartItem.product.cost * quantities[cartItem.id];
-            }, 0);
+        if (userCart && Object.keys(quantities).length > 0 && checkedItems.length > 0) {
+            const total = calculateSubtotal(checkedItems, quantities);
             setSubtotal(total);
+        } else {
+            setSubtotal(0);
         }
-    }, [userCart, quantities]);
+    }, [userCart, quantities, checkedItems]);
 
     const handleIncrement = (cartId, productId) => {
         setQuantities((prevQuantities) => {
@@ -132,7 +131,6 @@ const UserCart = () => {
             }
         });
     };
-    console.log(checkedItems)
 
     const handleDeleteCartItem = async (cartId) => {
         try {
@@ -143,24 +141,26 @@ const UserCart = () => {
         }
     };
 
-    const handleCheckOut = async () => {
-        try {
-            const data = {
-                items: checkedItems,
-                user_id: userId
-            }
-            const response = await cartoutContext.createPayment(data);
-            const { sessionId } = response;
-            console.log(sessionId)
+    const handleCancel = () => {
+        setCartout(false);
+    };
 
-            const stripe = await stripePromise;
-            const result = await stripe.redirectToCheckout({
-                sessionId: sessionId,
-            });
-        } catch (error) {
-            console.log(error)
+    const handleCartout = () => {
+        if (checkedItems.length !== 0) {
+            setCartout(true);
+        } else {
+            SetEmptyCartError(true);
+            setTimeout(() => {
+                SetEmptyCartError(false);
+            }, 2500);
         }
-    }
+    };
+
+    const calculateSubtotal = (checkedItems, quantities) => {
+        return checkedItems.reduce((total, cartItem) => {
+            return total + cartItem.product.cost * quantities[cartItem.id];
+        }, 0);
+    };
 
     return (
         userCart &&
@@ -242,7 +242,17 @@ const UserCart = () => {
                             <div>Total</div>
                             <div>${ (parseFloat(subtotal) + 3.50).toFixed(2) }</div>
                         </div>
-                        <div className='button-full checkout-button' onClick={ handleCheckOut }>Proceed to Checkout</div>
+                        { cartout && 
+                            <div>
+                                <UserCartoutForm userId={ userId } checkedItems={ checkedItems } onCancel={ handleCancel } />
+                            </div>
+                        }
+                        { !cartout && 
+                            <div className='button-full checkout-button' onClick={ handleCartout }>Proceed to Cart Out</div>
+                        }
+                        { emptyCartError && 
+                            <div className="form-message form-error-box checkout-error"><i className="bi bi-exclamation-circle form-icon"></i>Select items to checkout!</div>
+                        }
                     </div>
                 </div>
             </div>
