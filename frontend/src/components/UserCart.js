@@ -162,6 +162,8 @@ const UserCart = () => {
         }, 0);
     };
 
+    console.log(checkedItems)
+
     return (
         userCart &&
         <div className='cart-wrapper'>
