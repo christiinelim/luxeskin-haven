@@ -1,6 +1,6 @@
 # LuxeSkin Haven
 
-## Rationale of Project
+## Project Overview
 LuxeSkin Haven is an e-commerce platform dedicated to providing luxurious skincare products to customers seeking high-quality and effective skincare solutions. The platform aims to create a seamless and enjoyable shopping experience for skincare enthusiasts, connecting them with premium skincare brands and products.
 
 - GitHub Repository for Frontend (ReactJS): <a href="https://github.com/christiinelim/luxeskin-haven">Link</a>
@@ -15,7 +15,6 @@ Our target audience includes skincare enthusiasts who value premium-quality skin
 
 ## Structure of Database (SQL Schema)
 Here is an overview of the SQL schema:
-- To be updated
 ![SQL Schema](./frontend/src/assets/images/readme/sql-schema.png)
 
 ## Frontend Overview
@@ -33,6 +32,12 @@ The user frontend is developed using React, enabling users to browse products, a
 
 **View Product Page**
 ![View Product Page](./frontend/src/assets/images/readme/view-product-page.png)
+
+**Cart Page**
+![Cart Page](./frontend/src/assets/images/readme/cart-page.png)
+
+**Stripe Payment Page**
+![Stripe Payment Page](./frontend/src/assets/images/readme/stripe-payment-page.png)
 
 ## Mock-up of Seller Site
 **Seller Sign Up Page**
@@ -78,6 +83,5 @@ LuxeSkin Haven adopts a clean and elegant design with a color palette of soft pa
 - [Backend Admin Dashboard](link-to-backend-admin)
 
 ## Technologies Used
-- Backend: Express.js, Bookshelf ORM, db-migrate, Stripe for payment processing
-- Frontend (Seller): Handlebars (hbs), Caolan form
-- Frontend (User): React
+- Backend: Express.js, Bookshelf ORM, db-migrate, Stripe, Handlebars (hbs), Caolan form
+- Frontend: React, Cloudinary
