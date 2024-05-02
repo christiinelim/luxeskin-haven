@@ -26,6 +26,7 @@ import { CartServicesData } from './context/CartContext';
 import { CartoutServicesData } from './context/CartoutContext';
 import UserOrderPage from './views/UserOrderPage';
 import { OrderServicesData } from './context/OrderContext';
+import ShopProductsPage from './views/ShopProductsPage';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
                         <Route path="/profile/details" element={<UserProfilePage />}/>
                         <Route path="/profile/orders" element={<UserOrderPage />}/>
                         <Route path="/cart" element={<UserCartPage />}/>
+                        <Route path="/shop" element={<ShopProductsPage />}/>
                       </Routes>
                     </OrderServicesData>
                   </CartoutServicesData>

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 
 const DeleteWarning = ({ item, itemId, setIsDeleting, handleDeleteClick, message }) => {
     return (
-        <div className={`${styles.overlay} ${styles['delete-up']}`}>
+        <div className={`overlay ${styles['delete-up']}`}>
             <div className={styles['delete-content']}>
                 <div className={styles['delete-header']}>Delete Account</div>
                 <div>Are you sure you want to delete <span className={styles['delete-item']}>{item}</span>?</div>

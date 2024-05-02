@@ -80,6 +80,14 @@ export const SellerServicesData = ({ children }) => {
         }
     }
 
+    const getSellers = async () => {
+        try {
+            return await SellerServices.getSellers();
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     const sellerContextValue = {
         createSeller,
         login,
@@ -89,7 +97,8 @@ export const SellerServicesData = ({ children }) => {
         updatePassword,
         updateProfile,
         deleteSeller,
-        logout
+        logout,
+        getSellers
     };
 
     return (

@@ -50,23 +50,23 @@ const FeaturedProducts = () => {
     }
 
     return (
-        <div className={styles['featured-wrapper']}>
-            <div className={`page-header ${styles['featured-header']}`}>Featured Products</div>
-            {products && (
+        <div className='shop-wrapper'>
+            <div className='page-header shop-header'>Featured Products</div>
+            { products && (
                 <div className='row'>
                     { products.map((product, index) => (
                         <div className='col-4 col-sm-3 col-lg-2 product-cards' key={index}>
-                            <div className={styles['home-product-card']} onClick={ () => navigate('/listing/' + product.id) }>
-                                <div className={styles['home-product-image']}><img src={ product.image } alt={product.name} /></div>
+                            <div className='shop-product-card' onClick={ () => navigate('/listing/' + product.id) }>
+                                <div className='shop-product-image'><img src={ product.image } alt={product.name} /></div>
                                 <div>
-                                    <div className={styles['home-product-header-wrapper']}>
+                                    <div className='shop-product-header-wrapper'>
                                         <div>{ product.seller.username }</div>
                                         <div>${ (product.cost).toFixed(2) }</div>
                                     </div>
-                                    <div className={styles['home-product-name']}>{ product.name }</div>
+                                    <div className='shop-product-name'>{ product.name }</div>
                                 </div>
                             </div>
-                            <div id={styles['add-to-bag-button']} className='button-border' onClick={ () => handleAddToBag(product.id) }>
+                            <div className='button-border add-to-bag-button' onClick={ () => handleAddToBag(product.id) }>
                                 { addedProductId === product.id ? (insufficient ? "Insufficient stock" : "Added!") : "Add to Bag" }
                             </div>
                         </div>

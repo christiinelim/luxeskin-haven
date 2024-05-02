@@ -85,6 +85,14 @@ const SellerServices = {
         } catch (error) {
             throw new Error('Failed to logout');
         }
+    },
+    getSellers: async () => {
+        try {
+            const response = await ApiServices.get(`${SELLER_BASE_API}/`);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to retrieve sellers');
+        }
     }
 };
 

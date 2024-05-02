@@ -30,6 +30,12 @@ The user frontend is developed using React, enabling users to browse products, a
 ![Landing Page](./frontend/src/assets/images/readme/home-top-page.png)
 ![Landing Page](./frontend/src/assets/images/readme/home-bottom-page.png)
 
+**Sort Product**
+![Sort Product](./frontend/src/assets/images/readme/sort-product.png)
+
+**Filter Product**
+![Filter Product](./frontend/src/assets/images/readme/filter-product.png)
+
 **View Product Page**
 ![View Product Page](./frontend/src/assets/images/readme/view-product-page.png)
 
@@ -38,6 +44,9 @@ The user frontend is developed using React, enabling users to browse products, a
 
 **Stripe Payment Page**
 ![Stripe Payment Page](./frontend/src/assets/images/readme/stripe-payment-page.png)
+
+**Order Page**
+![Order Page](./frontend/src/assets/images/readme/order-page.png)
 
 ## Mock-up of Seller Site
 **Seller Sign Up Page**
