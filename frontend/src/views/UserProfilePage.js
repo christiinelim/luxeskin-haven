@@ -1,6 +1,6 @@
-import UserProfile from "../components/UserProfile";
-import Navbar from "../components/shared/Navbar";
-import UserSideNav from "../components/shared/UserSideNav";
+import UserProfile from "../components/user-profile/UserProfile";
+import Navbar from "../components/shared/navbar/Navbar";
+import UserSideNav from "../components/shared/user-side-nav/UserSideNav";
 
 const UserProfilePage = () => {
     return(

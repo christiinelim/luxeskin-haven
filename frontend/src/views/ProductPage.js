@@ -1,6 +1,6 @@
-import Product from "../components/Product";
-import Navbar from "../components/shared/Navbar";
-import Footer from "../components/shared/Footer";
+import Product from "../components/product/Product";
+import Navbar from "../components/shared/navbar/Navbar";
+import Footer from "../components/shared/footer/Footer";
 
 const ProductPage = () => {
     return(

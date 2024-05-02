@@ -1,6 +1,6 @@
-import Footer from "../components/shared/Footer";
-import Navbar from "../components/shared/Navbar";
-import VerifyAccount from "../components/shared/VerifyAccount";
+import Footer from "../components/shared/footer/Footer";
+import Navbar from "../components/shared/navbar/Navbar";
+import VerifyAccount from "../components/shared/verify-account/VerifyAccount";
 
 const UserVerifyAccountPage = () => {
 

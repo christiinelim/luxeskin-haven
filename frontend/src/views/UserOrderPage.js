@@ -1,6 +1,6 @@
-import UserOrder from "../components/UserOrder";
-import Navbar from "../components/shared/Navbar";
-import UserSideNav from "../components/shared/UserSideNav";
+import UserOrder from "../components/user-order/UserOrder";
+import Navbar from "../components/shared/navbar/Navbar";
+import UserSideNav from "../components/shared/user-side-nav/UserSideNav";
 
 const UserOrderPage = () => {
     return(

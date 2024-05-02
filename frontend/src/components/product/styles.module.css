@@ -1,0 +1,26 @@
+.quantity-prompt {
+    display: flex;
+    justify-content: space-between;
+}
+
+#product-add-button {
+    width: 85px;
+}
+
+@media (min-width: 576px) {
+    #product-add-button {
+        width: 95px;
+    }
+}
+
+@media (min-width: 768px) {
+    #product-add-button {
+        width: 100px;
+    }
+}
+
+@media (min-width: 992px) {
+    #product-add-button {
+        width: 105px;
+    }
+}

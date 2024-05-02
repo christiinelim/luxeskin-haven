@@ -1,0 +1,16 @@
+.upload-button {
+    border: 1px solid rgba(128, 128, 128, 1);
+    color: rgba(128, 128, 128, 1);
+    background-color: rgba(128, 128, 128, 0.05);
+    border-radius: 5px;
+    padding: 2px 5px;
+    font-size: 8px;
+}
+
+
+@media (min-width: 768px) {
+    .upload-button {
+        padding: 4px 7px;
+        font-size: 10px;
+    }
+}

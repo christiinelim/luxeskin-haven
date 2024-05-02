@@ -1,6 +1,6 @@
-import Navbar from "../components/shared/Navbar";
-import Footer from "../components/shared/Footer";
-import UserSignup from "../components/UserSignup";
+import Navbar from "../components/shared/navbar/Navbar";
+import Footer from "../components/shared/footer/Footer";
+import UserSignup from "../components/user-signup/UserSignup";
 
 const UserSignupPage = () => {
     return(

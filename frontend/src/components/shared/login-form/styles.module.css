@@ -1,0 +1,7 @@
+.forgot-password {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.forgot-password:hover {
+    color: rgba(241,101,101,1);
+}

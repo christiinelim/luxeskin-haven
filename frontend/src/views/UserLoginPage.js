@@ -1,6 +1,6 @@
-import Navbar from "../components/shared/Navbar";
-import Footer from "../components/shared/Footer";
-import UserLogin from "../components/UserLogin";
+import Navbar from "../components/shared/navbar/Navbar";
+import Footer from "../components/shared/footer/Footer";
+import UserLogin from "../components/user-login/UserLogin";
 
 const UserLoginPage = () => {
     return(

@@ -1,6 +1,6 @@
-import Footer from "../../components/shared/Footer";
-import SellerNavbar from "../../components/shared/SellerNavbar";
-import VerifyAccount from "../../components/shared/VerifyAccount";
+import Footer from "../../components/shared/footer/Footer";
+import SellerNavbar from "../../components/shared/seller-navbar/SellerNavbar";
+import VerifyAccount from "../../components/shared/verify-account/VerifyAccount";
 
 const SellerVerifyAccountPage = () => {
 

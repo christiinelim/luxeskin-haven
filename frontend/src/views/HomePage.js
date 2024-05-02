@@ -1,8 +1,8 @@
-import Cta from "../components/home-view/Cta";
-import FeaturedProducts from "../components/home-view/FeaturedProducts";
-import Newsletter from "../components/home-view/Newsletter";
-import Footer from "../components/shared/Footer";
-import Navbar from "../components/shared/Navbar";
+import Cta from "../components/home/Cta";
+import FeaturedProducts from "../components/home/FeaturedProducts";
+import Newsletter from "../components/home/Newsletter";
+import Footer from "../components/shared/footer/Footer";
+import Navbar from "../components/shared/navbar/Navbar";
 
 const HomePage = () => {
     return(

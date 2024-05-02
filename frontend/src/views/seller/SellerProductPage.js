@@ -1,6 +1,6 @@
-import SellerProduct from "../../components/seller-platform/SellerProduct";
-import SellerNavbar from "../../components/shared/SellerNavbar";
-import SellerSideNav from "../../components/shared/SellerSideNav";
+import SellerProduct from "../../components/seller-platform/product/SellerProduct";
+import SellerNavbar from "../../components/shared/seller-navbar/SellerNavbar";
+import SellerSideNav from "../../components/shared/seller-side-nav/SellerSideNav";
 
 const SellerProductPage = () => {
 

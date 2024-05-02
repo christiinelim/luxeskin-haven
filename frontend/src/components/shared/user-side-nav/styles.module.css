@@ -1,0 +1,43 @@
+/* USER ACCOUNT TABS */
+.user-top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    color: rgba(0,0,0,0.5);
+}
+
+.small-active-page {
+    color: rgba(241, 101, 101, 1);
+    background-color: rgba(193,185,176,0.4);
+}
+
+.top-nav-items {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 1px 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-nav-items:hover {
+    cursor: pointer;
+    background-color: rgba(193,185,176,0.7);
+    color: white;
+}
+
+@media (min-width: 576px) {
+    /* USER ACCOUNT TABS */
+    .user-top-nav {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+    
+}

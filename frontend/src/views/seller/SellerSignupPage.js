@@ -1,6 +1,6 @@
-import SellerSignup from "../../components/seller-platform/SellerSignup";
-import Footer from "../../components/shared/Footer";
-import SellerNavbar from "../../components/shared/SellerNavbar";
+import SellerSignup from "../../components/seller-platform/signup/SellerSignup";
+import Footer from "../../components/shared/footer/Footer";
+import SellerNavbar from "../../components/shared/seller-navbar/SellerNavbar";
 
 const SellerSignupPage = () => {
 
