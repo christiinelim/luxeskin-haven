@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, ArrowRight } from 'react-bootstrap-icons';
+import { AuthContext } from "../../context/AuthContext";
+import { UserContext } from "../../context/UserContext";
 
 const Navbar = () => {
     const [ showSearchBar, setShowSearchBar ] = useState(false);
+    const authContext = useContext(AuthContext);
+    const userContext = useContext(UserContext);
+    const isLoggedIn = authContext.isLoggedIn();
     const navigate = useNavigate();
 
     const toggleState = (setState) => {
@@ -18,10 +23,20 @@ const Navbar = () => {
         } else if (page === "collections") {
             navigate('/collections')
         } else if (page === "cart") {
-            navigate('/' + localStorage.getItem("userId") + '/cart')
+            navigate('/cart')
         } else if (page === "account") {
-            navigate('/' + localStorage.getItem("userId") + '/profile/details')
+            navigate('/profile/details')
         }
+    }
+
+    const handleLogoutClick = async () => {
+        await userContext.logout({ refreshToken: localStorage.getItem("refreshToken") });
+        navigate('/login', { 
+            state: { 
+                success_message: "You have logged out"
+            }
+        });
+        authContext.logout("user");
     }
 
     return(
@@ -32,10 +47,17 @@ const Navbar = () => {
                         <div><Link to="/seller/signup" className="link-items">Start Selling</Link></div>
                         <div><Link to="/seller/login" className="link-items">Seller Login</Link></div>
                     </div>
-                    <div className='login-items'>
-                        <div><Link to="/signup" className="link-items">Sign Up</Link></div>
-                        <div><Link to="/login" className="link-items">Login</Link></div>
-                    </div>
+                    { !isLoggedIn &&
+                        <div className='login-items'>
+                            <div><Link to="/signup" className="link-items">Sign Up</Link></div>
+                            <div><Link to="/login" className="link-items">Login</Link></div>
+                        </div>
+                    }
+                    { isLoggedIn &&
+                        <div className='login-items'>
+                            <div className="link-items" onClick={ handleLogoutClick }>Logout</div>
+                        </div>
+                    }
                 </div>
                 <div className='nav-container'>
                     <div className='nav-content'>

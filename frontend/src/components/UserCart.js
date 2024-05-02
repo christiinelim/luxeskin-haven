@@ -4,7 +4,7 @@ import { CartContext } from '../context/CartContext';
 import UserCartoutForm from './UserCartoutForm';
 
 const UserCart = () => {
-    const { userId } = useParams();
+    const userId = localStorage.getItem("userId");
     const navigate = useNavigate();
     const cartContext = useContext(CartContext);
     const [ userCart, setUserCart ] = useState(null);

@@ -63,14 +63,4 @@ ApiServices.interceptors.response.use(
     }
 );
 
-// ApiServices.interceptors.request.use(async (config) => {
-//     if (config.method === 'post' || config.method === 'POST') {
-//         const csrfToken = await getCSRFToken();
-//         config.headers['X-CSRF-Token'] = csrfToken;
-//     }
-//     return config;
-// }, (error) => {
-//     return Promise.reject(error);
-// });
-
 export default ApiServices;

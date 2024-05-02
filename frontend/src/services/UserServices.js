@@ -1,9 +1,11 @@
 import ApiServices from "./ApiServices";
 
+const USER_BASE_API = '/user';
+
 const UserServices = {
     createUser: async (data) => {
         try {
-            const response = await ApiServices.post('/user/', data);
+            const response = await ApiServices.post(`${USER_BASE_API}/`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to create user');
@@ -11,7 +13,7 @@ const UserServices = {
     },
     login: async (data) => {
         try {
-            const response = await ApiServices.post('/user/login', data);
+            const response = await ApiServices.post(`${USER_BASE_API}/login`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to login');
@@ -19,7 +21,7 @@ const UserServices = {
     },
     verify: async (data) => {
         try {
-            const response = await ApiServices.post('/user/verify-account', data);
+            const response = await ApiServices.post(`${USER_BASE_API}/verify-account`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to verify');
@@ -27,7 +29,7 @@ const UserServices = {
     },
     getUser: async (userId) => {
         try {
-            const response = await ApiServices.get('/user/' + userId);
+            const response = await ApiServices.get(`${USER_BASE_API}/` + userId);
             return response.data;
         } catch (error) {
             if (error.response.data.error === "Unauthorized, please login") {
@@ -38,7 +40,7 @@ const UserServices = {
     },
     sendResetPasswordToken: async (email) => {
         try {
-            const response = await ApiServices.post('/user/forgot-password', email);
+            const response = await ApiServices.post(`${USER_BASE_API}/forgot-password`, email);
             return response.data;
         } catch (error) {
             throw new Error('Failed to send');
@@ -46,7 +48,7 @@ const UserServices = {
     },
     updatePassword: async (data) => {
         try {
-            const response = await ApiServices.post('/user/update-password', data);
+            const response = await ApiServices.post(`${USER_BASE_API}/update-password`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to reset password');
@@ -54,7 +56,7 @@ const UserServices = {
     },
     refreshToken: async (data) => {
         try {
-            const response = await ApiServices.post('/user/refresh-token', data);
+            const response = await ApiServices.post(`${USER_BASE_API}/refresh-token`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve new token');
@@ -62,7 +64,7 @@ const UserServices = {
     },
     updateProfile: async (userId, data) => {
         try {
-            const response = await ApiServices.put('/user/' + userId, data);
+            const response = await ApiServices.put(`${USER_BASE_API}/` + userId, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to update profile');
@@ -70,7 +72,7 @@ const UserServices = {
     },
     deleteUser: async (userId) => {
         try {
-            const response = await ApiServices.delete('/user/' + userId);
+            const response = await ApiServices.delete(`${USER_BASE_API}/` + userId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to delete account');
@@ -78,7 +80,7 @@ const UserServices = {
     },
     logout: async (refreshToken) => {
         try {
-            const response = await ApiServices.post('/user/logout', refreshToken);
+            const response = await ApiServices.post(`${USER_BASE_API}/logout`, refreshToken);
             return response.data;
         } catch (error) {
             throw new Error('Failed to logout');

@@ -1,9 +1,11 @@
 import ApiServices from "./ApiServices";
 
+const PRODUCT_BASE_API = '/product';
+
 const ProductServices = {
     createProduct: async (data) => {
         try {
-            const response = await ApiServices.post('/product/', data);
+            const response = await ApiServices.post(`${PRODUCT_BASE_API}/`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to create product');
@@ -11,7 +13,7 @@ const ProductServices = {
     },
     getProductBySeller: async (sellerId) => {
         try {
-            const response = await ApiServices.get('/product/seller/' + sellerId);
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/seller/` + sellerId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve product details');
@@ -19,7 +21,7 @@ const ProductServices = {
     },
     getProductById: async (productId) => {
         try {
-            const response = await ApiServices.get('/product/' + productId);
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/` + productId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve product');
@@ -27,7 +29,7 @@ const ProductServices = {
     },
     getProductByIdPublic: async (productId) => {
         try {
-            const response = await ApiServices.get('/product/public/' + productId);
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/public/` + productId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve product');
@@ -35,7 +37,7 @@ const ProductServices = {
     },
     deleteProduct: async (productId) => {
         try {
-            const response = await ApiServices.delete('/product/' + productId);
+            const response = await ApiServices.delete(`${PRODUCT_BASE_API}/` + productId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to delete product');
@@ -43,7 +45,7 @@ const ProductServices = {
     },
     getAllCategories: async () => {
         try {
-            const response = await ApiServices.get('/product/categories');
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/categories`);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve product categories');
@@ -51,7 +53,7 @@ const ProductServices = {
     },
     getAllSkinTypes: async () => {
         try {
-            const response = await ApiServices.get('/product/skin-types');
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/skin-types`);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve skin types');
@@ -59,7 +61,7 @@ const ProductServices = {
     },
     getAllProducts: async () => {
         try {
-            const response = await ApiServices.get('/product/');
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/`);
             return response.data;
         } catch (error) {
             console.log(error)
@@ -68,7 +70,7 @@ const ProductServices = {
     },
     updateProduct: async (productId, data) => {
         try {
-            const response = await ApiServices.put('/product/' + productId, data);
+            const response = await ApiServices.put(`${PRODUCT_BASE_API}/` + productId, data);
             return response.data;
         } catch (error) {
             console.log(error)

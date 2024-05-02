@@ -24,6 +24,7 @@ import UserProfilePage from './views/UserProfilePage';
 import UserCartPage from './views/UserCartPage';
 import { CartServicesData } from './context/CartContext';
 import { CartoutServicesData } from './context/CartoutContext';
+import UserOrderPage from './views/UserOrderPage';
 
 function App() {
   return (
@@ -50,8 +51,9 @@ function App() {
                       <Route path="/verify-account" element={<UserVerifyAccountPage />}/>
                       <Route path="/login" element={<UserLoginPage />}/>
                       <Route path="/forgot-password" element={<UserForgotPasswordPage />}/>
-                      <Route path="/:userId/profile/details" element={<UserProfilePage />}/>
-                      <Route path="/:userId/cart" element={<UserCartPage />}/>
+                      <Route path="/profile/details" element={<UserProfilePage />}/>
+                      <Route path="/profile/orders" element={<UserOrderPage />}/>
+                      <Route path="/cart" element={<UserCartPage />}/>
                     </Routes>
                   </CartoutServicesData>
                 </CartServicesData>

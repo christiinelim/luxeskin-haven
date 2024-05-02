@@ -50,7 +50,7 @@ const Product = () => {
         }
     }
 
-    const getBackgroundColorForSkinType = (skinType) => {
+    const getBackgroundColorForSkinType = (skinType) => { // enum?
         switch (skinType) {
             case 'Oily':
                 return '#EBBC67';

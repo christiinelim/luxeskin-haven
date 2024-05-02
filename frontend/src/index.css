@@ -204,6 +204,10 @@ footer {
     text-decoration: none;
 }
 
+.link-items:hover {
+    cursor: pointer;
+}
+
 .nav-login {
     display: flex;
     justify-content: space-between;

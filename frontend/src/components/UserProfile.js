@@ -1,10 +1,9 @@
 import React from "react";
-import { useParams } from 'react-router-dom';
 import ProfileForm from "./shared/ProfileForm";
 
 
 const UserProfile = () => {
-    const { userId } = useParams();
+    const userId = localStorage.getItem("userId");
 
     return (
         <ProfileForm formType="user" id={ userId } />

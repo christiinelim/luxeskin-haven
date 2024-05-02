@@ -1,9 +1,11 @@
 import ApiServices from "./ApiServices";
 
+const CART_BASE_API = '/cart';
+
 const CartServices = {
     getCartItemsByUser: async (userId) => {
         try {
-            const response = await ApiServices.get('/cart/user/' + userId);
+            const response = await ApiServices.get(`${CART_BASE_API}/user/` + userId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to retrieve cart items');
@@ -11,7 +13,7 @@ const CartServices = {
     },
     addToCart: async (data) => {
         try {
-            const response = await ApiServices.post('/cart/', data);
+            const response = await ApiServices.post(`${CART_BASE_API}/`, data);
             return response.data;
         } catch (error) {
             throw new Error('Failed to add cart item');
@@ -19,7 +21,7 @@ const CartServices = {
     },
     updateCartItem: async (cartId, data) => {
         try {
-            const response = await ApiServices.put('/cart/' + cartId, data);
+            const response = await ApiServices.put(`${CART_BASE_API}/` + cartId, data);
             return response.data;
         } catch (error) {
             console.log(error)
@@ -28,7 +30,7 @@ const CartServices = {
     },
     deleteCartItem: async (cartId) => {
         try {
-            const response = await ApiServices.delete('/cart/' + cartId);
+            const response = await ApiServices.delete(`${CART_BASE_API}/` + cartId);
             return response.data;
         } catch (error) {
             throw new Error('Failed to delete cart item');
