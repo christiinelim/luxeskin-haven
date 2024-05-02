@@ -7,6 +7,9 @@ import { SellerContext } from '../../context/SellerContext';
 import styles from './styles.module.css';
 
 const ShopProducts = () => {
+    // PENDING REFACTORING
+
+    
     const navigate = useNavigate();
     const productContext = useContext(ProductContext);
     const cartContext = useContext(CartContext);
