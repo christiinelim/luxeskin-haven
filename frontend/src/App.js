@@ -25,6 +25,7 @@ import UserCartPage from './views/UserCartPage';
 import { CartServicesData } from './context/CartContext';
 import { CartoutServicesData } from './context/CartoutContext';
 import UserOrderPage from './views/UserOrderPage';
+import { OrderServicesData } from './context/OrderContext';
 
 function App() {
   return (
@@ -36,25 +37,27 @@ function App() {
               <ProductServicesData>
                 <CartServicesData>
                   <CartoutServicesData>
-                    <Routes>
-                      <Route path="/" element={<HomePage />}/>
-                      <Route path="/seller/signup" element={<SellerSignupPage />}/>
-                      <Route path="/seller/login" element={<SellerLoginPage />}/>
-                      <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
-                      <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
-                      <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
-                      <Route path="/listings" element={<SellerListingsPage />}/>
-                      <Route path="/listings/:productId" element={<SellerProductPage />}/>
-                      <Route path="/list" element={<SellerListProductPage />}/>
-                      <Route path="/listing/:productId" element={<ProductPage />}/>
-                      <Route path="/signup" element={<UserSignupPage />}/>
-                      <Route path="/verify-account" element={<UserVerifyAccountPage />}/>
-                      <Route path="/login" element={<UserLoginPage />}/>
-                      <Route path="/forgot-password" element={<UserForgotPasswordPage />}/>
-                      <Route path="/profile/details" element={<UserProfilePage />}/>
-                      <Route path="/profile/orders" element={<UserOrderPage />}/>
-                      <Route path="/cart" element={<UserCartPage />}/>
-                    </Routes>
+                    <OrderServicesData>
+                      <Routes>
+                        <Route path="/" element={<HomePage />}/>
+                        <Route path="/seller/signup" element={<SellerSignupPage />}/>
+                        <Route path="/seller/login" element={<SellerLoginPage />}/>
+                        <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
+                        <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
+                        <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
+                        <Route path="/listings" element={<SellerListingsPage />}/>
+                        <Route path="/listings/:productId" element={<SellerProductPage />}/>
+                        <Route path="/list" element={<SellerListProductPage />}/>
+                        <Route path="/listing/:productId" element={<ProductPage />}/>
+                        <Route path="/signup" element={<UserSignupPage />}/>
+                        <Route path="/verify-account" element={<UserVerifyAccountPage />}/>
+                        <Route path="/login" element={<UserLoginPage />}/>
+                        <Route path="/forgot-password" element={<UserForgotPasswordPage />}/>
+                        <Route path="/profile/details" element={<UserProfilePage />}/>
+                        <Route path="/profile/orders" element={<UserOrderPage />}/>
+                        <Route path="/cart" element={<UserCartPage />}/>
+                      </Routes>
+                    </OrderServicesData>
                   </CartoutServicesData>
                 </CartServicesData>
               </ProductServicesData>
