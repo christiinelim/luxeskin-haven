@@ -12,7 +12,7 @@ const ShopProducts = () => {
     const productContext = useContext(ProductContext);
     const cartContext = useContext(CartContext);
     const sellerContext = useContext(SellerContext);
-    
+
     const [ products, setProducts ] = useState(null);
     const [ addedProductId, setAddedProductId ] = useState(null);
     const [ insufficient, setInsufficient ] = useState(false);
@@ -102,11 +102,11 @@ const ShopProducts = () => {
                     </div>
                 </div>
 
-                { showSort && <SortProducts /> }
+                { showSort && <SortProducts products={ products } setProducts={ setProducts } /> }
 
                 { showFilter &&
-                    <FilterProducts showFilter = { showFilter} setShowFilter = { setShowFilter }
-                                    categories = { categories } skinTypes = { skinTypes } sellers = { sellers }
+                    <FilterProducts showFilter={ showFilter} setShowFilter={ setShowFilter }
+                                    categories={ categories } skinTypes={ skinTypes } sellers={ sellers }
                     />
                 }
 
