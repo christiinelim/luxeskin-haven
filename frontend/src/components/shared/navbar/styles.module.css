@@ -45,7 +45,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 0;
     overflow: hidden;
@@ -53,25 +52,26 @@
 }
   
 .searchbar-open {
-    height: 80px;
+    height: 120px;
 }
   
 .search-prompt {
     font-weight: bold;
     font-size: 11px;
     margin-bottom: 5px;
+    margin-top: 10px
 }
   
 .searchbox {
     display: flex;
     border-bottom: 1px solid black;
-    width: 150px;
+    width: 200px;
 }
   
 .searchbox input {
     border: none;
     height: 20px;
-    width: 130px;
+    width: 180px;
     text-align: center;
 }
   
@@ -127,6 +127,26 @@
     font-size: 15px;
 }
 
+/* autocomplete */
+.autocomplete-dropdown {
+    max-height: 50px;
+    overflow: scroll;
+    margin: 5px 0px;
+    width: 180px;
+}
+
+.autocomplete-items {
+    text-align: center;
+    padding: 2px 0px;
+    transition: background-color 0.3s ease;
+}
+
+.autocomplete-items:hover {
+    cursor: pointer;
+    background-color: rgba(128, 128, 128, 0.1);
+    font-weight: bold;
+}
+
 @media (min-width: 576px) {
     /* cart and search */
     .cart-icon {
@@ -154,21 +174,33 @@
     }
 
     .searchbar-open {
-        height: 100px;
+        height: 150px;
     }
       
     .search-prompt {
         font-size: 12px;
         margin-bottom: 7px;
+        margin-top: 15px
     }
       
     .searchbox {
-        width: 180px;
+        width: 220px;
     }
       
     .searchbox input {
         height: 23px;
-        width: 160px;
+        width: 200px;
+    }
+
+    /* autocomplete */
+    .autocomplete-dropdown {
+        max-height: 75px;
+        width: 200px;
+        margin-top: 10px
+    }
+
+    .autocomplete-items {
+        padding: 3px 0px
     }
 }
 
@@ -197,21 +229,32 @@
     }
 
     .searchbar-open {
-        height: 110px;
+        height: 180px;
     }
       
     .search-prompt {
         font-size: 13px;
         margin-bottom: 9px;
+        margin-top: 17px;
     }
       
     .searchbox {
-        width: 190px;
+        width: 230px;
     }
       
     .searchbox input {
         height: 24px;
-        width: 170px;
+        width: 210px;
+    }
+
+    /* autocomplete */
+    .autocomplete-dropdown {
+        max-height: 90px;
+        width: 210px;
+    }
+
+    .autocomplete-items {
+        padding: 4px 0px
     }
 }
 
@@ -240,20 +283,32 @@
     }
 
     .searchbar-open {
-        height: 120px;
+        height: 200px;
     }
       
     .search-prompt {
         font-size: 14px;
         margin-bottom: 10px;
+        margin-top: 18px;
     }
       
     .searchbox {
-        width: 200px;
+        width: 240px;
     }
       
     .searchbox input {
         height: 25px;
-        width: 180px;
+        width: 220px;
+    }
+
+    /* autocomplete */
+    .autocomplete-dropdown {
+        max-height: 102px;
+        width: 220px;
+        margin-top: 12px;
+    }
+
+    .autocomplete-items {
+        padding: 4px 0px
     }
 }

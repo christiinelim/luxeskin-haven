@@ -53,13 +53,14 @@ export const ProductServicesData = ({ children }) => {
         try {
             return await ProductServices.getProductById(productId);
         } catch (error) {
+            console.log(error)
             throw new Error(error);
         }
     };
 
     const getProductByIdPublic = async (productId) => {
         try {
-            return await ProductServices.getProductById(productId);
+            return await ProductServices.getProductByIdPublic(productId);
         } catch (error) {
             throw new Error(error);
         }

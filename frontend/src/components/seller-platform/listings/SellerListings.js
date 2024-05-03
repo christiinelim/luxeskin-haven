@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 
 const SellerListings = () => {
     const [ activeTab, setActiveTab ] = useState('active');
-    const [ listings, setListings ] = useState(null);
+    const [ listings, setListings ] = useState([]);
     const [ isDeleting, setIsDeleting ] = useState(false);
     const productContext = useContext(ProductContext);
     const navigate = useNavigate();
@@ -44,30 +44,30 @@ const SellerListings = () => {
     };
 
     return (
-        listings && listings.length !== 0 ? (
-            <div className={styles['listings-wrapper']}>
-                <div className='page-header'>Listings</div>
-                <div className={styles['listings-actions']}>
-                    <div className={styles['listings-tabs']}>
-                        <div
-                            className={`${styles['listing-tab']} ${activeTab === 'active' ? styles['active-listing-tab'] : ''}`}
-                            onClick={() => handleTabClick('active')}
-                        >
-                            Active
-                        </div>
-                        <div
-                            className={`${styles['listing-tab']} ${activeTab === 'inactive' ? styles['active-listing-tab'] : ''}`}
-                            onClick={() => handleTabClick('inactive')}
-                        >
-                            Inactive
-                        </div>
+        <div className={styles['listings-wrapper']}>
+            <div className='page-header'>Listings</div>
+            <div className={styles['listings-actions']}>
+                <div className={styles['listings-tabs']}>
+                    <div
+                        className={`${styles['listing-tab']} ${activeTab === 'active' ? styles['active-listing-tab'] : ''}`}
+                        onClick={() => handleTabClick('active')}
+                    >
+                        Active
                     </div>
-                    <div onClick={() => navigate('/list', { 
-                        state: { 
-                            mode: "Add", 
-                        }
-                    })}><i className={`bi bi-plus-circle-fill ${styles['add-listing-icon']}`}></i></div>
+                    <div
+                        className={`${styles['listing-tab']} ${activeTab === 'inactive' ? styles['active-listing-tab'] : ''}`}
+                        onClick={() => handleTabClick('inactive')}
+                    >
+                        Inactive
+                    </div>
                 </div>
+                <div onClick={() => navigate('/list', { 
+                    state: { 
+                        mode: "Add", 
+                    }
+                })}><i className={`bi bi-plus-circle-fill ${styles['add-listing-icon']}`}></i></div>
+            </div>
+            { listings && listings.length !== 0 ? (
                 <div className='row'>
                     {listings.map((listing, index) => (
                         <div className='col-4 col-sm-6 col-md-4 col-lg-3 product-cards' key={index}>
@@ -93,19 +93,20 @@ const SellerListings = () => {
                         </div>
                     ))}
                 </div>
-                { isDeleting && 
-                    <DeleteWarning  item = {isDeleting.name}
-                                    itemId = {isDeleting.id}
-                                    setIsDeleting = { setIsDeleting } 
-                                    handleDeleteClick = { handleDeleteClick } 
-                                    message = "By deleting this product, you will lose all the information about this listing"
-                    />
-                }
-            </div>
-        ) :
-        <div className={styles['listings-wrapper']}>
-            <div className='page-header'>Listings</div>
-            <div className={styles['no-listing']}>You have no active listings</div>
+                ) :
+                <div className={styles['listings-wrapper']}>
+                    <div className='page-header'>Listings</div>
+                    <div className={styles['no-listing']}>You have no active listings</div>
+                </div>
+            }
+            { isDeleting && 
+                <DeleteWarning  item = {isDeleting.name}
+                                itemId = {isDeleting.id}
+                                setIsDeleting = { setIsDeleting } 
+                                handleDeleteClick = { handleDeleteClick } 
+                                message = "By deleting this product, you will lose all the information about this listing"
+                />
+            }
         </div>
     );
 }

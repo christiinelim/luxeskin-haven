@@ -13,6 +13,10 @@ ApiServices.interceptors.request.use(async (config) => {
         config.url === '/seller/forgot-password' ||
         config.url === '/seller/update-password' ||
         config.url === '/product/' ||
+        config.url === '/product/categories' ||
+        config.url === '/product/skin-types' ||
+        config.url.includes('/product/public') ||
+        config.url === '/product/search' ||
         config.url === '/user/' ||
         config.url === '/user/verify-account' ||
         config.url === '/user/login' ||
