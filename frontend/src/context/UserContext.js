@@ -80,6 +80,14 @@ export const UserServicesData = ({ children }) => {
         }
     }
 
+    const sendContactForm = async (data) => {
+        try {
+            return await UserServices.sendContactForm(data);
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     const userContextValue = {
         createUser,
         login,
@@ -89,7 +97,8 @@ export const UserServicesData = ({ children }) => {
         updatePassword,
         updateProfile,
         deleteUser,
-        logout
+        logout,
+        sendContactForm
     };
 
     return (

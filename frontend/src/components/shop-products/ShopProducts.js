@@ -31,11 +31,21 @@ const ShopProducts = () => {
         const fetchData = async () => {
             try {
                 if (isSearchPage) {
-                    const searchTerm = searchParams.get('product').split('-').join(' ');
+                    let searchTerm;
+                    let searchResult;
+
+                    if (searchParams.get('product')) {
+                        searchTerm = searchParams.get('product').split('-').join(' ');
+                        searchResult = await productContext.searchProducts({
+                            name: searchTerm
+                        });
+                    } else {
+                        searchTerm = parseInt(searchParams.get('category'));
+                        searchResult = await productContext.searchProducts({
+                            selectedCategories: [searchTerm]
+                        });
+                    }
                     setSearchedProduct(searchTerm);
-                    const searchResult = await productContext.searchProducts({
-                        name: searchTerm
-                    });
 
                     if (searchResult.data.length === 0) {
                         setEmptySearch(true);

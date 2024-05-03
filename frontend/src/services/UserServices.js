@@ -85,6 +85,13 @@ const UserServices = {
         } catch (error) {
             throw new Error('Failed to logout');
         }
+    },
+    sendContactForm: async (data) => {
+        try {
+            await ApiServices.post(`${USER_BASE_API}/contact`, data);
+        } catch (error) {
+            throw new Error('Failed to send');
+        }
     }
 };
 

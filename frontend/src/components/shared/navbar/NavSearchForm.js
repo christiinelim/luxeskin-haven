@@ -27,7 +27,7 @@ const NavSearchForm = ({ showSearchBar }) => {
         searchProducts();
     }, [search]); 
 
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
         try {
             const param = data.product.split(' ').join('-');
             navigate('/shop/search-product/?product=' + param);

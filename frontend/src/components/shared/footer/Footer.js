@@ -24,9 +24,8 @@ const Footer = () => {
                     </div>
                     <div className={styles['footer-details']}>
                         <div className={`col-12 ${styles['footer-details-list']}`} onClick={ () => navigate('/') }>Home</div>
-                        <div className={`col-12 ${styles['footer-details-list']}`} onClick={ () => navigate('/') }>Collections</div>
-                        <div className={`col-12 ${styles['footer-details-list']}`} onClick={ () => navigate('/') }>Tips</div>
-                        <div className={`col-12 ${styles['footer-details-list']}`} onClick={ () => navigate('/') }>About Us</div>
+                        <div className={`col-12 ${styles['footer-details-list']}`} onClick={ () => navigate('/collections') }>Collections</div>
+                        <div className={`col-12 ${styles['footer-details-list']}`} onClick={ () => navigate('/contact-us') }>Contact Us</div>
                     </div>
                 </div>
         

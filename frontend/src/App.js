@@ -28,6 +28,8 @@ import UserOrderPage from './views/UserOrderPage';
 import { OrderServicesData } from './context/OrderContext';
 import ShopProductsPage from './views/ShopProductsPage';
 import SellerOrdersPage from './views/seller/SellerOrdersPage';
+import CollectionsPage from './views/CollectionsPage';
+import ContactPage from './views/ContactPage';
 
 function App() {
   return (
@@ -61,6 +63,8 @@ function App() {
                         <Route path="/cart" element={<UserCartPage />}/>
                         <Route path="/shop" element={<ShopProductsPage />}/>
                         <Route path="/shop/search-product" element={<ShopProductsPage />}/>
+                        <Route path="/collections" element={<CollectionsPage />}/>
+                        <Route path="/contact-us" element={<ContactPage />}/>
                       </Routes>
                     </OrderServicesData>
                   </CartoutServicesData>

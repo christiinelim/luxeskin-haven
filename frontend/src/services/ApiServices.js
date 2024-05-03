@@ -20,7 +20,8 @@ ApiServices.interceptors.request.use(async (config) => {
         config.url === '/user/verify-account' ||
         config.url === '/user/login' ||
         config.url === '/user/forgot-password' ||
-        config.url === '/user/update-password'
+        config.url === '/user/update-password' ||
+        config.url === '/user/contact'
     ) {
         return config;
     }
