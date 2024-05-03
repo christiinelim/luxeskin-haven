@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { ProductContext } from '../../context/ProductContext';
 import styles from './styles.module.css';
 
-const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFilter, setProducts, setEmptySearch, searchedProduct }) => {
+const FilterProducts = ({ sellers, showFilter, setShowFilter, setProducts, setEmptySearch, searchedProduct }) => {
     const productContext = useContext(ProductContext);
 
     const [formData, setFormData] = useState({
@@ -124,7 +124,7 @@ const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFil
                     <div>
                         <div className={styles['filter-header']}>Category</div>
                         <div className={styles['multiple-option']}>
-                            { categories && categories.map(category => (
+                            { productContext.categories.map(category => (
                                 <label
                                     key={ category.id }
                                     className={`${styles['select-options']} ${formData.selectedCategories.includes(category.id) ? styles['selected'] : ''}`}
@@ -138,7 +138,7 @@ const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFil
                     <div>
                         <div className={styles['filter-header']}>Skin Type</div>
                         <div className={styles['multiple-option']}>
-                            { skinTypes && skinTypes.map(type => (
+                            { productContext.skinTypes.map(type => (
                                 <label
                                     key={ type.id }
                                     className={`${styles['select-options']} ${formData.selectedSkinTypes.includes(type.id) ? styles['selected'] : ''}`}

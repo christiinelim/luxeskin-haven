@@ -2,31 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
 import { CartContext } from '../../context/CartContext';
-import styles from './styles.module.css';
 
 const FeaturedProducts = () => {
     const navigate = useNavigate();
     const productContext = useContext(ProductContext);
     const cartContext = useContext(CartContext);
-    const [ products, setProducts ] = useState(null);
     const [ addedProductId, setAddedProductId ] = useState(null);
     const [ insufficient, setInsufficient ] = useState(false);
-
-    useEffect(() => {
-        
-        const fetchData = async() => {
-            try {
-                const response = await productContext.getAllProducts();
-                const data = response.data;
-                setProducts(data);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        fetchData();
-        
-    }, []);
 
     const handleAddToBag = async (productId) => {
         try {
@@ -52,9 +34,9 @@ const FeaturedProducts = () => {
     return (
         <div className='shop-wrapper'>
             <div className='page-header shop-header'>Featured Products</div>
-            { products && (
+            { productContext.products && (
                 <div className='row'>
-                    { products.map((product, index) => (
+                    { productContext.products.map((product, index) => (
                         <div className='col-4 col-sm-3 col-lg-2 product-cards' key={index}>
                             <div className='shop-product-card' onClick={ () => navigate('/listing/' + product.id) }>
                                 <div className='shop-product-image'><img src={ product.image } alt={product.name} /></div>

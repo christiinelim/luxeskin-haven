@@ -11,8 +11,6 @@ const SellerListProduct = () => {
     const location = useLocation();
     const { mode } = location.state;
     const [ imageUrl, setImageUrl ] = useState("");
-    const [ categories, setCategories ] = useState(null);
-    const [ skinTypes, setSkinTypes ] = useState([]);
     const [ productToUpdate, setProductToUpdate ] = useState({});
     const [ selectedSkinTypes, setSelectedSkinTypes ] = useState([]);
     const { register, handleSubmit, setError, setValue, formState: { errors, isSubmitting } } = useForm();
@@ -21,14 +19,6 @@ const SellerListProduct = () => {
         
         const fetchData = async() => {
             try {
-                const allCategories = await productContext.getAllCategories();
-                const categoriesData = allCategories.data;
-                setCategories(categoriesData);
-
-                const allSkinTypes = await productContext.getAllSkinTypes();
-                const skinTypesData = allSkinTypes.data;
-                setSkinTypes(skinTypesData);
-
                 if (mode === "Update") {
                     const { productId } = location.state;
                     const selectedProduct = await productContext.getProductById(productId);
@@ -159,19 +149,17 @@ const SellerListProduct = () => {
 
                 <div>
                     <label>Category</label>
-                    { categories && (
-                        <select id="category_id" {...register('category_id')} className={styles['category-select']}>
-                            {categories.map((c) => (
-                                <option key={c.id} value={c.id}>{c.category}</option>
-                            ))}
-                        </select>
-                    ) }
+                    <select id="category_id" {...register('category_id')} className={styles['category-select']}>
+                        {productContext.categories.map((c) => (
+                            <option key={c.id} value={c.id}>{c.category}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <div>
                     <label>Suitable Skin Types</label>
                     <div className={styles['skin-type-options']}>
-                        {skinTypes && skinTypes.map(type => (
+                        {productContext.skinTypes.map(type => (
                             <div
                                 key={type.id}
                                 className={`${styles['skin-type-option']} ${selectedSkinTypes.includes(type.id) ? styles['selected-skin-type'] : ''}`}

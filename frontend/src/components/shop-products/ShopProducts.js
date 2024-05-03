@@ -23,9 +23,7 @@ const ShopProducts = () => {
     const [ showSort, setShowSort ] = useState(false);
     const [ showFilter, setShowFilter ] = useState(false);
     const [ emptySearch, setEmptySearch ] = useState(false);
-    const [ categories, setCategories ] = useState(null);
     const [ searchedProduct, setSearchedProduct ] = useState("");
-    const [ skinTypes, setSkinTypes ] = useState([]);
     const [ sellers, setSellers ] = useState({});
 
     useEffect(() => {
@@ -44,18 +42,10 @@ const ShopProducts = () => {
                     }
                     setProducts(searchResult.data);
                 } else {
-                    const allProducts = await productContext.getAllProducts();
-                    const productsData = allProducts.data;
-                    setProducts(productsData);
+                    if (!productContext.loading) {
+                        setProducts(productContext.products);
+                    }
                 }
-
-                const allCategories = await productContext.getAllCategories();
-                const categoriesData = allCategories.data;
-                setCategories(categoriesData);
-
-                const allSkinTypes = await productContext.getAllSkinTypes();
-                const skinTypesData = allSkinTypes.data;
-                setSkinTypes(skinTypesData);
 
                 const allSellers = await sellerContext.getSellers();
                 const sellersMap = allSellers.data.reduce((acc, seller) => {
@@ -70,7 +60,7 @@ const ShopProducts = () => {
 
         fetchData();
         
-    }, [isSearchPage, searchParams]);
+    }, [isSearchPage, searchParams, productContext.loading]);
 
     const handleAddToBag = async (productId) => {
         try {
@@ -124,8 +114,7 @@ const ShopProducts = () => {
                 { showSort && <SortProducts products={ products } setProducts={ setProducts } /> }
 
                 { showFilter &&
-                    <FilterProducts showFilter={ showFilter} setShowFilter={ setShowFilter }
-                                    categories={ categories } skinTypes={ skinTypes } sellers={ sellers }
+                    <FilterProducts showFilter={ showFilter} setShowFilter={ setShowFilter } sellers={ sellers }
                                     setProducts={ setProducts } setEmptySearch = { setEmptySearch }
                                     searchedProduct={ searchedProduct }
                     />

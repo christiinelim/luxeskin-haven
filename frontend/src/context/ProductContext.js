@@ -1,9 +1,37 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import ProductServices from '../services/ProductServices';
 
 export const ProductContext = createContext();
 
 export const ProductServicesData = ({ children }) => {
+    const [ products, setProducts ] = useState([]);
+    const [ categories, setCategories ] = useState([]);
+    const [ skinTypes, setSkinTypes ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const allProducts = await ProductServices.getAllProducts();
+            const productsData = allProducts.data;
+            setProducts(productsData);
+
+            const allCategories = await ProductServices.getAllCategories();
+            const categoriesData = allCategories.data;
+            setCategories(categoriesData);
+
+            const allSkinTypes = await ProductServices.getAllSkinTypes();
+            const skinTypesData = allSkinTypes.data;
+            setSkinTypes(skinTypesData);
+
+            setLoading(false);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchData();
+    }, []);
 
     const createProduct = async (data) => {
         try {
@@ -45,30 +73,6 @@ export const ProductServicesData = ({ children }) => {
         }
     };
 
-    const getAllCategories = async () => {
-        try {
-            return await ProductServices.getAllCategories();
-        } catch (error) {
-            throw new Error(error);
-        }
-    };
-
-    const getAllSkinTypes = async () => {
-        try {
-            return await ProductServices.getAllSkinTypes();
-        } catch (error) {
-            throw new Error(error);
-        }
-    };
-
-    const getAllProducts = async () => {
-        try {
-            return await ProductServices.getAllProducts();
-        } catch (error) {
-            throw new Error(error);
-        }
-    };
-
     const updateProduct = async (productId, data) => {
         try {
             return await ProductServices.updateProduct(productId, data);
@@ -91,11 +95,12 @@ export const ProductServicesData = ({ children }) => {
         getProductById,
         getProductByIdPublic,
         deleteProduct,
-        getAllCategories,
-        getAllSkinTypes,
-        getAllProducts,
         updateProduct,
-        searchProducts
+        searchProducts,
+        products,
+        loading,
+        categories,
+        skinTypes
     };
 
     return (
