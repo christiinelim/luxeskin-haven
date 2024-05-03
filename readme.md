@@ -51,6 +51,12 @@ The user frontend is developed using React, enabling users to browse products, a
 **Order Page**
 ![Order Page](./frontend/src/assets/images/readme/order-page.png)
 
+**Collections Page**
+![Collections Page](./frontend/src/assets/images/readme/collections-page.png)
+
+**Contact Us Page**
+![Contact Us Page](./frontend/src/assets/images/readme/contact-page.png)
+
 ## Mock-up of Seller Site
 **Seller Sign Up Page**
 ![Seller Sign Up Page](./frontend/src/assets/images/readme/seller-signup-page.png)
