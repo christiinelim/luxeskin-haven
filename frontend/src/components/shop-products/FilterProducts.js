@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { ProductContext } from '../../context/ProductContext';
 import styles from './styles.module.css';
 
-const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFilter }) => {
+const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFilter, setProducts, setEmptySearch }) => {
+    const productContext = useContext(ProductContext);
+
     const [formData, setFormData] = useState({
         selectedSellers: [],
         selectedSkinTypes: [],
@@ -43,10 +46,16 @@ const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFil
 
     const onSubmit = async () => {
         try {
-            console.log(formData)
+            setEmptySearch(false);
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            
+            const response = await productContext.searchProducts(formData);
+            if (response.data.length === 0) {
+                setEmptySearch(true);
+            }
+            setProducts(response.data);
+            handleFilterButton();
         } catch (error) {
+            console.log(error)
             setError("root", {
                 message: "Error searching"
             });
@@ -65,11 +74,11 @@ const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFil
                         <div className={styles['brand-option']}>
                             { Object.keys(sellers).map(sellerId => (
                                 <div 
-                                    key={ sellerId } 
-                                    className={`${styles['brand-options']} ${formData.selectedSellers.includes(sellerId) ? styles['selected'] : ''}`}
-                                    onClick={ () => handleCheckboxClick(sellerId, 'selectedSellers') }
+                                    key={sellerId} 
+                                    className={`${styles['brand-options']} ${formData.selectedSellers.includes(parseInt(sellerId)) ? styles['selected'] : ''}`}
+                                    onClick={() => handleCheckboxClick(parseInt(sellerId), 'selectedSellers')}
                                 >
-                                    <label>{ sellers[sellerId] }</label>
+                                    <label>{sellers[sellerId]}</label>
                                 </div>
                             ))}
                         </div>
@@ -96,7 +105,7 @@ const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFil
                         <div className={styles['price-inputs']}>
                             <input
                                 type="number"
-                                placeholder="Min Price"
+                                placeholder="Min"
                                 value={ formData.minPrice }
                                 onChange={ (e) => handlePriceChange(e, 'minPrice') }
                                 className={styles['price-input']}
@@ -104,7 +113,7 @@ const FilterProducts = ({ categories, skinTypes, sellers, showFilter, setShowFil
                             <span>-</span>
                             <input
                                 type="number"
-                                placeholder="Max Price"
+                                placeholder="Max"
                                 value={ formData.maxPrice }
                                 onChange={ (e) => handlePriceChange(e, 'maxPrice') }
                                 className={styles['price-input']}

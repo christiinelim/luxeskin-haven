@@ -77,6 +77,14 @@ export const ProductServicesData = ({ children }) => {
         }
     };
 
+    const searchProducts = async (data) => {
+        try {
+            return await ProductServices.searchProducts(data);
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
     const ProductContextValue = {
         createProduct,
         getProductBySeller,
@@ -86,7 +94,8 @@ export const ProductServicesData = ({ children }) => {
         getAllCategories,
         getAllSkinTypes,
         getAllProducts,
-        updateProduct
+        updateProduct,
+        searchProducts
     };
 
     return (

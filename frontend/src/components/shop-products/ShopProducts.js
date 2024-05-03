@@ -18,6 +18,7 @@ const ShopProducts = () => {
     const [ insufficient, setInsufficient ] = useState(false);
     const [ showSort, setShowSort ] = useState(false);
     const [ showFilter, setShowFilter ] = useState(false);
+    const [ emptySearch, setEmptySearch ] = useState(false);
     const [ categories, setCategories ] = useState(null);
     const [ skinTypes, setSkinTypes ] = useState([]);
     const [ sellers, setSellers ] = useState({});
@@ -81,6 +82,7 @@ const ShopProducts = () => {
     const handleFilterButton = () => {
         setShowFilter(!showFilter)
     }
+    console.log(emptySearch)
 
     return (
         <>
@@ -107,8 +109,11 @@ const ShopProducts = () => {
                 { showFilter &&
                     <FilterProducts showFilter={ showFilter} setShowFilter={ setShowFilter }
                                     categories={ categories } skinTypes={ skinTypes } sellers={ sellers }
+                                    setProducts={ setProducts } setEmptySearch = { setEmptySearch }
                     />
                 }
+
+                { emptySearch && <div className={styles['empty-search']}>No products found!</div> }
 
                 { products && (
                     <div className={styles['products-wrapper']}>

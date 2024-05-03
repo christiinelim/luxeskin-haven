@@ -76,6 +76,15 @@ const ProductServices = {
             console.log(error)
             throw new Error('Failed to update product');
         }
+    },
+    searchProducts: async (data) => {
+        try {
+            const response = await ApiServices.post(`${PRODUCT_BASE_API}/search`, data);
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            throw new Error('Failed to retrieve search');
+        }
     }
 };
 

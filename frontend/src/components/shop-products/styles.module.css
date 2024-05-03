@@ -140,6 +140,13 @@
     margin-bottom: 5px;
 }
 
+.empty-search {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
 @media (min-width: 576px) {
     .sort-filter-wrapper {
         gap: 12px;

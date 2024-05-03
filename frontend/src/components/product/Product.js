@@ -122,7 +122,7 @@ const Product = () => {
                         <div className='product-header col-4 col-md-3'>Quantity</div>
                         <div className={`col-8 col-lg-9 ${styles['quantity-prompt']}`}>
                         <div className='quantity-adjust'>
-                            <div onClick={ handleDecrement } className='quantity-action'><i class="bi bi-dash-circle"></i></div>
+                            <div onClick={ handleDecrement } className='quantity-action'><i className="bi bi-dash-circle"></i></div>
                                 <div>
                                     <input
                                         type='text'
@@ -131,7 +131,7 @@ const Product = () => {
                                         onChange={ (e) => setQuantity(parseInt(e.target.value) || 1) }
                                     />
                                 </div>
-                                <div onClick={ handleIncrement } className='quantity-action'><i class="bi bi-plus-circle"></i></div>
+                                <div onClick={ handleIncrement } className='quantity-action'><i className="bi bi-plus-circle"></i></div>
                             </div>
                             <div id={styles['product-add-button']} className='button-full' onClick={ () => handleAddToBag(product.id) }>
                                 { addedProductId === product.id ? insufficient ? "Insufficient stock" : "Added!" : "Add to Bag" }
