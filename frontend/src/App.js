@@ -27,6 +27,7 @@ import { CartoutServicesData } from './context/CartoutContext';
 import UserOrderPage from './views/UserOrderPage';
 import { OrderServicesData } from './context/OrderContext';
 import ShopProductsPage from './views/ShopProductsPage';
+import SellerOrdersPage from './views/seller/SellerOrdersPage';
 
 function App() {
   return (
@@ -46,9 +47,10 @@ function App() {
                         <Route path="/seller/verify-account" element={<SellerVerifyAccountPage />}/>
                         <Route path="/seller/forgot-password" element={<SellerForgotPasswordPage />}/>
                         <Route path="/seller/:sellerId/profile" element={<SellerProfilePage />}/>
-                        <Route path="/listings" element={<SellerListingsPage />}/>
-                        <Route path="/listings/:productId" element={<SellerProductPage />}/>
-                        <Route path="/list" element={<SellerListProductPage />}/>
+                        <Route path="/seller/listings" element={<SellerListingsPage />}/>
+                        <Route path="/seller/listings/:productId" element={<SellerProductPage />}/>
+                        <Route path="/seller/list" element={<SellerListProductPage />}/>
+                        <Route path="/seller/orders" element={<SellerOrdersPage />}/>
                         <Route path="/listing/:productId" element={<ProductPage />}/>
                         <Route path="/signup" element={<UserSignupPage />}/>
                         <Route path="/verify-account" element={<UserVerifyAccountPage />}/>

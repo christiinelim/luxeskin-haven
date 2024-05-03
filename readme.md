@@ -76,6 +76,9 @@ The user frontend is developed using React, enabling users to browse products, a
 **Seller Add Product Page**
 ![Seller Profile Page](./frontend/src/assets/images/readme/seller-add-product-page.png)
 
+**Seller Orders Page**
+![Seller Orders Page](./frontend/src/assets/images/readme/seller-orders-page.png)
+
 **Seller Profile Page**
 ![Seller Profile Page](./frontend/src/assets/images/readme/seller-profile-page.png)
 

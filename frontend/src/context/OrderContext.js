@@ -13,6 +13,14 @@ export const OrderServicesData = ({ children }) => {
         }
     };
 
+    const getOrderBySeller = async (sellerId) => {
+        try {
+            return await OrderServices.getOrderBySeller(sellerId);
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+
     const getOrderById = async (orderId) => {
         try {
             return await OrderServices.getOrderById(orderId);
@@ -39,6 +47,7 @@ export const OrderServicesData = ({ children }) => {
 
     const OrderContextValue = {
         getOrderByUser,
+        getOrderBySeller,
         getOrderById,
         updateOrderProduct,
         getOrderProductPivot

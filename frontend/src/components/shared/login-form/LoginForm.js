@@ -58,7 +58,7 @@ const LoginForm = ({ formType }) => {
             } else {
                 authContext.login(response.data, formType);
                 if (formType === "seller") {
-                    navigate('/listings');
+                    navigate('/seller/listings');
                 } else {
                     navigate('/profile/details');
                 }   

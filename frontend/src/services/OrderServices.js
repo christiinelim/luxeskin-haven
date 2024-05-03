@@ -11,6 +11,14 @@ const OrderServices = {
             throw new Error('Failed to retrieve orders');
         }
     },
+    getOrderBySeller: async (sellerId) => {
+        try {
+            const response = await ApiServices.get(`${ORDER_BASE_API}/seller/` + sellerId);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to retrieve orders');
+        }
+    },
     getOrderById: async (orderId) => {
         try {
             const response = await ApiServices.get(`${ORDER_BASE_API}/` + orderId);

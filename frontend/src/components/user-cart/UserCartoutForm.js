@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { CartoutContext } from '../../context/CartoutContext';
 import { loadStripe } from '@stripe/stripe-js';
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 import styles from './styles.module.css';
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const UserCartoutForm = ({ userId, checkedItems, onCancel }) => {
     const navigate = useNavigate();
@@ -46,8 +47,8 @@ const UserCartoutForm = ({ userId, checkedItems, onCancel }) => {
     const onSubmit = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            await userContext.updateProfile(userId, data); 
-            handleCheckOut();
+            await userContext.updateProfile(userId, {address: data.address}); 
+            handleCheckOut(data);
         } catch (error) {
             console.log(error)
         }
@@ -57,15 +58,16 @@ const UserCartoutForm = ({ userId, checkedItems, onCancel }) => {
         onCancel();
     };
 
-    const handleCheckOut = async () => {
+    const handleCheckOut = async (formData) => {
         try {
             const data = {
                 items: checkedItems,
-                user_id: userId
+                user_id: userId,
+                name: formData.name,
+                address: formData.address
             }
             const response = await cartoutContext.createPayment(data);
             const { sessionId } = response;
-            console.log(sessionId)
 
             const stripe = await stripePromise;
             await stripe.redirectToCheckout({
@@ -78,8 +80,15 @@ const UserCartoutForm = ({ userId, checkedItems, onCancel }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <div className={styles['cart-address-header']}>Address</div>
+            <div className={styles['name-header']}>
+                <div className={styles['cart-header']}>Name</div>
+                <input {...register("name", {
+                    required: "Name is required"
+                })} type="text" id="name" name="name" /> 
+                { errors.name && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.name.message }</div> }
+            </div> 
+            <div className={styles['address-header']}>
+                <div className={styles['cart-header']}>Address</div>
                 <input {...register("address", {
                     required: "Address is required"
                 })} type="text" id="address" name="address" /> 

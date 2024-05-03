@@ -57,7 +57,7 @@ const SellerProduct = () => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             await productContext.deleteProduct(productId); 
             setIsDeleting(false);
-            navigate('/listings')
+            navigate('/seller/listings')
         } catch (error) {
             console.log(error)
         }
@@ -68,18 +68,18 @@ const SellerProduct = () => {
         <div className='product-wrapper'>
             <div className={styles['product-actions']}>
                 <div><i className="bi bi-ban listing-action-icon"></i></div>
-                <div onClick={() => navigate('/list', { 
+                <div onClick={() => navigate('/seller/list', { 
                     state: { 
                         mode: "Update",
                         productId: product.id 
                     }
                 })}><i className="bi bi-pencil listing-action-icon"></i></div>
                 <div onClick={ () => setIsDeleting(true) }><i className="bi bi-trash listing-action-icon"></i></div>
-                <div onClick={() => navigate('/listings')}><i className="bi bi-box-arrow-up-right listing-action-icon"></i></div>
+                <div onClick={() => navigate('/seller/listings')}><i className="bi bi-box-arrow-up-right listing-action-icon"></i></div>
             </div>
             <div className='row'>
                 <div className='col-12 col-md-4 product-image-wrapper'>
-                    <div><img src={ product.image } className='product-image'/></div>
+                    <div><img src={ product.image } className='product-image' alt="product image"/></div>
                 </div>
                 <div className='col-12 col-md-8'>
                     <div className='product-name col-12'>{ product.name }</div>

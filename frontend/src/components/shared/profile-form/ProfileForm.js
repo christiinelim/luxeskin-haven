@@ -154,11 +154,11 @@ const ProfileForm = ({ formType, id }) => {
                         <div className={styles['picture-section']}>
                             { !profile.image && (
                                 ( !imageUrl && <i className={`bi bi-person-circle ${styles['profile-picture']}`}></i> ) ||
-                                ( isEditing && imageUrl && <img src={ imageUrl } className={styles['profile-image']}/> )
+                                ( isEditing && imageUrl && <img src={ imageUrl } className={styles['profile-image']} alt="profile image"/> )
                             )}
                             { profile.image && (
-                                ( !imageUrl && <img src={ profile.image } className={styles['profile-image']}/> ) ||
-                                ( isEditing && imageUrl && <img src={ imageUrl } className={styles['profile-image']}/> )
+                                ( !imageUrl && <img src={ profile.image } className={styles['profile-image']} alt="profile image"/> ) ||
+                                ( isEditing && imageUrl && <img src={ imageUrl } className={styles['profile-image']} alt="profile image"/> )
                             )}
                             { isEditing && 
                                 <UploadWidget onImageUpload={ handleImageUpload }></UploadWidget>

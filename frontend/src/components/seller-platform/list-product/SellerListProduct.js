@@ -115,7 +115,7 @@ const SellerListProduct = () => {
                 await productContext.updateProduct(productToUpdate.id, newProduct); 
             }
             
-            navigate('/listings')
+            navigate('/seller/listings')
         } catch (error) {
             console.log(error)
             setError("root", {
@@ -143,7 +143,7 @@ const SellerListProduct = () => {
                 <div>
                     <label>Upload Image</label>
                     <UploadWidget onImageUpload={ handleImageUpload }></UploadWidget>
-                    { imageUrl && <img src={ imageUrl } className={styles['add-product-image']} /> }
+                    { imageUrl && <img src={ imageUrl } className={styles['add-product-image']} alt="uploaded image"/> }
                     { errors.image && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.image.message }</div> }
                 </div>
 

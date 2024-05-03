@@ -27,14 +27,6 @@ const ProductServices = {
             throw new Error('Failed to retrieve product');
         }
     },
-    getProductByIdPublic: async (productId) => {
-        try {
-            const response = await ApiServices.get(`${PRODUCT_BASE_API}/public/` + productId);
-            return response.data;
-        } catch (error) {
-            throw new Error('Failed to retrieve product');
-        }
-    },
     deleteProduct: async (productId) => {
         try {
             const response = await ApiServices.delete(`${PRODUCT_BASE_API}/` + productId);

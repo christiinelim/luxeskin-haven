@@ -7,7 +7,7 @@ export const AuthData = ({ children }) => {
     const login = (data, status) => {
         if (status === "seller") {
             localStorage.setItem("sellerId", data.id);
-            localStorage.setItem("activePage", '/listings');
+            localStorage.setItem("activePage", '/seller/listings');
         } else {
             localStorage.setItem("userId", data.id);
         }

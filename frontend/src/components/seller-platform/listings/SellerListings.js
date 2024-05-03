@@ -61,7 +61,7 @@ const SellerListings = () => {
                         Inactive
                     </div>
                 </div>
-                <div onClick={() => navigate('/list', { 
+                <div onClick={() => navigate('/seller/list', { 
                     state: { 
                         mode: "Add", 
                     }
@@ -72,7 +72,7 @@ const SellerListings = () => {
                     {listings.map((listing, index) => (
                         <div className='col-4 col-sm-6 col-md-4 col-lg-3 product-cards' key={index}>
                             <div className='product-card'>
-                                <div className={styles['listing-image']}><img src={ listing.image }/></div>
+                                <div className={styles['listing-image']}><img src={ listing.image } alt="image of listing"/></div>
                                 <div className={styles['card-content']}>
                                     <div className={styles['listing-name']}>{ listing.name }</div>
                                     <div className={styles['listing-detail']}>Cost: ${ (listing.cost).toFixed(2) }</div>
@@ -80,14 +80,14 @@ const SellerListings = () => {
                                 </div>
                                 <div className='listing-action'>
                                     <div><i className="bi bi-ban listing-action-icon"></i></div>
-                                    <div onClick={() => navigate('/list', { 
+                                    <div onClick={() => navigate('/seller/list', { 
                                         state: { 
                                             mode: "Update",
                                             productId: listing.id 
                                         }
                                     })}><i className="bi bi-pencil listing-action-icon"></i></div>
                                     <div onClick={ () => setIsDeleting({ id: listing.id, name: listing.name }) }><i className="bi bi-trash listing-action-icon"></i></div>
-                                    <div onClick={ () => navigate('/listings/' + listing.id) }><i className="bi bi-arrows-angle-expand listing-action-icon"></i></div>
+                                    <div onClick={ () => navigate('/seller/listings/' + listing.id) }><i className="bi bi-arrows-angle-expand listing-action-icon"></i></div>
                                 </div>
                             </div>
                         </div>

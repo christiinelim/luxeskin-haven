@@ -1,0 +1,89 @@
+.orders-wrapper {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.order-summary:hover {
+    cursor: pointer;
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.items-header {
+    font-style: italic;
+    color: rgba(0,0,0,0.7)
+}
+
+.items-text {
+    font-weight: bold;
+}
+
+.product-wrapper {
+    margin-top: 10px
+}
+
+#update-button-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0px
+}
+
+.edit-icon {
+    font-size: 9px;
+}
+
+.edit-icon:hover {
+    cursor: pointer;
+    color: rgba(241, 101, 101, 1);
+}
+
+@media (min-width: 576px) {
+    .orders-wrapper {
+        margin: 40px 30px;
+        gap: 25px
+    }
+    
+    .product-wrapper {
+        margin-top: 12px
+    }
+
+    .edit-icon {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    .orders-wrapper {
+        margin: 50px 40px;
+        gap: 29px
+    }
+    
+    .product-wrapper {
+        margin-top: 13px
+    }
+
+    .edit-icon {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 992px) {
+    .orders-wrapper {
+        margin: 50px 60px;
+        gap: 30px
+    }
+    
+    .product-wrapper {
+        margin-top: 14px
+    }
+
+    .edit-icon {
+        font-size: 14px;
+    }
+}

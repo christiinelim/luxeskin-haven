@@ -48,24 +48,24 @@ const UserOrder = () => {
             <div className={`page-header ${styles['order-page-header']}`}>Orders</div>
             <div className={styles['order-list-wrapper']}>
                 {orders.map((order, index) => (
-                    <div className={styles['order-container']} key={index}>
+                    <div className='order-container' key={index}>
                         <div className={styles['order-header']} onClick={() => toggleProducts(order.id)}>Order #{order.id}</div>
                         { expandedOrders[order.id] && (
                             <div className={styles['product-wrapper']}>
                                 {order.products.map((productOrder, idx) => (
-                                    <div className={styles['product-container']} key={idx}>
-                                        <div className={styles['order-image']}>
+                                    <div className='product-container' key={idx}>
+                                        <div className='order-image'>
                                             <img src={productOrder.products.image} alt='product' />
                                         </div>
-                                        <div className={styles['order-content']}>
+                                        <div className='order-content'>
                                             <div>
                                                 <div className={styles['order-seller']}>{productOrder.products.seller.username}</div>
                                                 <div className={styles['order-list']}>{productOrder.products.name}</div>
                                                 <div className={styles['order-list']}>Status: {productOrder.status}</div>
                                             </div>
-                                            <div className={styles['order-quantity-cost']}>
+                                            <div className='order-quantity-cost'>
                                                 <div>{productOrder.quantity}</div>
-                                                <div className={styles['order-cost']}>${parseFloat(productOrder.products.cost * productOrder.quantity).toFixed(2)}</div>
+                                                <div className='order-cost'>${parseFloat(productOrder.products.cost * productOrder.quantity).toFixed(2)}</div>
                                             </div>
                                         </div>
                                     </div>

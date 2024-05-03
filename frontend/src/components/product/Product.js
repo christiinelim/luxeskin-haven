@@ -17,7 +17,7 @@ const Product = () => {
         
         const fetchData = async() => {
             try {
-                const response = await productContext.getProductByIdPublic(productId);
+                const response = await productContext.getProductById(productId);
                 const data = response.data;
                 setProduct(data);
             } catch (error) {
@@ -81,7 +81,7 @@ const Product = () => {
         <div className='product-wrapper'>
             <div className='row'>
                 <div className='col-12 col-md-4 product-image-wrapper'>
-                    <div><img src={ product.image } className='product-image'/></div>
+                    <div><img src={ product.image } className='product-image' alt="product"/></div>
                 </div>
                 <div className='col-12 col-md-8'>
                     <div className='product-name col-12'>{ product.name }</div>

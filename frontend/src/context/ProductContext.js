@@ -58,14 +58,6 @@ export const ProductServicesData = ({ children }) => {
         }
     };
 
-    const getProductByIdPublic = async (productId) => {
-        try {
-            return await ProductServices.getProductByIdPublic(productId);
-        } catch (error) {
-            throw new Error(error);
-        }
-    };
-
     const deleteProduct = async (productId) => {
         try {
             return await ProductServices.deleteProduct(productId);
@@ -94,7 +86,6 @@ export const ProductServicesData = ({ children }) => {
         createProduct,
         getProductBySeller,
         getProductById,
-        getProductByIdPublic,
         deleteProduct,
         updateProduct,
         searchProducts,

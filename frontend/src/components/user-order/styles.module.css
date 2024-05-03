@@ -21,12 +21,6 @@
     gap: 20px
 }
 
-.order-container {
-    background-color: rgba(205, 205, 205, 0.1);
-    border-radius: 10px;
-    padding: 8px;
-}
-
 .product-wrapper {
     display: flex;
     flex-direction: column;
@@ -34,7 +28,6 @@
     margin-top: 10px;
 }
 
-.product-container,
 .summary-container {
     display: flex;
     background-color: white;
@@ -43,31 +36,10 @@
     box-shadow: 0px 0px 5px 5px rgba(205, 205, 205, 0.1);
 }
 
-.product-container {
-    gap: 15px
-}
-
 .summary-container {
     flex-direction: column;
 }
 
-.order-image img {
-    width: 50px;
-    height: 60px
-}
-
-.order-content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.order-quantity-cost {
-    display: flex;
-    gap: 20px;
-}
-
-.order-cost,
 .summary-items-header {
     font-weight: bold;
 }
@@ -105,30 +77,12 @@
         gap: 25px
     }
     
-    .order-container {
-        padding: 15px;
-    }
-    
     .product-wrapper {
         gap: 12px;
     }
     
-    .product-container,
     .summary-container {
         padding: 12px;
-    }
-    
-    .product-container {
-        gap: 17px
-    }
-    
-    .order-image img {
-        width: 60px;
-        height: 70px
-    }
-    
-    .order-quantity-cost {
-        gap: 22px;
     }
     
     .order-seller {
@@ -157,31 +111,13 @@
         gap: 30px
     }
     
-    .order-container {
-        padding: 16px;
-    }
-    
     .product-wrapper {
         gap: 14px;
         margin-top: 12px;
     }
     
-    .product-container,
     .summary-container {
         padding: 15px;
-    }
-    
-    .product-container {
-        gap: 20px
-    }
-    
-    .order-image img {
-        width: 70px;
-        height: 80px
-    }
-    
-    .order-quantity-cost {
-        gap: 25px;
     }
     
     .order-seller {
@@ -208,19 +144,6 @@
     
     .product-wrapper {
         gap: 16px;
-    }
-    
-    .product-container {
-        gap: 25px
-    }
-    
-    .order-image img {
-        width: 80px;
-        height: 90px
-    }
-    
-    .order-quantity-cost {
-        gap: 30px;
     }
     
     .order-seller {
