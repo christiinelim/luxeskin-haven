@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
 import { CartContext } from '../../context/CartContext';
 import { SellerContext } from '../../context/SellerContext';
@@ -8,7 +8,11 @@ import FilterProducts from './FilterProducts';
 import styles from './styles.module.css';
 
 const ShopProducts = () => {
+    const location = useLocation();
+    const isSearchPage = location.pathname === '/shop/search-product/';
     const navigate = useNavigate();
+    const [ searchParams ] = useSearchParams();
+
     const productContext = useContext(ProductContext);
     const cartContext = useContext(CartContext);
     const sellerContext = useContext(SellerContext);
@@ -20,16 +24,30 @@ const ShopProducts = () => {
     const [ showFilter, setShowFilter ] = useState(false);
     const [ emptySearch, setEmptySearch ] = useState(false);
     const [ categories, setCategories ] = useState(null);
+    const [ searchedProduct, setSearchedProduct ] = useState("");
     const [ skinTypes, setSkinTypes ] = useState([]);
     const [ sellers, setSellers ] = useState({});
 
     useEffect(() => {
         
-        const fetchData = async() => {
+        const fetchData = async () => {
             try {
-                const response = await productContext.getAllProducts();
-                const data = response.data;
-                setProducts(data);
+                if (isSearchPage) {
+                    const searchTerm = searchParams.get('product').split('-').join(' ');
+                    setSearchedProduct(searchTerm);
+                    const searchResult = await productContext.searchProducts({
+                        name: searchTerm
+                    });
+
+                    if (searchResult.data.length === 0) {
+                        setEmptySearch(true);
+                    }
+                    setProducts(searchResult.data);
+                } else {
+                    const allProducts = await productContext.getAllProducts();
+                    const productsData = allProducts.data;
+                    setProducts(productsData);
+                }
 
                 const allCategories = await productContext.getAllCategories();
                 const categoriesData = allCategories.data;
@@ -52,7 +70,7 @@ const ShopProducts = () => {
 
         fetchData();
         
-    }, []);
+    }, [isSearchPage, searchParams]);
 
     const handleAddToBag = async (productId) => {
         try {
@@ -82,11 +100,10 @@ const ShopProducts = () => {
     const handleFilterButton = () => {
         setShowFilter(!showFilter)
     }
-    console.log(emptySearch)
 
     return (
         <>
-            {showFilter && <div className="overlay"></div>}
+            { showFilter && <div className="overlay"></div> }
             <div className='shop-wrapper'>
                 <div className='page-header'>Shop Products</div>
                 <div className={styles['sort-filter-wrapper']}>
@@ -110,6 +127,7 @@ const ShopProducts = () => {
                     <FilterProducts showFilter={ showFilter} setShowFilter={ setShowFilter }
                                     categories={ categories } skinTypes={ skinTypes } sellers={ sellers }
                                     setProducts={ setProducts } setEmptySearch = { setEmptySearch }
+                                    searchedProduct={ searchedProduct }
                     />
                 }
 

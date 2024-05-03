@@ -58,6 +58,7 @@ function App() {
                         <Route path="/profile/orders" element={<UserOrderPage />}/>
                         <Route path="/cart" element={<UserCartPage />}/>
                         <Route path="/shop" element={<ShopProductsPage />}/>
+                        <Route path="/shop/search-product" element={<ShopProductsPage />}/>
                       </Routes>
                     </OrderServicesData>
                   </CartoutServicesData>

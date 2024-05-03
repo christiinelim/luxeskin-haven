@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ArrowRight } from 'react-bootstrap-icons';
+import { Search } from 'react-bootstrap-icons';
 import { AuthContext } from "../../../context/AuthContext";
 import { UserContext } from "../../../context/UserContext";
+import NavSearchForm from './NavSearchForm';
 import styles from './styles.module.css';
 
 const Navbar = () => {
@@ -83,13 +84,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className={styles['searchbar-container']}>
-                        <div className={`${styles['searchbar']} ${showSearchBar ? styles['searchbar-open'] : ''}`}>
-                            <div className={styles['search-prompt']}>What do you like to explore?</div>
-                            <div className={styles['searchbox']}>
-                                <div><input type='text'/></div>
-                                <div><ArrowRight /></div>
-                            </div>
-                        </div>
+                        <NavSearchForm showSearchBar={ showSearchBar }/>
                     </div>
                 </div>
             </div>

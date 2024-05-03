@@ -36,6 +36,9 @@ The user frontend is developed using React, enabling users to browse products, a
 **Filter Product**
 ![Filter Product](./frontend/src/assets/images/readme/filter-product.png)
 
+**Search Product**
+![Search Product](./frontend/src/assets/images/readme/search-product.png)
+
 **View Product Page**
 ![View Product Page](./frontend/src/assets/images/readme/view-product-page.png)
 
