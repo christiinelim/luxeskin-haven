@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
 import LoginForm from "../../shared/login-form/LoginForm";
 
 const SellerLogin = () => {
+    const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (authContext.isLoggedIn && authContext.status === 'seller') {
+            navigate('/seller/listings');
+        }
+    }, [authContext.isLoggedIn, authContext.status]);
 
     return (
         <div className="wrapper login-background seller-login-background">

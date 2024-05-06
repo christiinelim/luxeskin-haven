@@ -8,7 +8,8 @@ const SellerNavbar = () => {
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
     const sellerContext = useContext(SellerContext);
-    const isLoggedIn = authContext.isLoggedIn();
+    const isLoggedIn = authContext.isLoggedIn;
+    const sellerStatus = authContext.status === "seller" ? true : false;
     const [ showDropdown, setShowDropdown ] = useState(false);
 
     useEffect(() => {
@@ -44,7 +45,7 @@ const SellerNavbar = () => {
                     <div id={styles['seller-platform-logo']} className='content-items'>Seller Platform</div>
                 </div>
                 <div className='login-items'>
-                    { !isLoggedIn && 
+                    { (!isLoggedIn || !sellerStatus) &&
                         <>
                             <div className='button-border'>
                                 <Link to="/seller/signup" className='link-items'>Sign Up</Link>
@@ -55,7 +56,7 @@ const SellerNavbar = () => {
                             </div>
                         </>
                     }
-                    { isLoggedIn &&
+                    { isLoggedIn && sellerStatus &&
                         <>
                             <div>
                                 <i className={`bi bi-person-circle ${styles['nav-profile-icon']}`} onClick={ handleProfileIconClick }></i>

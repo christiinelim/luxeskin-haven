@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { CartoutContext } from '../../context/CartoutContext';
 import { loadStripe } from '@stripe/stripe-js';
@@ -9,7 +8,6 @@ import styles from './styles.module.css';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const UserCartoutForm = ({ userId, checkedItems, onCancel }) => {
-    const navigate = useNavigate();
     const userContext = useContext(UserContext);
     const cartoutContext = useContext(CartoutContext);
     const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm();
@@ -18,25 +16,12 @@ const UserCartoutForm = ({ userId, checkedItems, onCancel }) => {
         const fetchData = async() => {
             try {
                 const response = await userContext.getUser(userId);
-                
-                if (response.error === "Unauthorized, please login") {
-                    navigate('/login', {
-                        state: { 
-                            error_message: "Unauthorized, please login to access"
-                        }
-                    })
-                } else {
-                    const userAddress = response.data.address;
-                    if (userAddress!== "") {
-                        setValue("address", userAddress);
-                    }
+                const userAddress = response.data.address;
+                if (userAddress!== "") {
+                    setValue("address", userAddress);
                 }
             } catch (error) {
-                navigate('/login', {
-                    state: {
-                        error_message: "Unauthorized, please login to access"
-                    }
-                })
+                console.log(error)
             }
         }
 

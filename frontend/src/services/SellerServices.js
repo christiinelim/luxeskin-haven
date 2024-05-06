@@ -32,9 +32,6 @@ const SellerServices = {
             const response = await ApiServices.get(`${SELLER_BASE_API}/` + sellerId);
             return response.data;
         } catch (error) {
-            if (error.response.data.error === "Unauthorized, please login") {
-                return ({error: "Unauthorized, please login"})
-            }
             throw new Error('Failed to retrieve seller details');
         }
     },

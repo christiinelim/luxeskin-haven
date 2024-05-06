@@ -33,9 +33,6 @@ export const UserServicesData = ({ children }) => {
         try {
             return await UserServices.getUser(userId);
         } catch (error) {
-            if (error.response && error.response.data.error === "Unauthorized, please login") {
-                return ({ error: "Unauthorized, please login" });
-            }
             throw new Error(error);
         }
     };

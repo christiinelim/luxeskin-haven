@@ -10,7 +10,8 @@ const Navbar = () => {
     const [ showSearchBar, setShowSearchBar ] = useState(false);
     const authContext = useContext(AuthContext);
     const userContext = useContext(UserContext);
-    const isLoggedIn = authContext.isLoggedIn();
+    const isLoggedIn = authContext.isLoggedIn;
+    const userStatus = authContext.status === "user" ? true : false;
     const navigate = useNavigate();
 
     const toggleState = (setState) => {
@@ -49,13 +50,13 @@ const Navbar = () => {
                         <div><Link to="/seller/signup" className="link-items">Start Selling</Link></div>
                         <div><Link to="/seller/login" className="link-items">Seller Login</Link></div>
                     </div>
-                    { !isLoggedIn &&
+                    { (!isLoggedIn || !userStatus) &&
                         <div className='login-items'>
                             <div><Link to="/signup" className="link-items">Sign Up</Link></div>
                             <div><Link to="/login" className="link-items">Login</Link></div>
                         </div>
                     }
-                    { isLoggedIn &&
+                    { isLoggedIn && userStatus &&
                         <div className='login-items'>
                             <div className="link-items" onClick={ handleLogoutClick }>Logout</div>
                         </div>

@@ -30,33 +30,24 @@ const ProfileForm = ({ formType, id }) => {
                 } else {
                     response = await userContext.getUser(id);
                 }
-                
-                if (response.error === "Unauthorized, please login") {
-                    handleNavigate({ 
-                        error_message: "Unauthorized, please login to access"
-                    });
-                } else {
-                    const profile = response.data;
-                    setProfile(profile);
-                    setValue("username", profile.username);
-                    setValue("email", profile.email);
-                    setValue("contact", profile.contact);
 
-                    if (formType === "seller") {
-                        setValue("instagram", profile.instagram);
-                        setValue("tiktok", profile.tiktok);
-                        setValue("website", profile.website);
-                    } else {
-                        setValue("first_name", profile.first_name);
-                        setValue("last_name", profile.last_name);
-                        setValue("address", profile.address);
-                    }
-                    
+                const profile = response.data;
+                setProfile(profile);
+                setValue("username", profile.username);
+                setValue("email", profile.email);
+                setValue("contact", profile.contact);
+
+                if (formType === "seller") {
+                    setValue("instagram", profile.instagram);
+                    setValue("tiktok", profile.tiktok);
+                    setValue("website", profile.website);
+                } else {
+                    setValue("first_name", profile.first_name);
+                    setValue("last_name", profile.last_name);
+                    setValue("address", profile.address);
                 }
             } catch (error) {
-                handleNavigate({ 
-                    error_message: "Unauthorized, please login to access"
-                });
+                console.error(error)
             }
         }
 

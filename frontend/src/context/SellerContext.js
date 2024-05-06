@@ -33,9 +33,6 @@ export const SellerServicesData = ({ children }) => {
         try {
             return await SellerServices.getSeller(sellerId);
         } catch (error) {
-            if (error.response && error.response.data.error === "Unauthorized, please login") {
-                return ({ error: "Unauthorized, please login" });
-            }
             throw new Error(error);
         }
     };
