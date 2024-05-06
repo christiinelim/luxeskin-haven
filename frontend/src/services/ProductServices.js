@@ -24,6 +24,7 @@ const ProductServices = {
             const response = await ApiServices.get(`${PRODUCT_BASE_API}/` + productId);
             return response.data;
         } catch (error) {
+            console.log(error)
             throw new Error('Failed to retrieve product');
         }
     },

@@ -2,14 +2,14 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search } from 'react-bootstrap-icons';
 import { AuthContext } from "../../../context/AuthContext";
-import { UserContext } from "../../../context/UserContext";
+import { LogoutHandler } from '../../../utils/authUtils';
 import NavSearchForm from './NavSearchForm';
 import styles from './styles.module.css';
 
 const Navbar = () => {
+    const { handleUserLogout } = LogoutHandler();
     const [ showSearchBar, setShowSearchBar ] = useState(false);
     const authContext = useContext(AuthContext);
-    const userContext = useContext(UserContext);
     const isLoggedIn = authContext.isLoggedIn;
     const userStatus = authContext.status === "user" ? true : false;
     const navigate = useNavigate();
@@ -33,14 +33,8 @@ const Navbar = () => {
     }
 
     const handleLogoutClick = async () => {
-        await userContext.logout({ refreshToken: localStorage.getItem("refreshToken") });
-        navigate('/login', { 
-            state: { 
-                success_message: "You have logged out"
-            }
-        });
-        authContext.logout("user");
-    }
+        await handleUserLogout("You have logged out");
+    };
 
     return (
         <>

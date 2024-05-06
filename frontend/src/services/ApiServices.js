@@ -16,6 +16,7 @@ ApiServices.interceptors.request.use(async (config) => {
         config.url === '/product/categories' ||
         config.url === '/product/skin-types' ||
         config.url === '/product/search' ||
+        /^\/product\/\d+$/.test(config.url) ||
         config.url === '/user/' ||
         config.url === '/user/verify-account' ||
         config.url === '/user/login' ||
@@ -32,6 +33,7 @@ ApiServices.interceptors.request.use(async (config) => {
     } 
     return Promise.reject("Unauthorized, please login");
 }, (error) => {
+    console.log(error)
     return Promise.reject(error);
 });
 
@@ -39,13 +41,15 @@ ApiServices.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
+       
+        console.log('try')
 
-        if (error.response.status === 401 && !originalRequest._retry) {
+        if (error.response.status === 401 && !originalRequest._retry && error.response.data.error === "Unauthorized, invalid access token") {
             originalRequest._retry = true;
 
             try {
                 const email = localStorage.getItem('email');
-                const id = localStorage.getItem('sellerId');
+                const id = localStorage.getItem('sellerId') || localStorage.getItem('sellerId');
                 const refreshToken = localStorage.getItem('refreshToken');
                 const data = { email, id, refreshToken }
                 
@@ -60,10 +64,29 @@ ApiServices.interceptors.response.use(
                     throw new Error('Failed to obtain new access token');
                 }
             } catch (refreshError) {
+                console.log("refresh expired catch")
                 return Promise.reject(refreshError);
             }
+        }  
+        
+        const status = localStorage.getItem('status');
+
+        if (status === "seller") {
+            localStorage.removeItem("sellerId");
+            localStorage.removeItem("activePage");
+            window.location.href = "/seller/login"
+        } else {
+            localStorage.removeItem("userId");
+            window.location.href = "/login"
         }
-        return Promise.reject(error);
+
+        localStorage.removeItem("email");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("status");
+
+        return Promise.reject("Refresh token expired");
     }
 );
 

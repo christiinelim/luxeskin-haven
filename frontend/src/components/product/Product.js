@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
 import { CartContext } from '../../context/CartContext';
+import { getBackgroundColorForSkinType } from '../../utils/utils';
 import styles from './styles.module.css';
 
 const Product = () => {
@@ -48,21 +49,6 @@ const Product = () => {
             }, 2500);
         } catch (error) {
             console.log(error)
-        }
-    }
-
-    const getBackgroundColorForSkinType = (skinType) => { // enum?
-        switch (skinType) {
-            case 'Oily':
-                return '#EBBC67';
-            case 'Dry':
-                return '#E4D6BD';
-            case 'Combination':
-                return '#C4C2C1';
-            case 'Sensitive':
-                return '#FAC2B4';
-            case 'Acne-Prone':
-                return '#E8A593';
         }
     };
 

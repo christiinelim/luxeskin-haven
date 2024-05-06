@@ -1,15 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { SellerContext } from '../../../context/SellerContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { UserContext } from '../../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { LogoutHandler } from '../../../utils/authUtils';
+import { formatDate } from '../../../utils/utils';
 import UploadWidget from '../upload-widget/UploadWidget';
 import DeleteWarning from '../delete-warning/DeleteWarning';
 import styles from './styles.module.css';
 
 const ProfileForm = ({ formType, id }) => {
-    const navigate = useNavigate();
+    const { handleSellerLogout, handleUserLogout } = LogoutHandler();
     const sellerContext = useContext(SellerContext);
     const userContext = useContext(UserContext);
     const authContext = useContext(AuthContext);
@@ -55,28 +56,6 @@ const ProfileForm = ({ formType, id }) => {
         
     }, [id]);
 
-    const handleNavigate = (message) => {
-        if (formType === "seller") {
-            navigate('/seller/login', { 
-                state: message
-            });
-        } else {
-            navigate('/login', { 
-                state: message
-            });
-        }
-    }
-
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-
-        const day = date.getDate().toString().padStart(2, '0'); 
-        const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
-        const year = date.getFullYear().toString(); 
-
-        return `${day}-${month}-${year}`;
-    };
-
     const handleImageUpload = (url) => {
         setImageUrl(url);
     };
@@ -86,20 +65,17 @@ const ProfileForm = ({ formType, id }) => {
         setImageUrl("");
     };
 
+
     const handleDeleteClick = async (id) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             if (formType === "seller") {
                 await sellerContext.deleteSeller(id); 
-                authContext.logout("seller");
+                await handleSellerLogout("Your account has been deleted");
             } else {
                 await userContext.deleteUser(id); 
-                authContext.logout("user");
+                await handleUserLogout("Your account has been deleted");
             }
-            
-            handleNavigate({ 
-                success_message: "Your account has been deleted"
-            });
         } catch (error) {
             setError("root", {
                 message: "Error deleting account"

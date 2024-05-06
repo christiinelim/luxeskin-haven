@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from "../../../context/AuthContext";
-import { SellerContext } from '../../../context/SellerContext';
+import { LogoutHandler } from '../../../utils/authUtils';
 import styles from './styles.module.css';
 
 const SellerNavbar = () => {
+    const { handleSellerLogout } = LogoutHandler();
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
-    const sellerContext = useContext(SellerContext);
     const isLoggedIn = authContext.isLoggedIn;
     const sellerStatus = authContext.status === "seller" ? true : false;
     const [ showDropdown, setShowDropdown ] = useState(false);
@@ -26,14 +26,8 @@ const SellerNavbar = () => {
     }
 
     const handleLogoutClick = async () => {
-        await sellerContext.logout({ refreshToken: localStorage.getItem("refreshToken") });
-        navigate('/seller/login', { 
-            state: { 
-                success_message: "You have logged out"
-            }
-        });
-        authContext.logout("seller");
-    }
+        await handleSellerLogout("You have logged out");
+    };
 
     return(
         <>
