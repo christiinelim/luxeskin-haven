@@ -1,5 +1,6 @@
 import axios from 'axios';
 import SellerServices from "./SellerServices";
+import { removeLocalStorage } from '../utils/utils';
 
 const ApiServices = axios.create ({
     baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -41,8 +42,6 @@ ApiServices.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config;
-       
-        console.log('try')
 
         if (error.response.status === 401 && !originalRequest._retry && error.response.data.error === "Unauthorized, invalid access token") {
             originalRequest._retry = true;
@@ -72,19 +71,12 @@ ApiServices.interceptors.response.use(
         const status = localStorage.getItem('status');
 
         if (status === "seller") {
-            localStorage.removeItem("sellerId");
-            localStorage.removeItem("activePage");
             window.location.href = "/seller/login"
         } else {
-            localStorage.removeItem("userId");
             window.location.href = "/login"
         }
 
-        localStorage.removeItem("email");
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("status");
+        removeLocalStorage(status)
 
         return Promise.reject("Refresh token expired");
     }

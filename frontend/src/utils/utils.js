@@ -22,3 +22,32 @@ export const getBackgroundColorForSkinType = (skinType) => {
             return '#E8A593';
     }
 };
+
+export const setLocalStorage = (data, status) => {
+    if (status === "seller") {
+        localStorage.setItem("sellerId", data.id);
+        localStorage.setItem("activePage", '/seller/listings');
+        localStorage.setItem("status", status);
+    } else {
+        localStorage.setItem("userId", data.id);
+        localStorage.setItem("status", status);
+    }
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+    localStorage.setItem("isLoggedIn", 'true');
+}
+
+export const removeLocalStorage = (status) => {
+    if (status === "seller") {
+        localStorage.removeItem("sellerId");
+        localStorage.removeItem("activePage");
+    } else {
+        localStorage.removeItem("userId");
+    }
+    localStorage.removeItem("email");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("status");
+}
