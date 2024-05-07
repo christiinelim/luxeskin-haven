@@ -4,7 +4,8 @@ import ProductServices from '../services/ProductServices';
 export const ProductContext = createContext();
 
 export const ProductServicesData = ({ children }) => {
-    const [ products, setProducts ] = useState([]);
+    const [ pages, setPages ] = useState(null);
+    const [ productPage, setProductPage ] = useState(null);
     const [ categories, setCategories ] = useState([]);
     const [ skinTypes, setSkinTypes ] = useState([]);
     const [ loading, setLoading ] = useState(true);
@@ -12,9 +13,8 @@ export const ProductServicesData = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const allProducts = await ProductServices.getAllProducts();
-            const productsData = allProducts.data;
-            setProducts(productsData);
+            const pages = await getProductsByPage(1);
+            setPages(pages);
 
             const allCategories = await ProductServices.getAllCategories();
             const categoriesData = allCategories.data;
@@ -32,6 +32,22 @@ export const ProductServicesData = ({ children }) => {
     
         fetchData();
     }, []);
+
+    const getProductsByPage = async (page) => {
+        try {
+            if (productPage === null || !(`page${page}` in productPage)) {
+                const products = await ProductServices.getAllProducts(page);
+                const productsData = products.data.products;
+                setProductPage((prevProductPage) => ({
+                    ...prevProductPage,
+                    ['page' + page]: productsData,
+                }));
+                return products.data.pages
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     const createProduct = async (data) => {
         try {
@@ -89,10 +105,12 @@ export const ProductServicesData = ({ children }) => {
         deleteProduct,
         updateProduct,
         searchProducts,
-        products,
         loading,
         categories,
-        skinTypes
+        skinTypes,
+        pages,
+        productPage,
+        getProductsByPage
     };
 
     return (

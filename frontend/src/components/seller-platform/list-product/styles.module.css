@@ -44,10 +44,6 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.textarea-input {
-    height: 50px;
-}
-
 @media (min-width: 576px) {
     /* ADD PRODUCT COMPONENT */
     .add-product-form-wrapper {
@@ -71,10 +67,6 @@
 
     .skin-type-options {
         gap: 12px
-    }
-
-    .textarea-input {
-        height: 60px
     }
 }
 
@@ -101,10 +93,6 @@
     .skin-type-options {
         gap: 14px
     }
-
-    .textarea-input {
-        height: 65px
-    }
 }
 
 @media (min-width: 992px) {
@@ -126,9 +114,5 @@
 
     .skin-type-options {
         gap: 15px
-    }
-
-    .textarea-input {
-        height: 70px
     }
 }

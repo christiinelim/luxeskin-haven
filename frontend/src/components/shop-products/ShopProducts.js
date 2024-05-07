@@ -25,6 +25,7 @@ const ShopProducts = () => {
     const [ emptySearch, setEmptySearch ] = useState(false);
     const [ searchedProduct, setSearchedProduct ] = useState("");
     const [ sellers, setSellers ] = useState({});
+    const [ currentPage, setCurrentPage ] = useState(1);
 
     useEffect(() => {
         
@@ -53,7 +54,8 @@ const ShopProducts = () => {
                     setProducts(searchResult.data);
                 } else {
                     if (!productContext.loading) {
-                        setProducts(productContext.products);
+                        productContext.getProductsByPage(currentPage);
+                        setProducts(productContext.productPage[`page` + currentPage]);
                     }
                 }
 
@@ -70,7 +72,7 @@ const ShopProducts = () => {
 
         fetchData();
         
-    }, [isSearchPage, searchParams, productContext.loading]);
+    }, [isSearchPage, searchParams, productContext.loading, currentPage, productContext.productPage]);
 
     const handleAddToBag = async (productId) => {
         try {
@@ -153,6 +155,26 @@ const ShopProducts = () => {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                )}
+
+                { productContext.pages && (
+                    <div className={styles['pagination-wrapper']}>
+                        {(() => {
+                            const pagination = [];
+                            for (let page = 1; page <= productContext.pages; page++) {
+                                pagination.push(
+                                    <div
+                                        key={page}
+                                        className={`${styles['page']} ${currentPage === page ? styles['active-page'] : ''}`}
+                                        onClick={() => setCurrentPage(page)}
+                                    >
+                                        {page}
+                                    </div>
+                                );
+                            }
+                            return pagination;
+                        })()}
                     </div>
                 )}
             </div>

@@ -34,9 +34,9 @@ const FeaturedProducts = () => {
     return (
         <div className='shop-wrapper'>
             <div className='page-header shop-header'>Featured Products</div>
-            { productContext.products && (
+            { productContext.productPage && (
                 <div className='row'>
-                    { productContext.products.map((product, index) => (
+                    { productContext.productPage['page1'].map((product, index) => (
                         <div className='col-4 col-sm-3 col-lg-2 product-cards' key={index}>
                             <div className='shop-product-card' onClick={ () => navigate('/listing/' + product.id) }>
                                 <div className='shop-product-image'><img src={ product.image } alt={product.name} /></div>

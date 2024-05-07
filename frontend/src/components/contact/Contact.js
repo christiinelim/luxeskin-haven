@@ -53,9 +53,9 @@ const Contact = () => {
 
                     <div>
                         <label>Message</label>
-                        <input {...register("message", {
+                        <textarea {...register("message", {
                             required: "Message is required"
-                        })} type="textarea" id="message" name="message" className={styles['message-input']} />
+                        })} id="message" name="message" className='textarea-input' />
                         { errors.message && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.message.message }</div> }
                     </div>
 

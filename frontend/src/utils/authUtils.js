@@ -28,7 +28,6 @@ export const LogoutHandler = () => {
 
     const handleSellerLogout = async (message) => {
         try {
-            console.log('try')
             await sellerContext.logout({ refreshToken: localStorage.getItem("refreshToken") });
             navigate('/seller/login', { 
                 state: { 

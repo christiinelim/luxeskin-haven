@@ -13,7 +13,7 @@ ApiServices.interceptors.request.use(async (config) => {
         config.url === '/seller/login' ||
         config.url === '/seller/forgot-password' ||
         config.url === '/seller/update-password' ||
-        config.url === '/product/' ||
+        /^\/product\/page\/\d+$/.test(config.url) ||
         config.url === '/product/categories' ||
         config.url === '/product/skin-types' ||
         config.url === '/product/search' ||
@@ -66,19 +66,21 @@ ApiServices.interceptors.response.use(
                 console.log("refresh expired catch")
                 return Promise.reject(refreshError);
             }
-        }  
-        
-        const status = localStorage.getItem('status');
+        } else if (error.response.status === 401 && !originalRequest._retry) {
+             const status = localStorage.getItem('status');
 
-        if (status === "seller") {
-            window.location.href = "/seller/login"
-        } else {
-            window.location.href = "/login"
+            if (status === "seller") {
+                window.location.href = "/seller/login"
+            } else {
+                window.location.href = "/login"
+            }
+
+            removeLocalStorage(status)
+
+            return Promise.reject("Refresh token expired");
         }
 
-        removeLocalStorage(status)
-
-        return Promise.reject("Refresh token expired");
+        return Promise.reject(error);
     }
 );
 

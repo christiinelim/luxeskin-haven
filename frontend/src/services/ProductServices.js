@@ -52,9 +52,9 @@ const ProductServices = {
             throw new Error('Failed to retrieve skin types');
         }
     },
-    getAllProducts: async () => {
+    getAllProducts: async (pageNumber) => {
         try {
-            const response = await ApiServices.get(`${PRODUCT_BASE_API}/`);
+            const response = await ApiServices.get(`${PRODUCT_BASE_API}/page/` + pageNumber);
             return response.data;
         } catch (error) {
             console.log(error)

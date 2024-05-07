@@ -21,10 +21,6 @@
     margin-bottom: 40px;
 }
 
-.message-input {
-    height: 50px
-}
-
 @media (min-width: 576px) {
     .contact-wrapper {
         margin: 50px;
@@ -41,10 +37,6 @@
         width: 55vw;
         margin-top: 25px;
         margin-bottom: 50px;
-    }
-    
-    .message-input {
-        height: 60px
     }
 }
 
@@ -64,10 +56,6 @@
         margin-top: 27px;
         margin-bottom: 55px;
     }
-    
-    .message-input {
-        height: 80px
-    }
 }
 
 @media (min-width: 992px) {
@@ -81,9 +69,5 @@
         width: 55vw;
         margin-top: 30px;
         margin-bottom: 60px;
-    }
-    
-    .message-input {
-        height: 100px
     }
 }

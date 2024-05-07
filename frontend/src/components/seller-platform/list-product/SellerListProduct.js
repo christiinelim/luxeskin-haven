@@ -179,25 +179,25 @@ const SellerListProduct = () => {
 
                 <div>
                     <label>Ingredients</label>
-                    <input {...register("ingredients", {
+                    <textarea {...register("ingredients", {
                         required: "Ingredients is required"
-                    })} type="textarea" id="ingredients" name="ingredients" className={styles['textarea-input']}/>
+                    })} id="ingredients" name="ingredients" className='textarea-input'/>
                     { errors.ingredients && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.ingredients.message }</div> }
                 </div>
 
                 <div>
                     <label>Product Description</label>
-                    <input {...register("description", {
+                    <textarea {...register("description", {
                         required: "Product's description is required"
-                    })} type="textarea" id="description" name="description" className={styles['textarea-input']}/>
+                    })} id="description" name="description" className='textarea-input'/>
                     { errors.description && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.description.message }</div> }
                 </div>
 
                 <div>
                     <label>Refund Policy</label>
-                    <input {...register("refund_policy", {
+                    <textarea {...register("refund_policy", {
                         required: "Refund policy is required"
-                    })} type="textarea" id="refund_policy" name="refund_policy" className={styles['textarea-input']}/>
+                    })} id="refund_policy" name="refund_policy" className='textarea-input'/>
                     { errors.refund_policy && <div className="form-message"><i className="bi bi-exclamation-circle form-icon"></i>{ errors.refund_policy.message }</div> }
                 </div>
 

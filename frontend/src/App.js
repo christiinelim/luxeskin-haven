@@ -15,13 +15,13 @@ import { OrderServicesData } from './context/OrderContext';
 
 import PrivateRoute from './components/routes/PrivateRoute';
 import FallbackLoader from './components/shared/fallback-loader/FallbackLoader';
+import Error from './components/shared/error-fallback/Error';
 
 import HomePage from './views/HomePage';
 import ProductPage from './views/ProductPage';
 import ShopProductsPage from './views/ShopProductsPage';
 import CollectionsPage from './views/CollectionsPage';
 import ContactPage from './views/ContactPage';
-import Error from './components/shared/error-fallback/Error';
 
 // LAZY LOADED COMPONENTS
 const SellerSignupPage = lazy(() => import('./views/seller/SellerSignupPage'));

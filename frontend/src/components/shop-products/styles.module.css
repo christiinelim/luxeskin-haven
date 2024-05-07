@@ -147,6 +147,31 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+/* pagination */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px
+}
+
+
+.active-page {
+    background-color: rgba(193,185,176,0.4);
+    color: rgba(241, 101, 101, 1);
+    border-radius: 5px
+}
+
+.page {
+    transition: color 0.3s ease;
+    padding: 1px 5px;
+}
+
+.page:hover {
+    cursor: pointer;
+    color: rgba(241, 101, 101, 1);
+}
+
 @media (min-width: 576px) {
     .sort-filter-wrapper {
         gap: 12px;
@@ -229,6 +254,12 @@
     .multiple-option .select-options {
         margin-right: 12px;
         margin-bottom: 7px;
+    }
+
+    /* pagination */
+    .pagination-wrapper {
+        gap: 9px;
+        margin-top: 22px
     }
 }
 
@@ -316,6 +347,12 @@
         margin-right: 13px;
         margin-bottom: 8px;
     }
+
+    /* pagination */
+    .pagination-wrapper {
+        gap: 10px;
+        margin-top: 24px
+    }
 }
 
 @media (min-width: 992px) {
@@ -396,5 +433,11 @@
     .multiple-option .select-options {
         margin-right: 14px;
         margin-bottom: 9px;
+    }
+
+    /* pagination */
+    .pagination-wrapper {
+        gap: 11px;
+        margin-top: 26px
     }
 }
