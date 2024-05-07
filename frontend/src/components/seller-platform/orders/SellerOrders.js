@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { OrderContext } from '../../../context/OrderContext';
+import { getUserLocalStorage } from '../../../utils/utils';
 import styles from './styles.module.css';
 
 const SellerOrders = () => {
@@ -8,7 +9,7 @@ const SellerOrders = () => {
     const [ expandedOrders, setExpandedOrders ] = useState({});
     const [ isEditing, setIsEditing ] = useState({});
     const [ selectedStatus, setSelectedStatus ] = useState({});
-    const sellerId = localStorage.getItem("sellerId");
+    const sellerId = getUserLocalStorage().sellerId;
 
     useEffect(() => {
         fetchData();

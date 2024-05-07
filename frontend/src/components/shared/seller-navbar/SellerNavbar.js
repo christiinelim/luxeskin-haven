@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from "../../../context/AuthContext";
 import { LogoutHandler } from '../../../utils/authUtils';
+import { getUserLocalStorage } from '../../../utils/utils';
 import styles from './styles.module.css';
 
 const SellerNavbar = () => {
@@ -21,7 +22,7 @@ const SellerNavbar = () => {
     };
 
     const handleProfileClick = () => {
-        navigate('/seller/' + localStorage.getItem("sellerId") + '/profile');
+        navigate('/seller/' + getUserLocalStorage().sellerId + '/profile');
         setShowDropdown(!showDropdown);
     }
 

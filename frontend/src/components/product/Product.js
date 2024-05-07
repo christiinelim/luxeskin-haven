@@ -4,6 +4,7 @@ import { ProductContext } from '../../context/ProductContext';
 import { CartContext } from '../../context/CartContext';
 import { getBackgroundColorForSkinType } from '../../utils/utils';
 import { addToCartGuest } from '../../utils/cartUtils';
+import { getUserLocalStorage } from '../../utils/utils';
 import styles from './styles.module.css';
 
 const Product = () => {
@@ -14,7 +15,7 @@ const Product = () => {
     const [ insufficient, setInsufficient ] = useState(false);
     const productContext = useContext(ProductContext);
     const cartContext = useContext(CartContext);
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const isLoggedIn = getUserLocalStorage().isLoggedIn;
 
     useEffect(() => {
         
@@ -37,7 +38,7 @@ const Product = () => {
             if (isLoggedIn) {
                 const data = {
                     product_id: productId,
-                    user_id: localStorage.getItem('userId'),
+                    user_id: getUserLocalStorage().userId,
                     quantity: quantity
                 }
                 const response = await cartContext.addToCart(data);

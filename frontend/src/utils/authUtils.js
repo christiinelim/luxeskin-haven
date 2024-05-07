@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { UserContext } from '../context/UserContext';
 import { SellerContext } from '../context/SellerContext';
+import { getUserLocalStorage } from './utils';
 
 export const LogoutHandler = () => {
     const navigate = useNavigate();
@@ -12,13 +13,13 @@ export const LogoutHandler = () => {
 
     const handleUserLogout = async (message) => {
         try {
-            await userContext.logout({ refreshToken: localStorage.getItem("refreshToken") });
+            await userContext.logout({ refreshToken: getUserLocalStorage().refreshToken });
             navigate('/login', { 
                 state: { 
                     success_message: message
                 }
             });
-            authContext.logout("user");
+            authContext.logout();
             return Promise.resolve();
         } catch (error) {
             console.error(error);
@@ -28,13 +29,13 @@ export const LogoutHandler = () => {
 
     const handleSellerLogout = async (message) => {
         try {
-            await sellerContext.logout({ refreshToken: localStorage.getItem("refreshToken") });
+            await sellerContext.logout({ refreshToken: getUserLocalStorage().refreshToken });
             navigate('/seller/login', { 
                 state: { 
                     success_message: message
                 }
             });
-            authContext.logout("seller");
+            authContext.logout();
             return Promise.resolve();
         } catch (error) {
             console.error(error);

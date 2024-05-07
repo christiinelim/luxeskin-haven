@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { OrderContext } from '../../context/OrderContext';
+import { getUserLocalStorage } from '../../utils/utils';
 import styles from './styles.module.css';
 
 
 const UserOrder = () => {
-    const userId = localStorage.getItem("userId");
+    const userId = getUserLocalStorage().userId;
     const orderContext = useContext(OrderContext);
     const [ orders, setOrders ] = useState(null);
     const [ expandedOrders, setExpandedOrders ] = useState({});

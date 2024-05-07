@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../../context/CartContext';
 import { addToCartGuest } from '../../../utils/cartUtils';
+import { getUserLocalStorage } from '../../../utils/utils';
 
 const ProductCards = ({ products }) => {
     const navigate = useNavigate();
     const cartContext = useContext(CartContext);
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const isLoggedIn = getUserLocalStorage().isLoggedIn;
     const [ addedProductId, setAddedProductId ] = useState(null);
     const [ insufficient, setInsufficient ] = useState(false);
 
@@ -15,7 +16,7 @@ const ProductCards = ({ products }) => {
             if (isLoggedIn) {
                 const data = {
                     product_id: productId,
-                    user_id: localStorage.getItem('userId'),
+                    user_id: getUserLocalStorage().userId,
                     quantity: 1
                 }
                 const response = await cartContext.addToCart(data);

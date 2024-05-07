@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../../context/ProductContext';
 import { getBackgroundColorForSkinType } from '../../../utils/utils';
+import { getUserLocalStorage } from '../../../utils/utils'
 import UploadWidget from '../../shared/upload-widget/UploadWidget';
 import styles from './styles.module.css';
 
@@ -89,7 +90,7 @@ const SellerListProduct = () => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             const newProduct = {
                 ...data,
-                seller_id: parseInt(localStorage.getItem("sellerId")),
+                seller_id: parseInt(getUserLocalStorage().sellerId),
                 image: imageUrl,
                 skin_types: selectedSkinTypes.join(',')
             }

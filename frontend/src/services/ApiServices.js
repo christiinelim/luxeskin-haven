@@ -1,13 +1,13 @@
 import axios from 'axios';
 import SellerServices from "./SellerServices";
-import { removeLocalStorage } from '../utils/utils';
+import { removeUserLocalStorage, getUserLocalStorage } from '../utils/utils';
 
 const ApiServices = axios.create ({
     baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
 ApiServices.interceptors.request.use(async (config) => {
-    const jwtToken = localStorage.getItem('accessToken');
+    const jwtToken = getUserLocalStorage().accessToken;
     if (config.url === '/seller/' || 
         config.url === '/seller/verify-account' ||
         config.url === '/seller/login' ||
@@ -47,9 +47,9 @@ ApiServices.interceptors.response.use(
             originalRequest._retry = true;
 
             try {
-                const email = localStorage.getItem('email');
-                const id = localStorage.getItem('sellerId') || localStorage.getItem('sellerId');
-                const refreshToken = localStorage.getItem('refreshToken');
+                const email = getUserLocalStorage().email;
+                const id = getUserLocalStorage().sellerId || getUserLocalStorage().userId;
+                const refreshToken = getUserLocalStorage().refreshToken;
                 const data = { email, id, refreshToken }
                 
                 const response = await SellerServices.refreshToken(data);
@@ -67,7 +67,7 @@ ApiServices.interceptors.response.use(
                 return Promise.reject(refreshError);
             }
         } else if (error.response.status === 401 && !originalRequest._retry) {
-             const status = localStorage.getItem('status');
+             const status = getUserLocalStorage().status;
 
             if (status === "seller") {
                 window.location.href = "/seller/login"
@@ -75,7 +75,7 @@ ApiServices.interceptors.response.use(
                 window.location.href = "/login"
             }
 
-            removeLocalStorage(status)
+            removeUserLocalStorage()
 
             return Promise.reject("Refresh token expired");
         }

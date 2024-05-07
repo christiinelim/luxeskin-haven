@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../../context/ProductContext';
+import { getUserLocalStorage } from '../../../utils/utils';
 import DeleteWarning from '../../shared/delete-warning/DeleteWarning';
 import styles from './styles.module.css';
 
@@ -15,7 +16,7 @@ const SellerListings = () => {
         
         const fetchData = async() => {
             try {
-                const response = await productContext.getProductBySeller(localStorage.getItem('sellerId'));
+                const response = await productContext.getProductBySeller(getUserLocalStorage().sellerId);
                 const data = response.data;
                 setListings(data);
             } catch (error) {

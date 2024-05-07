@@ -29,9 +29,11 @@ const UserServices = {
     },
     getUser: async (userId) => {
         try {
+            console.log(userId)
             const response = await ApiServices.get(`${USER_BASE_API}/` + userId);
             return response.data;
         } catch (error) {
+            console.log(error)
             throw new Error('Failed to retrieve user details');
         }
     },

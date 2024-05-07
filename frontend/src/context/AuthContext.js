@@ -1,20 +1,20 @@
 import React, { createContext, useState } from 'react';
-import { setLocalStorage, removeLocalStorage } from '../utils/utils';
+import { setUserLocalStorage, removeUserLocalStorage, getUserLocalStorage } from '../utils/utils';
 
 export const AuthContext = createContext();
 
 export const AuthServicesData = ({ children }) => {
-    const [ isLoggedIn, setIsLoggedIn ] = useState(localStorage.getItem('isLoggedIn') === 'true');
-    const [ status, setStatus ] = useState(localStorage.getItem('status'));
+    const [ isLoggedIn, setIsLoggedIn ] = useState(getUserLocalStorage().isLoggedIn === 'true' || false);
+    const [ status, setStatus ] = useState(getUserLocalStorage().status);
  
     const login = (data, status) => {
-        setLocalStorage(data, status);
+        setUserLocalStorage(data, status);
         setStatus(status)
         setIsLoggedIn(true);
     };
 
-    const logout = (status) => {
-        removeLocalStorage(status);
+    const logout = () => {
+        removeUserLocalStorage();
         setStatus('');
         setIsLoggedIn(false);
     };

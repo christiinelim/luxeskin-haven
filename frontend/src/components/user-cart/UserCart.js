@@ -2,12 +2,13 @@ import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { ProductContext } from '../../context/ProductContext';
+import { getUserLocalStorage } from '../../utils/utils';
 import { updateCartItemGuest, deleteCartItemGuest, getGuestCart, clearGuestCart } from '../../utils/cartUtils';
 import UserCartoutForm from './UserCartoutForm';
 import styles from './styles.module.css';
 
 const UserCart = () => {
-    const userId = localStorage.getItem("userId");
+    const userId = getUserLocalStorage().userId;
     const navigate = useNavigate();
     const cartContext = useContext(CartContext);
     const productContext = useContext(ProductContext);

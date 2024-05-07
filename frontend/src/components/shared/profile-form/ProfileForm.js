@@ -27,8 +27,10 @@ const ProfileForm = ({ formType, id }) => {
             try {
                 let response;
                 if (formType === "seller") {
+                    console.log(id)
                     response = await sellerContext.getSeller(id);
                 } else {
+                    console.log(id)
                     response = await userContext.getUser(id);
                 }
 
