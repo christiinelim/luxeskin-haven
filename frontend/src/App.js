@@ -84,11 +84,11 @@ function App() {
                             <Route path="/verify-account" element={<UserVerifyAccountPage />}/>
                             <Route path="/login" element={<UserLoginPage />}/>
                             <Route path="/forgot-password" element={<UserForgotPasswordPage />}/>
+                            <Route path="/cart" element={<UserCartPage />}/>
 
                             {/* USER PROTECTED ROUTES */}
                             <Route path="/profile/details" element={<PrivateRoute Component={UserProfilePage} status={'user'}/>}/>
                             <Route path="/profile/orders" element={<PrivateRoute Component={UserOrderPage} status={'user'}/>}/>
-                            <Route path="/cart" element={<PrivateRoute Component={UserCartPage} status={'user'}/>}/>
 
                             {/* PAGE NOT FOUND */}
                             <Route path="*" element={<Error header={'Page Not Found'}

@@ -1,25 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
-import { CartContext } from '../../context/CartContext';
 import { SellerContext } from '../../context/SellerContext';
 import SortProducts from './SortProducts';
 import FilterProducts from './FilterProducts';
 import styles from './styles.module.css';
+import ProductCards from '../shared/product-cards/ProductCards';
 
 const ShopProducts = () => {
     const location = useLocation();
     const isSearchPage = location.pathname === '/shop/search-product/';
-    const navigate = useNavigate();
     const [ searchParams ] = useSearchParams();
 
     const productContext = useContext(ProductContext);
-    const cartContext = useContext(CartContext);
     const sellerContext = useContext(SellerContext);
 
     const [ products, setProducts ] = useState(null);
-    const [ addedProductId, setAddedProductId ] = useState(null);
-    const [ insufficient, setInsufficient ] = useState(false);
     const [ showSort, setShowSort ] = useState(false);
     const [ showFilter, setShowFilter ] = useState(false);
     const [ emptySearch, setEmptySearch ] = useState(false);
@@ -74,27 +70,6 @@ const ShopProducts = () => {
         
     }, [isSearchPage, searchParams, productContext.loading, currentPage, productContext.productPage]);
 
-    const handleAddToBag = async (productId) => {
-        try {
-            const data = {
-                product_id: productId,
-                user_id: localStorage.getItem('userId'),
-                quantity: 1
-            }
-            const response = await cartContext.addToCart(data);
-            if (response.error) {
-                setInsufficient(true)
-            }
-            setAddedProductId(productId);
-            setTimeout(() => {
-                setAddedProductId(null);
-                setInsufficient(false)
-            }, 2500);
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const handleSortButton = () => {
         setShowSort(!showSort)
     }
@@ -136,25 +111,7 @@ const ShopProducts = () => {
 
                 { products && (
                     <div className={styles['products-wrapper']}>
-                        <div className='row'>
-                            { products.map((product, index) => (
-                                <div className='col-4 col-sm-3 col-lg-2 product-cards' key={index}>
-                                    <div className='shop-product-card' onClick={ () => navigate('/listing/' + product.id) }>
-                                        <div className='shop-product-image'><img src={ product.image } alt={product.name} /></div>
-                                        <div>
-                                            <div className='shop-product-header-wrapper'>
-                                                <div>{ product.seller.username }</div>
-                                                <div>${ (product.cost).toFixed(2) }</div>
-                                            </div>
-                                            <div className='shop-product-name'>{ product.name }</div>
-                                        </div>
-                                    </div>
-                                    <div className='button-border add-to-bag-button' onClick={ () => handleAddToBag(product.id) }>
-                                        { addedProductId === product.id ? (insufficient ? "Insufficient stock" : "Added!") : "Add to Bag" }
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                        <ProductCards products={ products }/>
                     </div>
                 )}
 

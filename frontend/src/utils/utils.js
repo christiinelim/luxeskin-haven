@@ -51,3 +51,28 @@ export const removeLocalStorage = (status) => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("status");
 }
+
+
+// export const setLocalStorage = (data, status) => {
+//     const localStorageData = {
+//         status,
+//         email: data.email,
+//         accessToken: data.accessToken,
+//         refreshToken: data.refreshToken,
+//         isLoggedIn: 'true'
+//     };
+
+//     if (status === "seller") {
+//         localStorageData.sellerId = data.id;
+//         localStorageData.activePage = '/seller/listings';
+//     } else {
+//         localStorageData.userId = data.id;
+//     }
+
+//     localStorage.setItem("userData", JSON.stringify(localStorageData));
+// };
+
+
+// export const removeLocalStorage = () => {
+//     localStorage.removeItem("userData");
+// }

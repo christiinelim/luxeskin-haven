@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ProductContext } from '../../context/ProductContext';
 import { CartContext } from '../../context/CartContext';
 import { getBackgroundColorForSkinType } from '../../utils/utils';
+import { addToCartGuest } from '../../utils/cartUtils';
 import styles from './styles.module.css';
 
 const Product = () => {
@@ -13,6 +14,7 @@ const Product = () => {
     const [ insufficient, setInsufficient ] = useState(false);
     const productContext = useContext(ProductContext);
     const cartContext = useContext(CartContext);
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
 
     useEffect(() => {
         
@@ -32,21 +34,27 @@ const Product = () => {
 
     const handleAddToBag = async (productId) => {
         try {
-            const data = {
-                product_id: productId,
-                user_id: localStorage.getItem('userId'),
-                quantity: quantity
+            if (isLoggedIn) {
+                const data = {
+                    product_id: productId,
+                    user_id: localStorage.getItem('userId'),
+                    quantity: quantity
+                }
+                const response = await cartContext.addToCart(data);
+                if (response.error) {
+                    setInsufficient(true)
+                }
+    
+                setAddedProductId(productId);
+                setTimeout(() => {
+                    setAddedProductId(null);
+                    setInsufficient(false)
+                }, 2500);
+            } else {
+                addToCartGuest(productId, quantity);
+                setAddedProductId(productId);
             }
-            const response = await cartContext.addToCart(data);
-            if (response.error) {
-                setInsufficient(true)
-            }
-
-            setAddedProductId(productId);
-            setTimeout(() => {
-                setAddedProductId(null);
-                setInsufficient(false)
-            }, 2500);
+            
         } catch (error) {
             console.log(error)
         }

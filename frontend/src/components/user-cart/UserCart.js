@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+import { ProductContext } from '../../context/ProductContext';
+import { updateCartItemGuest, deleteCartItemGuest, getGuestCart, clearGuestCart } from '../../utils/cartUtils';
 import UserCartoutForm from './UserCartoutForm';
 import styles from './styles.module.css';
 
@@ -8,6 +10,7 @@ const UserCart = () => {
     const userId = localStorage.getItem("userId");
     const navigate = useNavigate();
     const cartContext = useContext(CartContext);
+    const productContext = useContext(ProductContext);
     const [ userCart, setUserCart ] = useState(null);
     const [ quantities, setQuantities ] = useState({});
     const [ subtotal, setSubtotal ] = useState(0);
@@ -20,15 +23,40 @@ const UserCart = () => {
         
         const fetchData = async() => {
             try {
-                const response = await cartContext.getCartItemsByUser(userId);
-                const cartData = response.data;
-                setUserCart(cartData);
-                const initialQuantities = {};
-                cartData.forEach((item) => {
-                    initialQuantities[item.id] = item.quantity;
-                });
-                setQuantities(initialQuantities);
+                let cartData;
+                let initialQuantities = {};
+                cartData = getGuestCart();
 
+                if (userId) {
+                    if (cartData.length > 0) {
+                        for (const item of cartData) {
+                            const data = {
+                                product_id: item.product_id,
+                                user_id: userId,
+                                quantity: item.quantity
+                            }
+                            await cartContext.addToCart(data);
+                        }
+                        clearGuestCart();
+                    }
+                    const response = await cartContext.getCartItemsByUser(userId);
+                    cartData = response.data;
+                    cartData.forEach((item) => {
+                        initialQuantities[item.id] = item.quantity;
+                    });
+                } else {
+                    let i = 0;
+                    for (const item of cartData) {
+                        const product = await productContext.getProductById(item.product_id);
+                        item.product = product.data;
+                        item.id = i;
+                        initialQuantities[i] = item.quantity;
+                        i++;
+                    }
+                }
+
+                setUserCart(cartData);
+                setQuantities(initialQuantities);
             } catch (error) {
                console.log(error)
             }
@@ -84,35 +112,40 @@ const UserCart = () => {
 
     const handleUpdateCart = async (cartId, productId, updatedQuantities) => {
         try {
-            const updatedCart = {
-                product_id: productId,
-                user_id: userId,
-                quantity: updatedQuantities[cartId],
-            };
-
-            const response = await cartContext.updateCartItem(cartId, updatedCart);
-            if (response.error) {
-                const newQuantities = {
-                    ...quantities,
-                    [cartId]: updatedQuantities[cartId] - 1,
+            console.log(productId)
+            if (userId) {
+                const updatedCart = {
+                    product_id: productId,
+                    user_id: userId,
+                    quantity: updatedQuantities[cartId],
                 };
-                setQuantities(newQuantities);
-                setProductErrors((prevErrors) => ({
-                    ...prevErrors,
-                    [cartId]: true,
-                }));
 
-                setTimeout(() => {
+                const response = await cartContext.updateCartItem(cartId, updatedCart);
+                if (response.error) {
+                    const newQuantities = {
+                        ...quantities,
+                        [cartId]: updatedQuantities[cartId] - 1,
+                    };
+                    setQuantities(newQuantities);
+                    setProductErrors((prevErrors) => ({
+                        ...prevErrors,
+                        [cartId]: true,
+                    }));
+
+                    setTimeout(() => {
+                        setProductErrors((prevErrors) => ({
+                            ...prevErrors,
+                            [cartId]: false,
+                        }));
+                    }, 2500);
+                } else {
                     setProductErrors((prevErrors) => ({
                         ...prevErrors,
                         [cartId]: false,
                     }));
-                }, 2500);
+                }
             } else {
-                setProductErrors((prevErrors) => ({
-                    ...prevErrors,
-                    [cartId]: false,
-                }));
+                updateCartItemGuest(productId, updatedQuantities[cartId])
             }
         } catch (error) {
             console.log(error);
@@ -133,9 +166,13 @@ const UserCart = () => {
         });
     };
 
-    const handleDeleteCartItem = async (cartId) => {
+    const handleDeleteCartItem = async (cartId, productId) => {
         try {
-            await cartContext.deleteCartItem(cartId);
+            if (userId) {
+                await cartContext.deleteCartItem(cartId);
+            } else {
+                deleteCartItemGuest(productId)
+            }
             setUserCart(userCart.filter((item) => item.id !== cartId))
         } catch (error) {
             console.log(error)
@@ -147,13 +184,21 @@ const UserCart = () => {
     };
 
     const handleCartout = () => {
-        if (checkedItems.length !== 0) {
-            setCartout(true);
+        if (userId) {
+            if (checkedItems.length !== 0) {
+                setCartout(true);
+            } else {
+                SetEmptyCartError(true);
+                setTimeout(() => {
+                    SetEmptyCartError(false);
+                }, 2500);
+            }
         } else {
-            SetEmptyCartError(true);
-            setTimeout(() => {
-                SetEmptyCartError(false);
-            }, 2500);
+            navigate('/login', {
+                state: {
+                    'error_message': 'Please login to cartout'
+                }
+            })
         }
     };
 
@@ -172,9 +217,9 @@ const UserCart = () => {
                     {
                         userCart.length !== 0 ? (
                             <div className={styles['cart-list']}>
-                                {
-                                    userCart.map((cartItem) => (
-                                        <div key={cartItem.id} className={styles['cart-items']}>
+                                {   userCart &&
+                                    userCart.map((cartItem, index) => (
+                                        <div key={index} className={styles['cart-items']}>
                                             <div className={styles['checkbox-wrapper']}>
                                                 <input
                                                     type='checkbox'
@@ -210,7 +255,7 @@ const UserCart = () => {
                                                 <div className={styles['cart-cost']}>
                                                     <div className={styles['cart-text-large']}>${(cartItem.product.cost * quantities[cartItem.id]).toFixed(2)}</div>
                                                     <div>
-                                                        <i className={`bi bi-x ${styles['delete-cart-icon']}`} onClick={() => handleDeleteCartItem(cartItem.id)}></i>
+                                                        <i className={`bi bi-x ${styles['delete-cart-icon']}`} onClick={() => handleDeleteCartItem(cartItem.id, cartItem.product_id)}></i>
                                                     </div>
                                                 </div>
                                             </div>

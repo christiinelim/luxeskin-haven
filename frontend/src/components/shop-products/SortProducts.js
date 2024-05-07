@@ -19,7 +19,6 @@ const SortProducts = ({ products, setProducts }) => {
         if (sortedProducts[selectedOption]) {
             setProducts(sortedProducts[selectedOption]);
         } else {
-            console.log('sorting')
             let sortedResult = [...products]; 
             switch (selectedOption) {
                 case 'newest':
