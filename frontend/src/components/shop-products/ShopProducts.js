@@ -18,6 +18,7 @@ const ShopProducts = () => {
     const [ products, setProducts ] = useState(null);
     const [ showSort, setShowSort ] = useState(false);
     const [ showFilter, setShowFilter ] = useState(false);
+    const [ filtered, setFiltered ] = useState(false);
     const [ emptySearch, setEmptySearch ] = useState(false);
     const [ searchedProduct, setSearchedProduct ] = useState("");
     const [ sellers, setSellers ] = useState({});
@@ -78,12 +79,25 @@ const ShopProducts = () => {
         setShowFilter(!showFilter)
     }
 
+    const handleClearFilterButton = () => {
+        setFiltered(false);
+        setProducts(productContext.productPage['page1'])
+    }
+
     return (
         <>
             { showFilter && <div className="overlay"></div> }
             <div className='shop-wrapper'>
                 <div className='page-header'>Shop Products</div>
                 <div className={styles['sort-filter-wrapper']}>
+                    { filtered &&
+                        <div className={styles['sort-filter-button']} onClick={ handleClearFilterButton }>
+                            <div>
+                                <i className={`bi bi-x-lg ${styles['sort-filter-icon']}`}></i>
+                            </div>
+                            <div>Clear Filter</div>
+                        </div>
+                    }
                     <div className={styles['sort-filter-button']} onClick={ handleSortButton }>
                         <div>
                             <i className={`bi bi-sort-down ${styles['sort-filter-icon']}`}></i>
@@ -102,8 +116,8 @@ const ShopProducts = () => {
 
                 { showFilter &&
                     <FilterProducts showFilter={ showFilter} setShowFilter={ setShowFilter } sellers={ sellers }
-                                    setProducts={ setProducts } setEmptySearch = { setEmptySearch }
-                                    searchedProduct={ searchedProduct }
+                                    setProducts={ setProducts } setEmptySearch={ setEmptySearch }
+                                    searchedProduct={ searchedProduct } setFiltered={ setFiltered }
                     />
                 }
 
@@ -115,7 +129,7 @@ const ShopProducts = () => {
                     </div>
                 )}
 
-                { productContext.pages && (
+                { !filtered && productContext.pages && (
                     <div className={styles['pagination-wrapper']}>
                         {(() => {
                             const pagination = [];

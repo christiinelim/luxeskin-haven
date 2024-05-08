@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { ProductContext } from '../../context/ProductContext';
 import styles from './styles.module.css';
 
-const FilterProducts = ({ sellers, showFilter, setShowFilter, setProducts, setEmptySearch, searchedProduct }) => {
+const FilterProducts = ({ sellers, showFilter, setShowFilter, setProducts, setEmptySearch, searchedProduct, setFiltered }) => {
     const productContext = useContext(ProductContext);
 
     const [formData, setFormData] = useState({
@@ -54,6 +54,7 @@ const FilterProducts = ({ sellers, showFilter, setShowFilter, setProducts, setEm
                 setEmptySearch(true);
             }
             setProducts(response.data);
+            setFiltered(true);
             handleFilterButton();
         } catch (error) {
             console.log(error)
