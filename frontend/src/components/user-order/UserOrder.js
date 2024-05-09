@@ -25,7 +25,6 @@ const UserOrder = () => {
                 );
 
                 setOrders(processedOrders);
-                console.log(processedOrders)
 
             } catch (error) {
                 console.log(error)

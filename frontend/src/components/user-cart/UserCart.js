@@ -113,7 +113,6 @@ const UserCart = () => {
 
     const handleUpdateCart = async (cartId, productId, updatedQuantities) => {
         try {
-            console.log(productId)
             if (userId) {
                 const updatedCart = {
                     product_id: productId,
@@ -125,7 +124,7 @@ const UserCart = () => {
                 if (response.error) {
                     const newQuantities = {
                         ...quantities,
-                        [cartId]: updatedQuantities[cartId] - 1,
+                        [cartId]: response.stocks_on_hand,
                     };
                     setQuantities(newQuantities);
                     setProductErrors((prevErrors) => ({
