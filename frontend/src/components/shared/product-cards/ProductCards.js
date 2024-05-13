@@ -47,7 +47,7 @@ const ProductCards = ({ products }) => {
                         <div>
                             <div className='shop-product-header-wrapper'>
                                 <div>{ product.seller.username }</div>
-                                <div>${ (product.cost).toFixed(2) }</div>
+                                <div>${ parseFloat(product.cost).toFixed(2) }</div>
                             </div>
                             <div className='shop-product-name'>{ product.name }</div>
                         </div>

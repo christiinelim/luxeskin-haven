@@ -253,7 +253,7 @@ const UserCart = () => {
                                                     {productErrors[cartItem.id] && <div className={styles['insufficient']}>Insufficient stock!</div>}
                                                 </div>
                                                 <div className={styles['cart-cost']}>
-                                                    <div className={styles['cart-text-large']}>${(cartItem.product.cost * quantities[cartItem.id]).toFixed(2)}</div>
+                                                    <div className={styles['cart-text-large']}>${(parseFloat(cartItem.product.cost) * quantities[cartItem.id]).toFixed(2)}</div>
                                                     <div>
                                                         <i className={`bi bi-x ${styles['delete-cart-icon']}`} onClick={() => handleDeleteCartItem(cartItem.id, cartItem.product_id)}></i>
                                                     </div>

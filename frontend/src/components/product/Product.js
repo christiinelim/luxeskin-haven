@@ -99,7 +99,7 @@ const Product = () => {
                     </div>
                     <div className='product-details row'>
                         <div className='product-header col-4 col-md-3'>Cost: </div>
-                        <div className='col-8 col-lg-9'>${ (product.cost).toFixed(2) }</div>
+                        <div className='col-8 col-lg-9'>${ parseFloat(product.cost).toFixed(2) }</div>
                     </div>
                     <div className='product-details row'>
                         <div className='product-header col-4 col-md-3'>Description: </div>

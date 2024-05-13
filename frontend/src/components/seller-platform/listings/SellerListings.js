@@ -76,7 +76,7 @@ const SellerListings = () => {
                                 <div className={styles['listing-image']}><img src={ listing.image } alt="image of listing"/></div>
                                 <div className={styles['card-content']}>
                                     <div className={styles['listing-name']}>{ listing.name }</div>
-                                    <div className={styles['listing-detail']}>Cost: ${ (listing.cost).toFixed(2) }</div>
+                                    <div className={styles['listing-detail']}>Cost: ${ parseFloat(listing.cost).toFixed(2) }</div>
                                     <div className={styles['listing-detail']}>Available Stocks: { listing.stocks_on_hand }</div>
                                 </div>
                                 <div className='listing-action'>

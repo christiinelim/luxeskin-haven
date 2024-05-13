@@ -123,7 +123,7 @@ const SellerOrders = () => {
                                     </div>
                                     <div className='order-quantity-cost'>
                                         <div>{product.quantity}</div>
-                                        <div className='order-cost'>${parseFloat(product.quantity*product.products.cost).toFixed(2)}</div>
+                                        <div className='order-cost'>${(product.quantity*parseFloat(product.products.cost)).toFixed(2)}</div>
                                     </div>
                                 </div>
                             </div>
