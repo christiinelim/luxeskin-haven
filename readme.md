@@ -3,6 +3,10 @@
 ## Project Overview
 LuxeSkin Haven is an e-commerce platform dedicated to providing luxurious skincare products to customers seeking high-quality and effective skincare solutions. The platform aims to create a seamless and enjoyable shopping experience for skincare enthusiasts, connecting them with premium skincare brands and products.
 
+## Deployment
+- Deployed Link: <a href="https://luxeskin-haven.netlify.app/">https://luxeskin-haven.netlify.app/</a>
+
+## Repository
 - GitHub Repository for Frontend (ReactJS): <a href="https://github.com/christiinelim/luxeskin-haven">Link</a>
 - GitHub Repository for Backend (Express, NodeJs, Handlebars, Caolan form, bookshelf ORM): <a href="https://github.com/christiinelim/luxeskin-haven-backend">Link</a>
 
