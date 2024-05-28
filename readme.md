@@ -102,11 +102,3 @@ LuxeSkin Haven adopts a clean and elegant design with a color palette of soft pa
 1. As a skincare enthusiast, I want to browse a curated selection of high-end skincare products tailored to my skin type and concerns.
 2. As a seller, I want to easily register, join, list my products, and manage orders, ensuring a seamless experience for buyers.
 3. As a buyer, I want to add items to my cart, checkout securely, and track my orders' statuses in real-time.
-
-## Live Links
-- [React Frontend](link-to-react-frontend)
-- [Backend Admin Dashboard](link-to-backend-admin)
-
-## Technologies Used
-- Backend: Express.js, Bookshelf ORM, db-migrate, Stripe, Handlebars (hbs), Caolan form
-- Frontend: React, Cloudinary
